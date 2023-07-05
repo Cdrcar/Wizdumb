@@ -15,8 +15,8 @@ const typeDefs = gql`
     id: ID!
     user: User!
     comment: String!
-    resource: [Resource!]!
-    course: [Course!]!
+    resource: Resource!
+    course: Course!
     createdAt: String!
     updatedAt: String!
   }
@@ -30,6 +30,8 @@ const typeDefs = gql`
     link: String
     comments: [Comment!]!
     user: User!
+    course: Course!
+    tags: [Tag!]!
     createdAt: String!
     updatedAt: String!
   }
@@ -37,6 +39,8 @@ const typeDefs = gql`
   type Tag {
     id: ID!
     name: String
+    courses: [Course!]!
+    resources: [Resource!]!
     createdAt: String!
     updatedAt: String!
   }

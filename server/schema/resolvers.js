@@ -1,4 +1,4 @@
-const { User, Course, Comment, Resource, Tag } = require("./models");
+const { User, Course, Comment, Resource, Tag } = require("../models");
 
 const resolvers = {
   Query: {
@@ -73,7 +73,7 @@ const resolvers = {
     user: (parent) => User.findById(parent.user),
     course: (parent) => Course.findById(parent.course),
     comments: (parent) => Comment.find({ resource: parent.id }),
-    tags: (parent) => Tag.find({}),
+    tags: (parent) => Tag.find({ _id: { $in: parent.tags } }), // Update this line
   },
   Tag: {
     courses: (parent) => Course.find({ tags: parent.id }),

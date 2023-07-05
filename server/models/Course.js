@@ -1,36 +1,40 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const courseSchema = new Schema(
+const courseSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  users: [
     {
-        name: {
-            type: String,
-            required: true
-        },
-        description: {
-            type: String,
-            required: true
-        },
-        users:  [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Users'
-            }
-        ],
-        comments: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Comments'
-            }
-        ],
-        resources: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Resources'
-            }
-        ],
-    }
-);
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+  resources: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Resource",
+    },
+  ],
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tag",
+    },
+  ],
+});
 
-const Course = model('Course', courseSchema);
+const Course = model("Course", courseSchema);
 
 module.exports = Course;

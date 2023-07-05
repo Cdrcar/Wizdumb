@@ -1,5 +1,6 @@
 
 import './App.css';
+import { BrowserRouter } from "react-router-dom";
 import {AccountSettings, Course, DiscussionPage, Homepage, Navbar, LoggedinHomepage, Login, Modules, SearchPage, Footer} from './components'
 
 
@@ -9,13 +10,14 @@ function App() {
       <div>
       <div>
         <Navbar />
+        <Login />
         <Homepage />
 
       </div>
-      <LoggedinHomepage />
-      <Login />
-      <SearchPage />
       <Course />
+      <LoggedinHomepage />
+      
+      <SearchPage />
       <Modules />
       <DiscussionPage />
       <AccountSettings />

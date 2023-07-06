@@ -3,7 +3,7 @@ import { node } from "../assets";
 
 const Navbar = () => {
   return (
-    <nav className="bg-cyan-700">
+    <nav className="sticky top-0 bg-cyan-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
         <a href="/" className="flex items-center">
           <img src={node} className="h-8 mr-3" alt="Wizdumb Logo" />

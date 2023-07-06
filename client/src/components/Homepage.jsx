@@ -1,5 +1,4 @@
 import React from "react";
-import { node } from "../assets";
 import brainLogo from "../assets/brainLogo.json";
 
 import Lottie from "lottie-react";

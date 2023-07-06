@@ -1,5 +1,4 @@
 import React from "react";
-import { node } from "../assets";
 import brainLogo from "../assets/brainLogo.json";
 import Lottie from "lottie-react";
 import Logo from './Logo';
@@ -12,7 +11,7 @@ const Homepage = () => {
         <div className="pt-20">
           <ul className="text-center flex flex-col">
             <li
-              className="pb-10 bg-sky-400 border rounded-full text-background mb-2 hover:bg-background hover:text-white hover:cursor-pointer"
+              className="pb-10 bg-sky-400 border-2 border-sky-400 rounded-full text-white text-background mb-2 hover:bg-white hover:border-bg-sky-400 hover:text-sky-400 hover:cursor-pointer"
               style={{
                 marginLeft: "100px",
                 padding: "5px",
@@ -22,7 +21,7 @@ const Homepage = () => {
               Login
             </li>
             <li
-              className="pb-10 bg-red-500 border rounded-full text-background hover:bg-background hover:text-white hover:cursor-pointer"
+              className="pb-10 bg-red-500 border-2 border-red-500 rounded-full text-white hover:text-red-500 hover:bg-white hover:text-bg-red-500 hover:cursor-pointer"
               style={{
                 marginLeft: "100px",
                 padding: "5px",

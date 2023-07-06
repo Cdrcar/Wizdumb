@@ -2,7 +2,7 @@ const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type Course {
-    id: ID!
+    _id: ID!
     name: String!
     description: String!
     users: [User!]!
@@ -12,7 +12,7 @@ const typeDefs = gql`
   }
 
   type Comment {
-    id: ID!
+    _id: ID!
     user: User!
     comment: String!
     resource: Resource!
@@ -22,7 +22,7 @@ const typeDefs = gql`
   }
 
   type Resource {
-    id: ID!
+    _id: ID!
     name: String!
     video: String
     text: String
@@ -37,7 +37,7 @@ const typeDefs = gql`
   }
 
   type Tag {
-    id: ID!
+    _id: ID!
     name: String
     courses: [Course!]!
     resources: [Resource!]!
@@ -46,7 +46,7 @@ const typeDefs = gql`
   }
 
   type User {
-    id: ID!
+    _id: ID!
     username: String!
     email: String!
     password: String!

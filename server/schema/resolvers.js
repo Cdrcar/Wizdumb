@@ -1,83 +1,141 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Course, Comment, Resource, Tag } = require("../models");
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    getUser: (parent, { id }) => User.findById(id),
-    getUsers: () => User.find(),
-    getCourse: (parent, { id }) => Course.findById(id),
-    getCourses: () => Course.find(),
-    getComment: (parent, { id }) => Comment.findById(id),
-    getComments: () => Comment.find(),
-    getResource: (parent, { id }) => Resource.findById(id),
-    getResources: () => Resource.find(),
-    getTag: (parent, { id }) => Tag.findById(id),
-    getTags: () => Tag.find(),
+    getUser: async (parent, { id }) => { return await User.findById(id)},
+    getUsers: async () => { return await User.find()} ,
+    getCourse: async (parent, { id }) => { return await Course.findById(id) },
+    getCourses: async  () => { return await  Course.find()},
+    getComment: async  (parent, { id }) => { return await Comment.findById(id)},
+    getComments: async  () => {return await Comment.find()},
+    getResource: async  (parent, { id }) => {return await Resource.findById(id)},
+    getResources: async  () => { return await Resource.find()},
+    getTag: async (parent, { id }) =>{ return await Tag.findById(id)},
+    getTags: async () => {return await Tag.find()},
   },
   Mutation: {
-    createUser: (parent, { name, email }) => User.create({ name, email }),
-    updateUser: (parent, { id, name, email }) =>
-      User.findByIdAndUpdate(id, { name, email }, { new: true }),
-    deleteUser: (parent, { id }) => User.findByIdAndDelete(id),
-    createCourse: (parent, { name, description }) =>
-      Course.create({ name, description }),
-    updateCourse: (parent, { id, name, description }) =>
-      Course.findByIdAndUpdate(id, { name, description }, { new: true }),
-    deleteCourse: (parent, { id }) => Course.findByIdAndDelete(id),
-    createComment: (parent, { user, comment, resource, course }) =>
-      Comment.create({ user, comment, resource, course }),
-    updateComment: (parent, { id, user, comment, resource, course }) =>
-      Comment.findByIdAndUpdate(
-        id,
-        { user, comment, resource, course },
-        { new: true }
-      ),
-    deleteComment: (parent, { id }) => Comment.findByIdAndDelete(id),
-    createResource: (
-      parent,
-      { name, video, text, description, link, user, course }
-    ) =>
-      Resource.create({ name, video, text, description, link, user, course }),
-    updateResource: (
-      parent,
-      { id, name, video, text, description, link, user, course }
-    ) =>
-      Resource.findByIdAndUpdate(
-        id,
-        { name, video, text, description, link, user, course },
-        { new: true }
-      ),
-    deleteResource: (parent, { id }) => Resource.findByIdAndDelete(id),
-    createTag: (parent, { name }) => Tag.create({ name }),
-    updateTag: (parent, { id, name }) =>
-      Tag.findByIdAndUpdate(id, { name }, { new: true }),
-    deleteTag: (parent, { id }) => Tag.findByIdAndDelete(id),
+    createUser: async (parent, { name, email, password }) => {
+      return await User.create({ name, email, password });
+    },
+    loginUser: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user) {
+        throw new AuthenticationError("Invalid email or password");
+      }
+      const correctPw = await user.isCorrectPassword(password);
+      if (!correctPw) {
+        throw new AuthenticationError("Invalid email or password");
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    updateUser: async (parent, { id, name, email }) => {
+      return await User.findByIdAndUpdate(id, { name, email }, { new: true });
+    },
+    deleteUser: async (parent, { id }) => {
+      return await User.findByIdAndDelete(id);
+    },
+    createCourse: async (parent, { name, description }) => {
+      return await Course.create({ name, description });
+    },
+    updateCourse: async (parent, { id, name, description }) => {
+      return await Course.findByIdAndUpdate(id, { name, description }, { new: true });
+    },
+    deleteCourse: async (parent, { id }) => {
+      return await Course.findByIdAndDelete(id);
+    },
+    createComment: async (parent, { user, comment, resource, course }) => {
+      return await Comment.create({ user, comment, resource, course });
+    },
+    updateComment: async (parent, { id, user, comment, resource, course }) => {
+      return await Comment.findByIdAndUpdate(id, { user, comment, resource, course }, { new: true });
+    },
+    deleteComment: async (parent, { id }) => {
+      return await Comment.findByIdAndDelete(id);
+    },
+    createResource: async (parent, { name, video, text, description, link, user, course }) => {
+      return await Resource.create({ name, video, text, description, link, user, course });
+    },
+    updateResource: async (parent, { id, name, video, text, description, link, user, course }) => {
+      return await Resource.findByIdAndUpdate(id, { name, video, text, description, link, user, course }, { new: true });
+    },
+    deleteResource: async (parent, { id }) => {
+      return await Resource.findByIdAndDelete(id);
+    },
+    createTag: async (parent, { name }) => {
+      return await Tag.create({ name });
+    },
+    updateTag: async (parent, { id, name }) => {
+      return await Tag.findByIdAndUpdate(id, {name }, { new: true });
+    },
+    deleteTag: async (parent, { id }) => {
+      return await Tag.findByIdAndDelete(id);
+    },
   },
   User: {
-    courses: (parent) => Course.find({ users: parent.id }),
-    resources: (parent) => Resource.find({ user: parent.id }),
-    comments: (parent) => Comment.find({ user: parent.id }),
-    tags: (parent) => Tag.find({}),
+    courses: async (parent) => {
+      return await Course.find({ users: parent.id });
+    },
+    resources: async (parent) => {
+      return await Resource.find({ user: parent.id });
+    },
+    comments: async (parent) => {
+      return await Comment.find({ user: parent.id });
+    },
+    tags: async () => {
+      return await Tag.find();
+    },
   },
   Course: {
-    users: (parent) => User.find({ courses: parent.id }),
-    comments: (parent) => Comment.find({ course: parent.id }),
-    resources: (parent) => Resource.find({ course: parent.id }),
-    tags: (parent) => Tag.find({}),
+    users: async (parent) => {
+      return await User.find({ courses: parent.id });
+    },
+    comments: async (parent) => {
+      return await Comment.find({ course: parent.id });
+    },
+    resources: async (parent) => {
+      return await Resource.find({ course: parent.id });
+    },
+    tags: async () => {
+      return await Tag.find();
+    },
   },
   Comment: {
-    user: (parent) => User.findById(parent.user),
-    resource: (parent) => Resource.findById(parent.resource),
-    course: (parent) => Course.findById(parent.course),
+    user: async (parent) => {
+      return await User.findById(parent.user);
+    },
+    resource: async (parent) => {
+      return await Resource.findById(parent.resource);
+    },
+    course: async (parent) => {
+      return await Course.findById(parent.course);
+    },
   },
   Resource: {
-    user: (parent) => User.findById(parent.user),
-    course: (parent) => Course.findById(parent.course),
-    comments: (parent) => Comment.find({ resource: parent.id }),
-    tags: (parent) => Tag.find({ _id: { $in: parent.tags } }), // Update this line
+    user: async (parent) => {
+      return await User.findById(parent.user);
+    },
+    course: async (parent) => {
+      return await Course.findById(parent.course);
+    },
+    comments: async (parent) => {
+      return await Comment.find({ resource: parent.id });
+    },
+    tags: async (parent) => {
+      return await Tag.find({ _id: { $in: parent.tags } });
+    },
   },
   Tag: {
-    courses: (parent) => Course.find({ tags: parent.id }),
-    resources: (parent) => Resource.find({ tags: parent.id }),
+    courses: async (parent) => {
+      return await Course.find({ tags: parent.id });
+    },
+    resources: async (parent) => {
+      return await Resource.find({ tags: parent.id });
+    },
   },
 };
 

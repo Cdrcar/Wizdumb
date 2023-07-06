@@ -1,3 +1,4 @@
+/* eslint-disable import/no-anonymous-default-export */
 import decode from 'jwt-decode';
 
 class AuthService {

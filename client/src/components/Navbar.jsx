@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 
 const Navbar = () => {
   return (
-    <nav className="sticky top-0 bg-cyan-700">
+    <nav className="sticky top-0 z-50 bg-cyan-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
         <a href="/" className="flex items-center">
           <Lottie

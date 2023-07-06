@@ -9,6 +9,14 @@ const courseSchema = new Schema({
     type: String,
     required: true,
   },
+  icon: {
+    type: String,
+  },
+  modules: [
+    {
+      type: String,
+    },
+  ],
   users: [
     {
       type: Schema.Types.ObjectId,

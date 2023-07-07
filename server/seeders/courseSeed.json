@@ -1,0 +1,77 @@
+[
+  {
+    "name": "Javascript",
+    "description": "JavaScript is a dynamic programming language that's used for web development, in web applications, for game development, and lots more. It allows you to implement dynamic features on web pages that cannot be done with only HTML and CSS.",
+    "icon": "javascript",
+    "modules": ["Hello World", "Conditionals", "Functions", "Arrays", "Loops"],
+    "users": [],
+    "comments": [],
+    "resources": [],
+    "tags": []
+  },
+  {
+    "name": "HTML & CSS",
+    "description": "Learn the essentials of HTML and CSS, the building blocks of web development. This course covers how to create and structure web pages using HTML, as well as how to style and layout those pages using CSS.",
+    "icon": "html",
+    "modules": [
+      "Elements and Structure",
+      "Forms",
+      "Semantic HTML",
+      "Syntax and Selectors",
+      "Responsive design"
+    ],
+    "users": [],
+    "comments": [],
+    "resources": [],
+    "tags": []
+  },
+  {
+    "name": "NodeJS",
+    "description": "Node.js is a powerful JavaScript runtime environment that allows you to build scalable and efficient server-side applications. This course covers the fundamentals of Node.js and teaches you how to develop web applications using Node.js.",
+    "icon": "node",
+    "modules": [
+      "Introduction to NodeJS",
+      "Node Package Manager",
+      "Node Modules",
+      "Javascript for NodeJS",
+      "Understanding JSON"
+    ],
+    "users": [],
+    "comments": [],
+    "resources": [],
+    "tags": []
+  },
+
+  {
+    "name": "ExpressJS",
+    "description": "Express.js is a popular web application framework for Node.js. In this course, you'll learn how to build web applications using Express.js. Topics covered include routing, middleware, template engines, and working with databases",
+    "icon": "express",
+    "modules": [
+      "Introduction to ExpressJS",
+      "Routes",
+      "Middleware",
+      "Template engines",
+      "Routing challenges"
+    ],
+    "users": [],
+    "comments": [],
+    "resources": [],
+    "tags": []
+  },
+  {
+    "name": "Github",
+    "description": "Git is a distributed version control system that allows a developer to track changes made to files in their projects.",
+    "icon": "github",
+    "modules": [
+      "Introduction to Github",
+      "Setting up Github ",
+      "Creating and sharing repositories",
+      "Pushing code to github",
+      "Pull requests and merging"
+    ],
+    "users": [],
+    "comments": [],
+    "resources": [],
+    "tags": []
+  }
+]

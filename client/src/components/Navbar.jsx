@@ -1,12 +1,18 @@
 import React from "react";
-import { node } from "../assets";
+import brainLogo from "../assets/brainLogo.json";
+
+import Lottie from "lottie-react";
 
 const Navbar = () => {
   return (
-    <nav className="bg-cyan-700">
+    <nav className="sticky top-0 z-50 bg-cyan-700">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
         <a href="/" className="flex items-center">
-          <img src={node} className="h-8 mr-3" alt="Wizdumb Logo" />
+          <Lottie
+            animationData={brainLogo}
+            className="h-20 mr-3"
+            alt="Wizdumb Logo"
+          />
           <span className="self-center text-2xl text-sky-400 whitespace-nowrap text-white">
             Wiz
             <span className="text-white">Dumb</span>

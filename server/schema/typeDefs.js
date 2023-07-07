@@ -74,6 +74,7 @@ const typeDefs = gql`
     getResources: [Resource!]!
     getTag(id: ID!): Tag
     getTags: [Tag!]!
+    me: User
   }
 
   type Mutation {

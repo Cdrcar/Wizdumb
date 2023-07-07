@@ -4,8 +4,8 @@ import DiscussionPage from './DiscussionPage';
 import Footer from './Footer';
 import Homepage from './Homepage';
 import LoggedinHomepage from './LoggedinHomepage';
-import Login from './login';
-import Modules from './modules';
+import Login from './Login';
+import Modules from './Modules';
 import Navbar from './Navbar';
 import SearchPage from './SearchPage';
 

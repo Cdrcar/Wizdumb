@@ -1,20 +1,21 @@
+require('dotenv').config();
 const mongoose = require("mongoose");
-require("dotenv").config();
 
-// Connect to the MongoDB database
 mongoose
-  .connect(
-    process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/wizdumb", // Use the provided MONGODB_URI environment variable if available, otherwise use the local MongoDB URL
-    {
-      useNewUrlParser: true, // Use the new URL parser
-      useUnifiedTopology: true, // Use the new server discovery and monitoring engine
-    }
-  )
-  .then(() => {
-    console.log("Successfully connected to the database");
+  .connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((db) => {
+    const { host, name } = db.connections[0];
+    console.log(`Successfully connected to the database at host ${host}`);
+    console.log(`Database name: ${name}`);
   })
   .catch((error) => {
     console.error("Error connecting to the database", error);
+    if (!process.env.MONGODB_URI) {
+      console.error("process.env.MONGODB_URI is undefined. Please ensure your .env file is set up correctly and is not being ignored by git (should be in .gitignore file).");
+    }
   });
 
 module.exports = mongoose.connection; // Export the Mongoose connection object

@@ -4,29 +4,55 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    getUser: async (parent, { id }) => { return await User.findById(id)},
-    getUsers: async () => { return await User.find()} ,
-    getCourse: async (parent, { id }) => { return await Course.findById(id) },
-    getCourses: async  () => { return await  Course.find()},
-    getComment: async  (parent, { id }) => { return await Comment.findById(id)},
-    getComments: async  () => {return await Comment.find()},
-    getResource: async  (parent, { id }) => {return await Resource.findById(id)},
-    getResources: async  () => { return await Resource.find()},
-    getTag: async (parent, { id }) =>{ return await Tag.findById(id)},
-    getTags: async () => {return await Tag.find()},
+    getUser: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findOne({ _id: context.user._id });
+        return user;
+      }
+      throw new AuthenticationError('Not logged in');
+    },
+    getUsers: async () => {
+      return await User.find();
+    },
+    getCourse: async (parent, { id }) => {
+      return await Course.findById(id);
+    },
+    getCourses: async () => {
+      return await Course.find();
+    },
+    getComment: async (parent, { id }) => {
+      return await Comment.findById(id);
+    },
+    getComments: async () => {
+      return await Comment.find();
+    },
+    getResource: async (parent, { id }) => {
+      return await Resource.findById(id);
+    },
+    getResources: async () => {
+      return await Resource.find();
+    },
+    getTag: async (parent, { id }) => {
+      return await Tag.findById(id);
+    },
+    getTags: async () => {
+      return await Tag.find();
+    },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findById(context.user._id).populate('thoughts');
       }
       throw new AuthenticationError('You need to be logged in!');
     },
   },
+
   Mutation: {
-    createUser: async (parent, { name, email, password }) => {
-      const user= await User.create({ name, email, password });
+    createUser: async (parent, args) => {
+      const user = await User.create(args);
       const token = signToken(user);
-      return { token, user }
+      return { token, user };
     },
+
     loginUser: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
@@ -78,12 +104,13 @@ const resolvers = {
       return await Tag.create({ name });
     },
     updateTag: async (parent, { id, name }) => {
-      return await Tag.findByIdAndUpdate(id, {name }, { new: true });
+      return await Tag.findByIdAndUpdate(id, { name }, { new: true });
     },
     deleteTag: async (parent, { id }) => {
       return await Tag.findByIdAndDelete(id);
     },
   },
+
   User: {
     courses: async (parent) => {
       return await Course.find({ users: parent.id });

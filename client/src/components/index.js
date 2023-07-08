@@ -5,6 +5,7 @@ import Footer from './Footer';
 import Homepage from './Homepage';
 import LoggedinHomepage from './LoggedinHomepage';
 import Login from './Login';
+import Signup from './Signup';
 import Modules from './Modules';
 import Navbar from './Navbar';
 import SearchPage from './SearchPage';
@@ -16,6 +17,7 @@ export {
   Homepage,
   LoggedinHomepage,
   Login,
+  Signup,
   Footer,
   Modules,
   SearchPage,

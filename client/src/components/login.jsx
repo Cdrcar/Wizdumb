@@ -2,9 +2,10 @@ import React from 'react';
 import Logo from './Logo';
 
 const Login = () => {
+    const message = "Welcome back";
     return (
         <div className='grid flex'>
-            <Logo />
+            <Logo message={message} />
             <div className="grid place-items-center m-20">
                 <form>
                     <label className='p-3' for='email_or_username_login'>Email</label><br></br>

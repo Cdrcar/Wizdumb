@@ -57,24 +57,7 @@ function App() {
             <Route path="/account" element={<AccountSettings />} />
             <Route path ="/course" element={<Course />} />
           </Routes>
-          {/* <h3
-            id="courses"
-            className="font-black flex flex-wrap mx-6 text-cyan-700 md:text-[60px] sm:text-[50px] xs:text-[40px] text-[30px]"
-          >
-            Courses
-          </h3>
-          <div className="grid grid-cols-3 gap-0">
-
-            {courses.map((course) => (
-              <Course
-                key={course.name}
-                name={course.name}
-                description={course.description}
-                icon={course.icon}
-                modules={course.modules}
-              />
-            ))}
-          </div> */}
+        
           <LoggedinHomepage />
           <Footer className="bg-lime-500" />
         </div>

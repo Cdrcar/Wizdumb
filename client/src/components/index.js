@@ -4,9 +4,10 @@ import DiscussionPage from './DiscussionPage';
 import Footer from './Footer';
 import Homepage from './Homepage';
 import LoggedinHomepage from './LoggedinHomepage';
-import Login from './login';
+import Login from './Login';
 import Signup from './Signup';
-import Modules from './modules';
+import Profile from './Profile'
+import Modules from './Modules';
 import Navbar from './Navbar';
 import SearchPage from './SearchPage';
 
@@ -18,6 +19,7 @@ export {
   LoggedinHomepage,
   Login,
   Signup,
+  Profile,
   Footer,
   Modules,
   SearchPage,

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AuthService from "../utils/auth";
 import brainLogo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
+import LoggedOutNav from "./LoggedOutNav";
 // TODO: my-courses component and route
 
 const Navbar = () => {
@@ -29,12 +30,13 @@ const Navbar = () => {
         </Link>
         <div className="hidden w-full md:block md:w-auto">
           {/* Courses */}
-          <ul className="flex flex-col font-medium p-0 pr-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-            <li className="font-medium block py-2 pl-3 pr-4 md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2">
+          <ul>
+            <LoggedOutNav />
+            {/* <li className="font-medium block py-2 pl-3 pr-4 md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2">
               <a href="#courses">Courses</a>
             </li>
 
-            {/* Account */}
+            {/* Account 
             <li
               className="font-medium block py-2 pl-3 pr-4 md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2"
               onClick={handleAccountClick}
@@ -61,7 +63,7 @@ const Navbar = () => {
                   )}
                 </ul>
               )}
-            </li>
+            </li>*/}
           </ul>
         </div>
       </div>

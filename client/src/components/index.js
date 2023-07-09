@@ -6,12 +6,13 @@ import Homepage from "./Homepage";
 import LoggedinHomepage from "./LoggedinHomepage";
 import Login from "./login";
 import Signup from "./Signup";
-import Profile from "./Profile";
+import Profile from "./ProfileSettings";
 import MyCourses from "./MyCourses";
 import Modules from "./modules";
 import Navbar from "./Navbar";
 import LoggedOutNav from "./LoggedOutNav";
 import SearchPage from "./SearchPage";
+import ProfileSettings from "./ProfileSettings";
 
 export {
   AccountSettings,
@@ -23,6 +24,7 @@ export {
   Login,
   Signup,
   Profile,
+  ProfileSettings,
   MyCourses,
   Footer,
   Modules,

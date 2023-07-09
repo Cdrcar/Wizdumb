@@ -19,7 +19,7 @@ import {
   Navbar, 
   LoggedinHomepage, 
   Login, 
-  Signup,
+  Signup, Profile, MyCourses,
   SearchPage, 
   Footer } 
   from './components';
@@ -64,6 +64,9 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/my-courses" element={<MyCourses />} />
+            <Route path="/modules" element={<Modules />} />
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/account" element={<AccountSettings />} />
@@ -76,7 +79,7 @@ function App() {
           </Routes>
         
           <LoggedinHomepage />
-          <Footer className="bg-lime-500" />
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>

@@ -49,7 +49,7 @@ const Homepage = () => {
             <ul className="text-center flex flex-col">
               <Link to="/login">
                 <li
-                  className="pb-10 bg-sky-400 border rounded-full text-background mb-2 hover:bg-background hover:text-white hover:cursor-pointer"
+                  className="pb-10 bg-sky-400 border rounded-full text-white mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400"
                   style={{
                     marginLeft: "100px",
                     padding: "5px",
@@ -61,7 +61,7 @@ const Homepage = () => {
               </Link>
               <Link to="/signup">
                 <li
-                  className="pb-10 bg-red-500 border rounded-full text-background hover:bg-background hover:text-white hover:cursor-pointer"
+                  className="pb-10 bg-red-500 border rounded-full text-white hover:bg-white hover:text-red-500 hover:cursor-pointer hover:border-red-500"
                   style={{
                     marginLeft: "100px",
                     padding: "5px",

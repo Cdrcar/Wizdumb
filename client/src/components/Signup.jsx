@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 const Signup = () => {
   return (
-    <div className="grid flex">
+    <div className="bg-white border border-white rounded-md flex flex-col">
       <Logo />
       <div className="grid place-items-center m-10">
         <form>

@@ -1,5 +1,6 @@
 import { React, Fragment } from "react";
 import Login from "./login";
+import Signup from "./Signup";
 
 import { Link } from "react-router-dom";
 
@@ -10,14 +11,17 @@ import { useState } from "react";
 import { FcSearch } from "react-icons/fc";
 
 const Homepage = () => {
-  const [showModal, setShowModal] = useState(false);
+  {
+    /*Show Login modal*/
+  }
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   const [currentSearch, setCurrentSearch] = useState([]);
 
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
     e.preventDefault();
-    if (searchQuery == "") {
+    if (searchQuery === "") {
       setCurrentSearch([]);
       return false;
     }
@@ -55,7 +59,7 @@ const Homepage = () => {
                     padding: "5px",
                     width: "150px",
                   }}
-                  onClick={() => setShowModal(true)}
+                  onClick={() => setShowLoginModal(true)}
                 >
                   Login
                 </li>
@@ -125,7 +129,11 @@ const Homepage = () => {
               />
             ))}
           </div>
-          <Login isVisible={showModal} onClose={() => setShowModal(false)} />
+          <Login
+            isVisible={showLoginModal}
+            onClose={() => setShowLoginModal(false)}
+          />
+          <div id="introCards"></div>
         </div>
       </>
     </Fragment>

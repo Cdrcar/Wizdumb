@@ -79,9 +79,11 @@ const handleSearch = (e) => {
               </div>
             </div>
             {currentSearch.length > 0 && (
-              <div className='absolute top-20 p-4 bg-blue-100 text-black w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2 hover:pointer-cursor'>
+              <div className='absolute top-20 p-4 bg-blue-100 text-black font-bold w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2 hover:pointer-cursor'>
                 {currentSearch.map((search) => (
+                  <Link key={search} to={`course/${search}`} className="hover:cursor-pointer">
                   <span key={search}>{search}</span>
+                  </Link>
                 ))}
               </div>
             )}
@@ -94,9 +96,9 @@ const handleSearch = (e) => {
       <div className="relative z-10 mt-10">
         <h3
           id="courses"
-          className="font-black text-cyan-700 text-4xl mb-6 mt-10 mx-6"
+          className="font-black text-cyan-700 text-4xl mb-6 mt-10 mx-11"
         >
-          Courses
+          Browse Our Courses
         </h3>
         <div className="grid grid-cols-3 gap-4 px-6">
           {courses.map((course) => (

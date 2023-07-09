@@ -7,6 +7,7 @@ import LoggedinHomepage from './LoggedinHomepage';
 import Login from './Login';
 import Signup from './Signup';
 import Profile from './Profile'
+import MyCourses from './MyCourses';
 import Modules from './Modules';
 import Navbar from './Navbar';
 import SearchPage from './SearchPage';
@@ -20,6 +21,7 @@ export {
   Login,
   Signup,
   Profile,
+  MyCourses,
   Footer,
   Modules,
   SearchPage,

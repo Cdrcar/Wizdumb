@@ -5,11 +5,11 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     getUser: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findOne({ _id: context.user._id });
-        return user;
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!');
       }
-      throw new AuthenticationError('Not logged in');
+
+      return await User.findById(context.user._id);
     },
     getUsers: async () => {
       return await User.find();
@@ -39,38 +39,45 @@ const resolvers = {
       return await Tag.find();
     },
     me: async (parent, args, context) => {
-      if (context.user) {
-        return User.findById(context.user._id).populate('thoughts');
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!');
       }
-      throw new AuthenticationError('You need to be logged in!');
+
+      return await User.findById(context.user._id).populate('thoughts');
     },
   },
-
   Mutation: {
-    createUser: async (parent, args) => {
-      const user = await User.create(args);
+    createUser: async (parent, { firstName, lastName, email, password }) => {
+      const user = await User.create({ firstName, lastName, email, password });
       const token = signToken(user);
       return { token, user };
     },
-
     loginUser: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
-        throw new AuthenticationError("Invalid email or password");
+        throw new AuthenticationError('Invalid email or password');
       }
       const correctPw = await user.isCorrectPassword(password);
       if (!correctPw) {
-        throw new AuthenticationError("Invalid email or password");
+        throw new AuthenticationError('Invalid email or password');
       }
 
       const token = signToken(user);
 
       return { token, user };
     },
-    updateUser: async (parent, { id, name, email }) => {
-      return await User.findByIdAndUpdate(id, { name, email }, { new: true });
+    updateUser: async (parent, { id, firstName, lastName, email }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!');
+      }
+      
+      return await User.findByIdAndUpdate(id, { firstName, lastName, email }, { new: true });
     },
-    deleteUser: async (parent, { id }) => {
+    deleteUser: async (parent, { id }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError('You need to be logged in!');
+      }
+      
       return await User.findByIdAndDelete(id);
     },
     createCourse: async (parent, { name, description }) => {
@@ -110,30 +117,29 @@ const resolvers = {
       return await Tag.findByIdAndDelete(id);
     },
   },
-
   User: {
     courses: async (parent) => {
-      return await Course.find({ users: parent.id });
+      return await Course.find({ users: parent._id });
     },
     resources: async (parent) => {
-      return await Resource.find({ user: parent.id });
+      return await Resource.find({ user: parent._id });
     },
     comments: async (parent) => {
-      return await Comment.find({ user: parent.id });
+      return await Comment.find({ user: parent._id });
     },
-    tags: async () => {
+    tags: async (parent) => {
       return await Tag.find();
     },
   },
   Course: {
     users: async (parent) => {
-      return await User.find({ courses: parent.id });
+      return await User.find({ courses: parent._id });
     },
     comments: async (parent) => {
-      return await Comment.find({ course: parent.id });
+      return await Comment.find({ course: parent._id });
     },
     resources: async (parent) => {
-      return await Resource.find({ course: parent.id });
+      return await Resource.find({ course: parent._id });
     },
     tags: async () => {
       return await Tag.find();
@@ -158,7 +164,7 @@ const resolvers = {
       return await Course.findById(parent.course);
     },
     comments: async (parent) => {
-      return await Comment.find({ resource: parent.id });
+      return await Comment.find({ resource: parent._id });
     },
     tags: async (parent) => {
       return await Tag.find({ _id: { $in: parent.tags } });
@@ -166,10 +172,10 @@ const resolvers = {
   },
   Tag: {
     courses: async (parent) => {
-      return await Course.find({ tags: parent.id });
+      return await Course.find({ tags: parent._id });
     },
     resources: async (parent) => {
-      return await Resource.find({ tags: parent.id });
+      return await Resource.find({ tags: parent._id });
     },
   },
 };

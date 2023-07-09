@@ -1,20 +1,59 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
-export const CREATE_USER = gql`
-  mutation createUser($name: String!, $email: String!) {
-    createUser(name: $name, email: $email) {
+export const ADD_USER = gql`
+  mutation createUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    createUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
       _id
-      name
+      firstName
+      lastName
+      username
       email
     }
   }
 `;
 
+export const LOGIN_USER = gql`
+  mutation loginUser($email: String!, $password: String!) {
+    loginUser(email: $email, password: $password) {
+      token
+      user {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
+    }
+  }
+`;
+
 export const UPDATE_USER = gql`
-  mutation updateUser($id: ID!, $name: String!, $lo: String!) {
-    updateUser(id: $id, name: $name, email: $email) {
+  mutation updateUser(
+    $id: ID!
+    $firstName: String
+    $lastName: String
+    $email: String
+  ) {
+    updateUser(
+      id: $id
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+    ) {
       _id
-      name
+      firstName
+      lastName
+      username
       email
     }
   }
@@ -24,7 +63,9 @@ export const DELETE_USER = gql`
   mutation deleteUser($id: ID!) {
     deleteUser(id: $id) {
       _id
-      name
+      firstName
+      lastName
+      username
       email
     }
   }
@@ -41,7 +82,7 @@ export const CREATE_COURSE = gql`
 `;
 
 export const UPDATE_COURSE = gql`
-  mutation updateCourse($id: ID!, $name: String!, $description: String!) {
+  mutation updateCourse($id: ID!, $name: String, $description: String) {
     updateCourse(id: $id, name: $name, description: $description) {
       _id
       name
@@ -76,7 +117,9 @@ export const CREATE_COMMENT = gql`
       _id
       user {
         _id
-        name
+        firstName
+        lastName
+        username
         email
       }
       comment
@@ -88,6 +131,8 @@ export const CREATE_COMMENT = gql`
         _id
         name
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -95,10 +140,10 @@ export const CREATE_COMMENT = gql`
 export const UPDATE_COMMENT = gql`
   mutation updateComment(
     $id: ID!
-    $user: ID!
-    $comment: String!
-    $resource: ID!
-    $course: ID!
+    $user: ID
+    $comment: String
+    $resource: ID
+    $course: ID
   ) {
     updateComment(
       id: $id
@@ -110,7 +155,9 @@ export const UPDATE_COMMENT = gql`
       _id
       user {
         _id
-        name
+        firstName
+        lastName
+        username
         email
       }
       comment
@@ -122,6 +169,8 @@ export const UPDATE_COMMENT = gql`
         _id
         name
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -132,7 +181,9 @@ export const DELETE_COMMENT = gql`
       _id
       user {
         _id
-        name
+        firstName
+        lastName
+        username
         email
       }
       comment
@@ -144,6 +195,8 @@ export const DELETE_COMMENT = gql`
         _id
         name
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -151,10 +204,10 @@ export const DELETE_COMMENT = gql`
 export const CREATE_RESOURCE = gql`
   mutation createResource(
     $name: String!
-    $video: String!
-    $text: String!
+    $video: String
+    $text: String
     $description: String!
-    $link: String!
+    $link: String
     $user: ID!
     $course: ID!
   ) {
@@ -165,7 +218,7 @@ export const CREATE_RESOURCE = gql`
       description: $description
       link: $link
       user: $user
-     course: $course
+      course: $course
     ) {
       _id
       name
@@ -173,16 +226,34 @@ export const CREATE_RESOURCE = gql`
       text
       description
       link
+      comments {
+        _id
+        user {
+          _id
+          firstName
+          lastName
+          username
+          email
+        }
+        comment
+      }
       user {
         _id
-        name
+        firstName
+        lastName
+        username
         email
       }
       course {
         _id
         name
-        description
       }
+      tags {
+        _id
+        name
+      }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -190,13 +261,13 @@ export const CREATE_RESOURCE = gql`
 export const UPDATE_RESOURCE = gql`
   mutation updateResource(
     $id: ID!
-    $name: String!
-    $video: String!
-    $text: String!
-    $description: String!
-    $link: String!
-    $user: ID!
-    $course: ID!
+    $name: String
+    $video: String
+    $text: String
+    $description: String
+    $link: String
+    $user: ID
+    $course: ID
   ) {
     updateResource(
       id: $id
@@ -214,16 +285,34 @@ export const UPDATE_RESOURCE = gql`
       text
       description
       link
+      comments {
+        _id
+        user {
+          _id
+          firstName
+          lastName
+          username
+          email
+        }
+        comment
+      }
       user {
         _id
-        name
+        firstName
+        lastName
+        username
         email
+      }
+      tags {
+        _id
+        name
       }
       course {
         _id
         name
-        description
       }
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -237,34 +326,56 @@ export const DELETE_RESOURCE = gql`
       text
       description
       link
+      comments {
+        _id
+        user {
+          _id
+          firstName
+          lastName
+          username
+          email
+        }
+        comment
+      }
       user {
         _id
-        name
+        firstName
+        lastName
+        username
         email
+      }
+      tags {
+        _id
+        name
       }
       course {
         _id
         name
-        description
       }
+      createdAt
+      updatedAt
     }
   }
 `;
 
 export const CREATE_TAG = gql`
-  mutation createTag($name: String!) {
+  mutation createTag($name: String) {
     createTag(name: $name) {
       _id
       name
+      createdAt
+      updatedAt
     }
   }
 `;
 
 export const UPDATE_TAG = gql`
-  mutation updateTag($id: ID!, $name: String!) {
+  mutation updateTag($id: ID!, $name: String) {
     updateTag(id: $id, name: $name) {
       _id
       name
+      createdAt
+      updatedAt
     }
   }
 `;
@@ -274,6 +385,8 @@ export const DELETE_TAG = gql`
     deleteTag(id: $id) {
       _id
       name
+      createdAt
+      updatedAt
     }
   }
 `;

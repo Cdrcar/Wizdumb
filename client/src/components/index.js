@@ -10,7 +10,7 @@ import Profile from "./Profile";
 import MyCourses from "./MyCourses";
 import Modules from "./modules";
 import Navbar from "./Navbar";
-import LoggedOutNav from "./LoogedOutNav";
+import LoggedOutNav from "./LoggedOutNav";
 import SearchPage from "./SearchPage";
 
 export {

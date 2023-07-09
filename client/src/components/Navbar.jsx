@@ -4,8 +4,6 @@ import brainLogo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
 // TODO: my-courses component and route
 
-import Lottie from "lottie-react";
-
 const Navbar = () => {
   const [menuVisible, setMenuVisible] = useState(false);
 

@@ -67,12 +67,12 @@ const handleSearch = (e) => {
       </section>
       {/*Render the search Bar*/}
       <div className="2xl:mt-[-450px] xl:mt-[-300px] lg:mt-[-150px]">
-        <h3 className='text-center p-2 text-xl font-bold text-cyan-800'>Search for a course</h3>
+        <h3 className='text-center  p-2 text-xl font-bold text-cyan-800'>Search for a course</h3>
         <div className="flex justify-center items-center">
           <form className='w-[500px] relative '>
             <div className='relative'>
-              <div className='bg-gradient-to-r from-green-200 via-green-300 to-blue-500 p-1 rounded-full border-xl'>
-                <input type='search' placeholder='Search Here' className='w-full rounded-full p-4 bg-slate-700 text-white' onChange={(e) => handleSearch(e)} />
+              <div className='bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 p-1 rounded-full border-xl'>
+                <input type='search' placeholder='Search Here' className='w-full rounded-full p-4 bg-slate-200 text-black' onChange={(e) => handleSearch(e)} />
                 <button className='absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-cyan-300 rounded-full mx-2'>
                   <FcSearch />
                 </button>
@@ -100,7 +100,7 @@ const handleSearch = (e) => {
         >
           Browse Our Courses
         </h3>
-        <div className="grid grid-cols-3 gap-4 px-6">
+        <div className="grid grid-cols-3 gap-0">
           {courses.map((course) => (
             <Course
               key={course.name}
@@ -109,6 +109,8 @@ const handleSearch = (e) => {
               icon={course.icon}
               modules={course.modules}
             />
+            
+
           ))}
         </div>
       </div>

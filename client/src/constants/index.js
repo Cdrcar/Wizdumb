@@ -1,4 +1,4 @@
-import {github, javascript, html, node, express } from '../assets';
+import {github, javascript, html, node, express, reactImage } from '../assets';
 
 const courses = [
     {
@@ -15,7 +15,7 @@ const courses = [
     },
     {
         name:"HTML & CSS",
-        description:"Learn the essentials of HTML and CSS, the building blocks of web development. This course covers how to create and structure web pages using HTML, as well as how to style and layout those pages using CSS.",
+        description:"HTML and CSS are the building blocks of web development.Learn to create and style structured  webpages and develop an understanding of HTML's markup capabilities. This course covers how to create, structure and style web pages.",
         icon: html,
         modules: [{
             One: "Elements and Structure",
@@ -27,7 +27,7 @@ const courses = [
     },
     {
         name:"NodeJS",
-        description:"Node.js is a powerful JavaScript runtime environment that allows you to build scalable and efficient server-side applications. This course covers the fundamentals of Node.js and teaches you how to develop web applications using Node.js.",
+        description:"Node.js is a powerful JavaScript runtime environment that allows you to build efficient server-side applications. This course covers the fundamentals of Node.js and teaches you how to develop web applications using Node.js.",
         icon: node,
         modules: [{
             One: "Introduction to NodeJS",
@@ -51,7 +51,7 @@ const courses = [
     },
     {
         name:"Github",
-        description:"Git is a distributed version control system that allows a developer to track changes made to files in their projects.",
+        description:"Git is a distributed version control system that allows a developer to track changes made to files in their projects.It serves as a popular platform for open-source projects and offers extensive documentation and community support.",
         icon: github,
         modules: [{
             One: "Introduction to Github",
@@ -60,7 +60,19 @@ const courses = [
             Four: "Pushing code to github",
             Five: "Pull requests and merging",
         }]   
-    }
+    },
+    {
+        name:"React",
+        description:"Introducing React, a JavaScript library for building dynamic user interfaces. Learn how to create reusable UI components and build fast and interactive web applications. Gain skills in component-based development and enhance your understanding of React.",
+        icon: reactImage,
+        modules: [{
+            One: "React Essentials: Mastering the fundamentals",
+            Two: "Dynamic User Interfaces",
+            Three: "Reusable UI Elements",
+            Four: "Data Rendering and Manipulation",
+            Five: "React Project",
+        }]    
+    },
 ]
 
 

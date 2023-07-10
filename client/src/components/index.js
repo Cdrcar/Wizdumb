@@ -1,4 +1,3 @@
-
 import AccountSettings from './AccountSettings';
 import Course from './Course';
 import DiscussionPage from './DiscussionPage';
@@ -16,15 +15,18 @@ import Navbar from './Navbar';
 import SearchPage from './SearchPage';
 
 
+
 export {
   AccountSettings,
   Navbar,
+  LoggedOutNav,
   DiscussionPage,
   Homepage,
   LoggedinHomepage,
   Login,
   Signup,
   Profile,
+  ProfileSettings,
   MyCourses,
   Footer,
   CoursePage,

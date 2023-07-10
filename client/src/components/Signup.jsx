@@ -50,7 +50,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="grid flex">
+    <div className="bg-white border border-white rounded-md flex flex-col">
       <Logo />
       <div className="grid place-items-center m-20">
         <div className="max-w-sm border items-center justify-center  border-gray-300 p-6">
@@ -140,6 +140,7 @@ const Signup = () => {
               onChange={handleChange}
             ></input>
             {/* <br></br>
+
           <input
             className="m-3 p-2 border"
             type="password"
@@ -147,6 +148,7 @@ const Signup = () => {
             name="confirm"
             placeholder="Confirm Password"
             required
+
             onChange={handleChange}
           ></input> */}
             <br></br>
@@ -172,6 +174,7 @@ const Signup = () => {
             <div className="my-3 p-3 bg-danger text-white">{loginError.message}</div>
           )}
         </div>
+
       </div>
     </div>
   );

@@ -39,7 +39,7 @@ const courses = [
     },
     {
         name:"ExpressJS",
-        description:"Express.js is a popular web application framework for Node.js. In this course, you'll learn how to build web applications using Express.js. Topics covered include routing, middleware, template engines, and working with databases",
+        description:"Express.js is a popular web application framework for Node.js. In this course, you'll learn how to build web applications using Express.js. Topics covered include routing, middleware, template engines, and working with",
         icon: express,
         modules: [{
             One: "Introduction to ExpressJS",

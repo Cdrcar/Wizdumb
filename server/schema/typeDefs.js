@@ -5,6 +5,8 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     description: String!
+    icon: String!
+    modules: [String!]
     users: [User!]!
     comments: [Comment!]!
     resources: [Resource!]!
@@ -69,7 +71,7 @@ const typeDefs = gql`
     getUser(id: ID!): User
     getUsers: [User!]!
     getCourse(id: ID!): Course
-    getCourses: [Course!]!
+    getCourses: [Course!]
     getComment(id: ID!): Comment
     getComments: [Comment!]!
     getResource(id: ID!): Resource
@@ -81,13 +83,18 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(
-      firstName: String!
-      lastName: String!
+      firstName: String
+      lastName: String
       email: String!
       password: String!
     ): User!
     loginUser(email: String!, password: String!): Auth
-    updateUser(id: ID!, firstName: String, lastName: String, email: String): User!
+    updateUser(
+      id: ID!
+      firstName: String
+      lastName: String
+      email: String
+    ): User!
     deleteUser(id: ID!): User!
     createCourse(name: String!, description: String!): Course!
     updateCourse(id: ID!, name: String, description: String): Course!

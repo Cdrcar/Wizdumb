@@ -18,6 +18,7 @@ const resolvers = {
       return await Course.findById(id);
     },
     getCourses: async () => {
+      console.log("testing courses");
       return await Course.find();
     },
     getComment: async (parent, { id }) => {

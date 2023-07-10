@@ -7,12 +7,19 @@ import { Link } from "react-router-dom";
 
 import Logo from "./Logo";
 import Course from "./Course";
-import courses from "../constants/index.js";
+// import courses from "../constants/index.js";
+import { useQuery } from '@apollo/client';
+import { QUERY_COURSES } from '../utils/queries';
+
 import {useState} from 'react';
 import {FcSearch} from 'react-icons/fc';
 
 const Homepage = () => {
   const [currentSearch, setCurrentSearch] = useState([])
+
+  const { loading, error, data } = useQuery(QUERY_COURSES);
+  const courses = data?.getCourses || [];
+  console.log(data);
 
 const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase()
@@ -100,7 +107,7 @@ const handleSearch = (e) => {
         >
           Browse Our Courses
         </h3>
-        <div className="grid grid-cols-3 gap-0">
+        <div className="grid grid-cols-3 gap-4">
           {courses.map((course) => (
             <Course
               key={course.name}

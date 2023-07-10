@@ -63,6 +63,9 @@ query getAllUsers {
         _id
         name
         description
+        icon
+        modules
+
         users {
             _id
             username
@@ -84,24 +87,21 @@ query getAllUsers {
   export const QUERY_COURSES = gql `
   query getCourses {
     getCourses {
-         _id
+      _id
+      description
+      icon
+      modules
+      name
+      resources {
+        text
         name
-        description
-        users {
-            _id
-            username
+        user {
+          username
         }
         comments {
-            _id
-            user
-            comment
-            resource
+          comment
         }
-        resources {
-            name
-            description
-    
-        }
+      }
     }
   }`;
 

@@ -5,6 +5,8 @@ const typeDefs = gql`
     _id: ID!
     name: String!
     description: String!
+    icon: String!
+    modules: [String!]
     users: [User!]!
     comments: [Comment!]!
     resources: [Resource!]!
@@ -69,7 +71,7 @@ const typeDefs = gql`
     getUser(id: ID!): User
     getUsers: [User!]!
     getCourse(id: ID!): Course
-    getCourses: [Course!]!
+    getCourses: [Course!]
     getComment(id: ID!): Comment
     getComments: [Comment!]!
     getResource(id: ID!): Resource

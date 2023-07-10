@@ -2,6 +2,7 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3020",
   "dependencies": {
     "@apollo/client": "^3.7.16",
     "@apollo/react-hooks": "^4.0.0",

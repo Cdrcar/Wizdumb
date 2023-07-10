@@ -6,11 +6,12 @@ import Homepage from "./Homepage";
 import LoggedinHomepage from "./LoggedinHomepage";
 import Login from "./login";
 import Signup from "./Signup";
-import Profile from "./ProfileSettings";
+import Profile from "./Profile";
 import MyCourses from "./MyCourses";
-import Modules from "./modules";
-import Navbar from "./Navbar";
+import Testimonials from "./testimonials";
 import LoggedOutNav from "./LoggedOutNav";
+import CoursePage from "./CoursePage";
+import Navbar from "./Navbar";
 import SearchPage from "./SearchPage";
 import ProfileSettings from "./ProfileSettings";
 
@@ -27,7 +28,8 @@ export {
   ProfileSettings,
   MyCourses,
   Footer,
-  Modules,
+  CoursePage,
   SearchPage,
   Course,
+  Testimonials,
 };

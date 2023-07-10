@@ -13,6 +13,7 @@ import "./index.css";
 import {
   AccountSettings,
   Course,
+  CoursePage,
   DiscussionPage,
   Homepage,
   Navbar,
@@ -21,11 +22,11 @@ import {
   Signup,
   Profile,
   MyCourses,
-  Modules,
+  ProfileSettings,
   SearchPage,
   Footer,
-  ProfileSettings,
 } from "./components";
+
 import courses from "./constants/index.js";
 
 // Construct our main GraphQL API endpoint
@@ -67,12 +68,15 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profileSettings" element={<ProfileSettings />} />
             <Route path="/my-courses" element={<MyCourses />} />
-            <Route path="/modules" element={<Modules />} />
+
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/account" element={<AccountSettings />} />
             <Route path="/course" element={<Course />} />
             <Route path="/home" element={<LoggedinHomepage />} />
+
+            {/* <Route path ="/course" element={<Course />} /> */}
+            <Route path="/course/:courseName" element={<CoursePage />} />
           </Routes>
 
           <LoggedinHomepage />

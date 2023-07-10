@@ -13,9 +13,9 @@ const Login = ({ isVisible, onClose }) => {
       id="wrapper"
       onClick={handleClose}
     >
-      <div className="bg-white border border-white rounded-md flex flex-col">
+      <div className="bg-white border border-white rounded-md flex flex-col mt-20">
         <button
-          className="text-xl border border-white rounded-full hover:border hover:rounded-full hover:cursor-pointer font-extralight hover:bg-sky-400 hover:bg-opacity-10 place-self-end mt-2 mr-2 pl-4 pr-4 pt-2 pb-2 transition ease-in-out duration-200"
+          className="text-xl border border-white rounded-full hover:border hover:rounded-full hover:cursor-pointer font-extralight hover:bg-sky-400 hover:bg-opacity-10 place-self-end mt-2 mr-2 pl-4 pr-4 pt-2 pb-[-10px] transition ease-in-out duration-200"
           onClick={() => onClose()}
         >
           X

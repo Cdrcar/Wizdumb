@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import AuthService from "../utils/auth";
-import brainLogo from "../assets/Logo.png";
+import brainLogo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import LoggedOutNav from "./LoggedOutNav";
 // TODO: my-courses component and route

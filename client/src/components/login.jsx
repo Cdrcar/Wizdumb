@@ -6,7 +6,7 @@ const Login = () => {
         <div className='grid flex'>
             <Logo />
             <div className="grid place-items-center m-20">
-            <div className='flex h-96 w-96 flex items-center justify-center border-slate-300 border-2 shadow-lg rounded-lg'>
+            <div className='flex h-96 w-96 flex items-center justify-center border-slate-300 border-2 rounded-lg'>
                     <form>
                         <label className='pb-3' for='email_or_username_login'>Email</label><br></br>
                         <input className='mb-3 p-2 border' type='text' id='email_or_username_login' name='email_or_username_login' placeholder='Email' required></input><br></br>

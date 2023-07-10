@@ -7,12 +7,14 @@ import { Link } from "react-router-dom";
 import Logo from "./Logo";
 import Course from "./Course";
 // import courses from "../constants/index.js";
-import { useQuery } from '@apollo/client';
-import { QUERY_COURSES } from '../utils/queries';
+import { useQuery } from "@apollo/client";
+import { QUERY_COURSES } from "../utils/queries";
 
-import {useState} from 'react';
-import {FcSearch} from 'react-icons/fc';
+import { useState } from "react";
+import { FcSearch } from "react-icons/fc";
 import { AiOutlineSchedule } from "react-icons/ai";
+import { AiOutlineLaptop } from "react-icons/ai";
+import { AiOutlineQuestion } from "react-icons/ai";
 
 const Homepage = () => {
   {
@@ -20,13 +22,12 @@ const Homepage = () => {
   }
   const [showLoginModal, setShowLoginModal] = useState(false);
 
-
   const { loading, error, data } = useQuery(QUERY_COURSES);
   const courses = data?.getCourses || [];
   console.log(data);
   const [currentSearch, setCurrentSearch] = useState([]);
-const handleSearch = (e) => {
-    const searchQuery = e.target.value.toLowerCase()
+  const handleSearch = (e) => {
+    const searchQuery = e.target.value.toLowerCase();
 
     e.preventDefault();
     if (searchQuery === "") {
@@ -88,22 +89,24 @@ const handleSearch = (e) => {
       </section>
       <section>
         {/*Render the cards */}
-        <div className="grid grid-cols-3 gap-10 ml-10 mr-10 pb-20">
-          <div className="text-center border border-sky-400 border-opacity-75 rounded-md pt-5 pb-5 bg-sky-400 bg-opacity-75">
+        <div className="grid grid-cols-3 gap-10 ml-10 mr-10 pb-20 mt-[-450px] mb-40">
+          <div className="text-center border rounded-md pt-5 pb-5 bg-sky-400">
+            <AiOutlineLaptop classname="border border-white" />
             Explore your technical interests and advance your skillset
           </div>
           <div className="text-center border rounded-md pt-5 pb-5 bg-sky-400">
-            <AiOutlineSchedule className="rounded-full border " />
+            <AiOutlineSchedule className="" />
             Flexible Learning. Learn around your schedule
           </div>
           <div className="text-center border rounded-md pt-5 pb-5 bg-sky-400">
+            <AiOutlineQuestion className="" />
             Use knowledge quizzes to practice while you learn
           </div>
         </div>
       </section>
 
       {/* Render the search Bar*/}
-      <div className="2xl:mt-[-450px] xl:mt-[-300px] lg:mt-[-150px]">
+      <div className="mt-[-150px] mb-20">
         <h3 className="text-center  p-2 text-xl font-bold text-cyan-800">
           Search for a course
         </h3>

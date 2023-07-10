@@ -8,7 +8,7 @@ const Logo = () => {
       <div className="flex">
         <Lottie
           animationData={brainLogo}
-          className="h-32 md:h-64 lg:h-80 self-center"
+          className="md:w-30 lg:w-60 xl:w-80 self-center"
         />
       </div>
     </div>

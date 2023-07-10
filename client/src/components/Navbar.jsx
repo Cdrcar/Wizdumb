@@ -3,6 +3,7 @@ import AuthService from "../utils/auth";
 import brainLogo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import LoggedOutNav from "./LoggedOutNav";
+import LoggedInNav from "./LoggedInNav";
 // TODO: my-courses component and route
 
 const Navbar = () => {
@@ -31,7 +32,7 @@ const Navbar = () => {
         <div className="hidden w-full md:block md:w-auto">
           {/* Courses */}
           <ul>
-            <LoggedOutNav />
+            <LoggedInNav />
             {/* <li className="font-medium block py-2 pl-3 pr-4 md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2">
               <a href="#courses">Courses</a>
             </li>

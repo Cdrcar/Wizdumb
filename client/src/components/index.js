@@ -1,3 +1,4 @@
+
 import AccountSettings from './AccountSettings';
 import Course from './Course';
 import DiscussionPage from './DiscussionPage';
@@ -13,6 +14,7 @@ import CoursePage from './CoursePage';
 import Navbar from './Navbar';
 import SearchPage from './SearchPage';
 
+
 export {
   AccountSettings,
   Navbar,
@@ -27,4 +29,4 @@ export {
   CoursePage,
   SearchPage,
   Course,
-}
+};

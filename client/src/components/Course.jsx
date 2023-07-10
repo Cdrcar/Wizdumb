@@ -1,21 +1,29 @@
 import React from 'react';
 import Tilt from "react-parallax-tilt";
-import { courses } from '../constants/index';
+// import { courses } from '../constants/index';
 import Lottie from "lottie-react";
 import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_COURSES } from '../utils/queries';
 
 
 const Course = ({
     name,
     description,
     icon,
-    modules,
 }) => {
-    const history = useNavigate();
 
-  const handleClick = () => {
+    const { loading, error, data } = useQuery(QUERY_COURSES);
+    const courses = data?.courses || [];
+    console.log(data);
+    
+ const history = useNavigate();
+ const handleClick = () => {
     history(`course/${name}`);
   };
+
+  
+
     return (
         <div>
         <Tilt 
@@ -28,7 +36,7 @@ const Course = ({
                
                 <div className='flex justify-evenly items-center flex-col'>
                     <div className='relative w-full h-[230px] rounded-xl bg-gradient-to-r from-sky-100 to-cyan-200'>
-                         <Lottie animationData={icon} className="w-full h-full object-cover rounded-xl" />
+                         {/* <Lottie animationData={icon} className="w-full h-full object-cover rounded-xl" /> */}
                     </div > 
                     <div className='m-2 p-2'>
                         <div>

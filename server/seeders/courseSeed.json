@@ -11,7 +11,7 @@
   },
   {
     "name": "HTML & CSS",
-    "description": "Learn the essentials of HTML and CSS, the building blocks of web development. This course covers how to create and structure web pages using HTML, as well as how to style and layout those pages using CSS.",
+    "description": "HTML and CSS are the building blocks of web development.Learn to create and style structured  webpages and develop an understanding of HTML's markup capabilities. This course covers how to create, structure and style web pages.",
     "icon": "html",
     "modules": [
       "Elements and Structure",
@@ -27,7 +27,7 @@
   },
   {
     "name": "NodeJS",
-    "description": "Node.js is a powerful JavaScript runtime environment that allows you to build scalable and efficient server-side applications. This course covers the fundamentals of Node.js and teaches you how to develop web applications using Node.js.",
+    "description": "Node.js is a powerful JavaScript runtime environment that allows you to build efficient server-side applications. This course covers the fundamentals of Node.js and teaches you how to develop web applications using Node.js.",
     "icon": "node",
     "modules": [
       "Introduction to NodeJS",
@@ -44,7 +44,7 @@
 
   {
     "name": "ExpressJS",
-    "description": "Express.js is a popular web application framework for Node.js. In this course, you'll learn how to build web applications using Express.js. Topics covered include routing, middleware, template engines, and working with databases",
+    "description": "Express.js is a popular web application framework for Node.js. In this course, you'll learn how to build web applications using Express.js. Topics covered include routing, middleware and template engines.",
     "icon": "express",
     "modules": [
       "Introduction to ExpressJS",
@@ -60,7 +60,7 @@
   },
   {
     "name": "Github",
-    "description": "Git is a distributed version control system that allows a developer to track changes made to files in their projects.",
+    "description": "Git is a distributed version control system that allows a developer to track changes made to files in their projects.It serves as a popular platform for open-source projects and offers extensive documentation and community support.",
     "icon": "github",
     "modules": [
       "Introduction to Github",
@@ -73,5 +73,23 @@
     "comments": [],
     "resources": [],
     "tags": []
+  },
+  {
+    "name": "React",
+    "description": "Introducing React, a JavaScript library for building dynamic user interfaces. Learn how to create reusable UI components and build fast and interactive web applications. Gain skills in component-based development and enhance your understanding of React.",
+    "icon": "reactImage",
+    "modules": [
+      "React Essentials: Mastering the fundamentals",
+      "Dynamic User Interfaces",
+      "Reusable UI Elements",
+      "Data Rendering and Manipulation",
+      "React Project"
+    ],
+    "users": [],
+    "comments": [],
+    "resources": [],
+    "tags": []
   }
+  
+  
 ]

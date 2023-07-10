@@ -78,8 +78,6 @@ function App() {
             {/* <Route path ="/course" element={<Course />} /> */}
             <Route path="/course/:courseName" element={<CoursePage />} />
           </Routes>
-
-          <LoggedinHomepage />
           <Footer />
         </div>
       </Router>

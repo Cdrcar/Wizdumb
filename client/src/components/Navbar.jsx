@@ -32,7 +32,7 @@ const Navbar = () => {
         <div className="hidden w-full md:block md:w-auto">
           {/* Courses */}
           <ul>
-            <LoggedInNav />
+            <LoggedOutNav />
             {/* <li className="font-medium block py-2 pl-3 pr-4 md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2">
               <a href="#courses">Courses</a>
             </li>

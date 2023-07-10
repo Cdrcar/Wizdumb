@@ -3,9 +3,9 @@ import Logo from "./Logo";
 
 const Signup = () => {
   return (
-    <div className="grid flex">
+    <div className="bg-white border border-white rounded-md flex flex-col">
       <Logo />
-      <div className="grid place-items-center m-20">
+      <div className="grid place-items-center m-10">
         <form>
           <label className="p-3" for="username_signup">
             Username
@@ -56,7 +56,7 @@ const Signup = () => {
           ></input>
           <br></br>
           <button
-            className="bg-sky-400 border rounded-full text-background text-center mb-2 hover:bg-background hover:text-white hover:cursor-pointer"
+            className="mt-5 bg-sky-400 border border-sky-400 text-white rounded-full text-background text-center mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400 ml-6"
             style={{
               width: "150px",
               height: "36px",

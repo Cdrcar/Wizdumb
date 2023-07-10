@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import AuthService from '../utils/auth';
-import brainLogo from "../assets/brainLogo.json";
-import { Link } from 'react-router-dom';
+import { React, useState } from "react";
+import AuthService from "../utils/auth";
+import brainLogo from "../assets/logo.png";
+import { Link } from "react-router-dom";
+import LoggedOutNav from "./LoggedOutNav";
 // TODO: my-courses component and route
-
-import Lottie from "lottie-react";
 
 const Navbar = () => {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -20,31 +19,26 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 bg-cyan-700">
+    <nav className="sticky top-0 z-50 bg-white border-b-2 border-b-gray-100">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">
         <Link to="/" className="flex items-center">
-          <Lottie
-            animationData={brainLogo}
-            className="h-20 mr-3"
-            alt="Wizdumb Logo"
-          />
-          <span className="self-center text-2xl text-sky-400 whitespace-nowrap text-white">
+          <img src={brainLogo} className="h-10 mr-3 ml-10" alt="logo" />
+          <span className="self-center text-2xl text-sky-400 whitespace-nowrap">
             Wiz
-            <span className="text-white">Dumb</span>
+            <span className="text-cyan-700">Dumb</span>
           </span>
         </Link>
         <div className="hidden w-full md:block md:w-auto">
-
           {/* Courses */}
-          <ul className="flex flex-col font-medium p-0 pr-4 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0">
-            <li className="font-medium block py-2 pl-3 pr-4 text-white md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2">
+          <ul>
+            <LoggedOutNav />
+            {/* <li className="font-medium block py-2 pl-3 pr-4 md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2">
               <a href="#courses">Courses</a>
             </li>
 
-
-          {/* Account */}
+            {/* Account 
             <li
-              className="font-medium block py-2 pl-3 pr-4 text-white md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2"
+              className="font-medium block py-2 pl-3 pr-4 md:p-0 border-transparent hover:border-red-500 transition duration-250 border-b-2"
               onClick={handleAccountClick}
             >
               <span>Account</span>
@@ -69,7 +63,7 @@ const Navbar = () => {
                   )}
                 </ul>
               )}
-            </li>
+            </li>*/}
           </ul>
         </div>
       </div>

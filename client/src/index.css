@@ -1,7 +1,4 @@
-
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Satisfy&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&family=Satisfy&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -13,7 +10,6 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   scroll-behavior: smooth;
-  
 }
 
 .contact {
@@ -24,6 +20,4 @@
   bottom: 0;
   left: 0;
   right: 0;
-
 }
-

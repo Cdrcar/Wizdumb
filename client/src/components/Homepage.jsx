@@ -9,6 +9,7 @@ import Course from "./Course";
 import courses from "../constants/index.js";
 import { useState } from "react";
 import { FcSearch } from "react-icons/fc";
+import { AiOutlineSchedule } from "react-icons/ai";
 
 const Homepage = () => {
   {
@@ -76,6 +77,21 @@ const Homepage = () => {
                   </li>
                 </Link>
               </ul>
+            </div>
+          </div>
+        </section>
+        <section>
+          {/*Render the cards */}
+          <div className="grid grid-cols-3 gap-10 ml-10 mr-10 pb-20">
+            <div className="text-center border border-sky-400 border-opacity-75 rounded-md pt-5 pb-5 bg-sky-400 bg-opacity-75">
+              Explore your technical interests and advance your skillset
+            </div>
+            <div className="text-center border rounded-md pt-5 pb-5 bg-sky-400">
+              <AiOutlineSchedule className="rounded-full border " />
+              Flexible Learning. Learn around your schedule
+            </div>
+            <div className="text-center border rounded-md pt-5 pb-5 bg-sky-400">
+              Use knowledge quizzes to practice while you learn
             </div>
           </div>
         </section>

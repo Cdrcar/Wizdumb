@@ -72,6 +72,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/account" element={<AccountSettings />} />
             <Route path="/course" element={<Course />} />
+            <Route path="/home" element={<LoggedinHomepage />} />
           </Routes>
 
           <LoggedinHomepage />

@@ -47,6 +47,8 @@ const typeDefs = gql`
 
   type User {
     _id: ID!
+    firstName: String
+    lastName: String
     username: String!
     email: String!
     password: String!
@@ -74,12 +76,18 @@ const typeDefs = gql`
     getResources: [Resource!]!
     getTag(id: ID!): Tag
     getTags: [Tag!]!
+    me: User
   }
 
   type Mutation {
-    createUser(name: String!, email: String!, password: String!): User!
+    createUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): User!
     loginUser(email: String!, password: String!): Auth
-    updateUser(id: ID!, name: String, email: String): User!
+    updateUser(id: ID!, firstName: String, lastName: String, email: String): User!
     deleteUser(id: ID!): User!
     createCourse(name: String!, description: String!): Course!
     updateCourse(id: ID!, name: String, description: String): Course!

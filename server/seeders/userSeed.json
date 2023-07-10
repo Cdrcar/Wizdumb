@@ -1,0 +1,32 @@
+[
+  {
+    "username": "Leesa Ali",
+    "email": "leesaali7@gmail.com",
+    "password": "password01"
+  },
+  {
+    "username": "Iman Jama",
+    "email": "imanjama@test.com",
+    "password": "password02"
+  },
+  {
+    "username": "Jake Orchard",
+    "email": "jakeorchard@live.co.uk",
+    "password": "password03"
+  },
+  {
+    "username": "Michael Walters",
+    "email": "Michael1996walters@gmail.com",
+    "password": "password04"
+  },
+  {
+    "username": "Carmela Ray",
+    "email": "carmireyd@gmail.com",
+    "password": "password05"
+  },
+  {
+    "username": "Faith Meades",
+    "email": "faithscoding@outlook.com",
+    "password": "password06"
+  }
+]

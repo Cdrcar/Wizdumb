@@ -1,9 +1,9 @@
 import student from './student.jpg';
-import express from './express.png';
-import github from './github.jpg';
-import html from './html.jpg';
-import javascript from './javascript.jpg';
-import node from './node.png';
+import express from './express.json';
+import github from './github.json';
+import html from './HTML.json';
+import javascript from './javascript.json';
+import node from './node.json';
 
 export  { 
 student,

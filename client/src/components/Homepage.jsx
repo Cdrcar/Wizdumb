@@ -89,16 +89,16 @@ const Homepage = () => {
       </section>
       <section>
         {/*Render the cards */}
-        <div className="grid grid-cols-3 gap-10 ml-10 mr-10 pb-20 mt-[-450px] mb-40">
-          <div className="border rounded-md pt-5 pb-5 bg-sky-400 border-gray-300 bg-opacity-10 text-center">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 ml-10 mr-10 pb-20 mt-[-450px] mb-40">
+          <div className="border rounded-md pt-5 pb-5 bg-sky-400 border-gray-300 bg-opacity-10 text-center pl-2 pr-2">
             <AiOutlineLaptop className="mx-auto mb-5 text-2xl" />
             Explore your technical interests and advance your skillset
           </div>
-          <div className="text-center border border-gray-300 rounded-md pt-5 pb-5 bg-sky-400  bg-opacity-10">
+          <div className="text-center border border-gray-300 rounded-md pt-5 pb-5 bg-sky-400  bg-opacity-10 pl-2 pr-2">
             <AiOutlineSchedule className="mx-auto mb-5 text-2xl" />
             Flexible Learning. Learn around your schedule
           </div>
-          <div className="text-center border rounded-md border-gray-300 pt-5 pb-5 bg-sky-400  bg-opacity-10">
+          <div className="text-center border rounded-md border-gray-300 pt-5 pb-5 bg-sky-400  bg-opacity-10 pl-2 pr-2">
             <AiOutlineQuestion className="mx-auto mb-5 text-2xl" />
             Use knowledge quizzes to practice while you learn
           </div>

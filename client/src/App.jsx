@@ -10,7 +10,20 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './index.css';
 
-import { AccountSettings, Course, DiscussionPage, Homepage, Navbar, LoggedinHomepage, Login, Signup, Profile, MyCourses, Modules, SearchPage, Footer } from './components';
+import { 
+  AccountSettings, 
+  Course, 
+  CoursePage, 
+  DiscussionPage, 
+  Homepage, 
+  Navbar, 
+  LoggedinHomepage, 
+  Login, 
+  Signup, Profile, MyCourses,
+  SearchPage, 
+  Footer } 
+  from './components';
+
 import courses from './constants/index.js';
 
 // Construct our main GraphQL API endpoint
@@ -57,7 +70,12 @@ function App() {
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/account" element={<AccountSettings />} />
-            <Route path ="/course" element={<Course />} />
+            {/* <Route path ="/course" element={<Course />} /> */}
+              <Route
+              path="/course/:courseName"
+              element={<CoursePage />}
+              />
+            
           </Routes>
         
           <LoggedinHomepage />

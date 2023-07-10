@@ -1,6 +1,8 @@
 import React from 'react';
 import Tilt from "react-parallax-tilt";
 import { courses } from '../constants/index';
+import Lottie from "lottie-react";
+import { useNavigate } from 'react-router-dom';
 
 
 const Course = ({
@@ -9,21 +11,25 @@ const Course = ({
     icon,
     modules,
 }) => {
+    const history = useNavigate();
+
+  const handleClick = () => {
+    history(`course/${name}`);
+  };
     return (
         <div>
         <Tilt 
             tiltMaxAngleY={10}
             tiltMaxAngleX={10}
             perspective={1000}>
-            <div className='bg-gradient-to-r from-sky-400 to-cyan-300 mx-6 rounded-lg border-black border-2 p-5 sm:w-[360px] xs:w-[250px] m-5'>
+            
+            <div className='hover:cursor-pointer bg-gradient-to-r from-sky-100 to-cyan-200 mx-6 rounded-lg border-slate-600 border-2 p-5 sm:w-[360px] xs:w-[250px] m-5'
+            onClick={handleClick}>
+               
                 <div className='flex justify-evenly items-center flex-col'>
                     <div className='relative w-full h-[230px]'>
-                        <img
-                            src={icon}
-                            alt='course-icon'
-                            className='w-full h-full object-cover rounded-xl'
-                        />
-                    </div >
+                         <Lottie animationData={icon} className="w-full h-full object-cover rounded-xl" />
+                    </div > 
                     <div className='m-2 p-6'>
                         <div className=''>
                             <h3 className='text-black font-bold flex flex-wrap md:text-[22px] sm:text-[14px] xs:text-[10px] '>{name}</h3>
@@ -45,7 +51,9 @@ const Course = ({
 
                     </div>
                 </div>
+                
             </div>
+        
         </Tilt>
         </div>
     )

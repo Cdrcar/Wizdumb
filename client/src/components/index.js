@@ -5,10 +5,11 @@ import DiscussionPage from './DiscussionPage';
 import Footer from './Footer';
 import Homepage from './Homepage';
 import LoggedinHomepage from './LoggedinHomepage';
-import Login from './Login';
+import Login from './login';
 import Signup from './Signup';
 import Profile from './Profile'
 import MyCourses from './MyCourses';
+import Testimonials from './testimonials';
 
 import CoursePage from './CoursePage';
 import Navbar from './Navbar';
@@ -29,4 +30,5 @@ export {
   CoursePage,
   SearchPage,
   Course,
+  Testimonials,
 };

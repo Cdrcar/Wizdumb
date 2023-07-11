@@ -17,9 +17,7 @@ import { AiOutlineLaptop } from "react-icons/ai";
 import { AiOutlineQuestion } from "react-icons/ai";
 
 const Homepage = () => {
-  {
-    /*Show Login modal*/
-  }
+ 
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const { loading, error, data } = useQuery(QUERY_COURSES);
@@ -45,12 +43,13 @@ const Homepage = () => {
   const message2 = "with our courses";
   return (
     <>
+    <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center mt-[-200px]'>
       <section className="relative w-full h-4/6">
         <div className="flex flex-col sm:flex-row items-center mt-20 sm:mt-40 inset-0 top-[80px] max-w-7xl mx-auto sm:px-16 px-6 items-start gap-5 justify-end">
           <Logo className="" />
           <div className="text-center">
             <h1 className="font-black self-center lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-sky-500 mt-10 text-center sm:text-right">
-              Wiz<span className="text-cyan-700">Dumb</span>
+              Wiz<span className="text-rose-800">Dumb</span>
               <p className="font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[30px] ml-2 mt-5 mb-2 text-cyan-700 text-center sm:text-left">
                 {message}
                 <br className="sm:block" />
@@ -70,7 +69,7 @@ const Homepage = () => {
 
               <li
                 id="authButton"
-                className="min-w-max p-1.5 pl-3 pr-3 bg-red-500 border border-red-500 rounded-full text-white mb-2 hover:bg-white hover:text-red-500 hover:cursor-pointer hover:border-red-500 "
+                className="min-w-max p-1.5 pl-3 pr-3 bg-rose-800 border border-red-500 rounded-full text-white mb-2 hover:bg-white hover:text-red-500 hover:cursor-pointer hover:border-red-500 "
               >
                 <Link to="/signup">Sign Up</Link>
               </li>
@@ -81,20 +80,21 @@ const Homepage = () => {
       <section>
         {/*Render the cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 ml-10 mr-10 pb-20 mt-20">
-          <div className="border rounded-md pt-5 pb-5 bg-sky-400 border-gray-300 bg-opacity-10 text-center pl-2 pr-2">
+          <div className="border rounded-md pt-5 pb-5 bg-white bg-opacity-75 border-gray-300 text-center pl-2 pr-2">
             <AiOutlineLaptop className="mx-auto mb-5 text-2xl" />
             Explore your technical interests and advance your skillset
           </div>
-          <div className="text-center border border-gray-300 rounded-md pt-5 pb-5 bg-sky-400  bg-opacity-10 pl-2 pr-2">
+          <div className="text-center border border-gray-300 rounded-md pt-5 pb-5 bg-white bg-opacity-75 pl-2 pr-2">
             <AiOutlineSchedule className="mx-auto mb-5 text-2xl" />
             Flexible Learning. Learn around your schedule
           </div>
-          <div className="text-center border rounded-md border-gray-300 pt-5 pb-5 bg-sky-400  bg-opacity-10 pl-2 pr-2">
+          <div className="text-center border rounded-md border-gray-300 pt-5 pb-5 bg-white bg-opacity-75 pl-2 pr-2">
             <AiOutlineQuestion className="mx-auto mb-5 text-2xl" />
             Use knowledge quizzes to practice while you learn
           </div>
         </div>
       </section>
+      </div>
 
       {/* Render the search Bar*/}
       <div className=" mb-20">

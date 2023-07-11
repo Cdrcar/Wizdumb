@@ -15,7 +15,7 @@ mongoose
     console.error("Error connecting to the database", error);
     if (!process.env.MONGODB_URI) {
       console.error("process.env.MONGODB_URI is undefined. Please ensure your .env file is set up correctly and is not being ignored by git (should be in .gitignore file).");
-  }
- });
+    }
+  });
 
 module.exports = mongoose.connection; // Export the Mongoose connection object

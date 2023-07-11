@@ -51,7 +51,7 @@ const typeDefs = gql`
     _id: ID!
     firstName: String
     lastName: String
-    username: String!
+    username: String
     email: String!
     password: String!
     courses: [Course!]!
@@ -87,7 +87,8 @@ const typeDefs = gql`
       lastName: String
       email: String!
       password: String!
-    ): User!
+      username: String
+    ): Auth
     loginUser(email: String!, password: String!): Auth
     updateUser(
       id: ID!

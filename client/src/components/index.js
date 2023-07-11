@@ -15,6 +15,7 @@ import CoursePage from "./CoursePage";
 import Navbar from "./Navbar";
 import SearchPage from "./SearchPage";
 import ProfileSettings from "./ProfileSettings";
+import Forum from './Forum';
 
 export {
   AccountSettings,
@@ -22,6 +23,7 @@ export {
   LoggedOutNav,
   LoggedInNav,
   DiscussionPage,
+  Forum,
   Homepage,
   LoggedinHomepage,
   Login,

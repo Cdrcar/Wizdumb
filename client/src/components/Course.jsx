@@ -1,9 +1,8 @@
-import React from 'react';
+import React from "react";
 import Tilt from "react-parallax-tilt";
 import icons from '../constants/index';
 import Lottie from "lottie-react";
 import { useNavigate } from 'react-router-dom';
-
 
 
 const Course = ({
@@ -52,6 +51,7 @@ const Course = ({
             </Tilt>
         </div>
     )
+
 
 };
 

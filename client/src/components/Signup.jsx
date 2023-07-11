@@ -143,7 +143,6 @@ const Signup = () => {
               onChange={handleChange}
             ></input>
             {/* <br></br>
-
           <input
             className="m-3 p-2 border"
             type="password"

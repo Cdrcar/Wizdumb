@@ -39,18 +39,20 @@ const Login = ({ isVisible, onClose }) => {
   };
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center mt-10"
+      className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center"
       id="wrapper"
       onClick={handleClose}
     >
       <div className="bg-white border border-white rounded-md flex flex-col mt-20">
         <button
-          className="text-xl border border-white rounded-full hover:border hover:rounded-full hover:cursor-pointer font-extralight hover:bg-sky-400 hover:bg-opacity-10 place-self-end mt-2 mr-2 pl-4 pr-4 pt-2 pb-[-10px] transition ease-in-out duration-200"
+          className="text-xl border border-white rounded-full hover:border hover:rounded-full hover:cursor-pointer font-extralight hover:bg-sky-400 hover:bg-opacity-10 place-self-end mt-2 mr-2 pl-4 pr-4 pt-2 pb-2 transition ease-in-out duration-200"
           onClick={() => onClose()}
         >
           X
         </button>
-        <Logo />
+        <div className="w-[320px]">
+          <Logo />
+        </div>
         <p className="text-center text-lg">{message}</p>
         <div className="grid place-items-center m-10">
           <form onSubmit={handleFormSubmit}>

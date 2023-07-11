@@ -15,6 +15,7 @@ import {
   Course,
   CoursePage,
   DiscussionPage,
+  Forum,
   Homepage,
   Navbar,
   LoggedinHomepage,
@@ -28,6 +29,7 @@ import {
 } from "./components";
 
 import courses from "./constants/index.js";
+import heroImage from "./assets";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -68,6 +70,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profileSettings" element={<ProfileSettings />} />
             <Route path="/my-courses" element={<MyCourses />} />
+
+            <Route path="/forum" element={<Forum />} />
 
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/search" element={<SearchPage />} />

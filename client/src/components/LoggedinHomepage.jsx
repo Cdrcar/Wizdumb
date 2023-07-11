@@ -5,7 +5,7 @@ const LoggedinHomepage = () => {
   const [completedCount, setCompletedCount] = useState(0);
   const [inProgressCount, setInProgressCount] = useState(0);
   const [courses, setCourses] = useState([]); // Placeholder for course data
-  const [selectedCategory, setSelectedCategory] = useState("inProgress");
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const handleCompletedIncrement = () => {
     setCompletedCount((prevCount) => prevCount + 1);
@@ -21,21 +21,13 @@ const LoggedinHomepage = () => {
     setCourses((prevCourses) => [...prevCourses, newCourse]);
   };
 
-  const handleInProgressClick = () => {
-    setSelectedCategory("inProgress");
-  };
-
-  const handleCompletedClick = () => {
-    setSelectedCategory("completed");
-  };
-
-  const handleViewAllClick = () => {
-    setSelectedCategory("viewAll");
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
   };
 
   const renderPlaceholderCards = () => {
     return (
-      <div className="flex flex-col justify-end">
+      <div className="flex flex-col justify-end ml-5">
         <div className="border rounded p-4 mb-2">Placeholder Card</div>
         <div className="border rounded p-4 mb-2">Placeholder Card</div>
         <div className="border rounded p-4 mb-2">Placeholder Card</div>
@@ -86,7 +78,7 @@ const LoggedinHomepage = () => {
             className={`border rounded-full border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-rose-600 hover:border-rose-600 ${
               selectedCategory === "inProgress" ? "bg-rose-600 text-white" : ""
             }`}
-            onClick={handleInProgressClick}
+            onClick={() => handleCategoryClick("inProgress")}
           >
             In Progress
           </button>
@@ -96,7 +88,7 @@ const LoggedinHomepage = () => {
             className={`border rounded-full border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-rose-600 hover:border-rose-600 ${
               selectedCategory === "completed" ? "bg-rose-600 text-white" : ""
             }`}
-            onClick={handleCompletedClick}
+            onClick={() => handleCategoryClick("completed")}
           >
             Completed
           </button>
@@ -106,7 +98,7 @@ const LoggedinHomepage = () => {
             className={`border rounded-full border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-rose-600 hover:border-rose-600 ${
               selectedCategory === "viewAll" ? "bg-rose-600 text-white" : ""
             }`}
-            onClick={handleViewAllClick}
+            onClick={() => handleCategoryClick("viewAll")}
           >
             View All
           </button>
@@ -127,7 +119,6 @@ const LoggedinHomepage = () => {
                   {course.title}
                 </div>
               ))}
-            {renderPlaceholderCards()}
           </div>
         ) : selectedCategory === "completed" ? (
           <div>
@@ -142,10 +133,9 @@ const LoggedinHomepage = () => {
                   {course.title}
                 </div>
               ))}
-            {renderPlaceholderCards()}
           </div>
-        ) : (
-          <div>
+        ) : selectedCategory === "viewAll" ? (
+          <div className="flex flex-col justify-end">
             <div>View All</div>
             {/* Display all courses here */}
             {courses.map((course) => (
@@ -154,9 +144,9 @@ const LoggedinHomepage = () => {
                 All Course
               </div>
             ))}
-            {renderPlaceholderCards()}
           </div>
-        )}
+        ) : null}
+        {selectedCategory && renderPlaceholderCards()}
       </div>
     </div>
   );

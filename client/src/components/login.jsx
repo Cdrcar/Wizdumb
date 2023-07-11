@@ -1,80 +1,65 @@
-import React, { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { LOGIN_USER } from "../utils/mutations";
-import Logo from './Logo';
+import React from "react";
+import Logo from "./Logo";
 
-import Auth from "../utils/auth";
-
-const Login = () => {
-  const [formState, setFormState] = useState({
-    email: "",
-    password: ""
-  });
-
-  const [loginUser, { error }] = useMutation(LOGIN_USER);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormState({ ...formState, [name]: value });
+const Login = ({ isVisible, onClose }) => {
+  if (!isVisible) return null;
+  const message = "Welcome back!";
+  const handleClose = (e) => {
+    if (e.target.id === "wrapper") onClose();
   };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-
-    try {
-      const { data } = await loginUser({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.loginUser.token);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   return (
-    <div className='grid flex'>
-      <Logo />
-      <div className="grid place-items-center m-20">
-        <div className="max-w-sm border items-center justify-center  border-gray-300 p-16">
-          <h4 className="font-black text-cyan-700 text-center text-4xl mb-6 mt-10 mx-11">Log in</h4>
-          <form onSubmit={handleFormSubmit}>
-            <label className='pb-3'>Email</label><br></br>
+    <div
+      className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center mt-10"
+      id="wrapper"
+      onClick={handleClose}
+    >
+      <div className="bg-white border border-white rounded-md flex flex-col mt-20">
+        <button
+          className="text-xl border border-white rounded-full hover:border hover:rounded-full hover:cursor-pointer font-extralight hover:bg-sky-400 hover:bg-opacity-10 place-self-end mt-2 mr-2 pl-4 pr-4 pt-2 pb-[-10px] transition ease-in-out duration-200"
+          onClick={() => onClose()}
+        >
+          X
+        </button>
+        <Logo />
+        <p className="text-center text-lg">{message}</p>
+        <div className="grid place-items-center m-10">
+          <form>
+            <label className="p-3" for="email_or_username_login">
+              Email
+            </label>
+            <br></br>
             <input
-              className='mb-4 p-2 border'
-              type='text'
-              id='email'
-              name='email'
-              placeholder="example@email.com"
+              className="m-3 p-2 border"
+              type="text"
+              id="email_or_username_login"
+              name="email_or_username_login"
+              placeholder="Email"
               required
-              onChange={handleChange}
-            ></input><br></br>
-            <label className='pb-3' htmlFor='password'>Password</label><br></br>
+            ></input>
+            <br></br>
+            <label className="p-3" for="password_login">
+              Password
+            </label>
+            <br></br>
             <input
-              className='mb-4 p-2 border'
-              type='password'
-              id='password'
-              name='password'
-              placeholder='Password'
+              className="m-3 p-2 border"
+              type="text"
+              id="password_login"
+              name="password_login"
+              placeholder="Password"
               required
-              onChange={handleChange}
-            ></input><br></br>
+            ></input>
+            <br></br>
             <button
-              className="bg-sky-400 border rounded-full text-background text-center mb-6 mt-6 hover:bg-background hover:text-white hover:cursor-pointer"
+              className="mt-5 bg-sky-400 border border-sky-400 text-white rounded-full text-background text-center mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400 ml-6"
               style={{
                 width: "150px",
                 height: "36px",
-                alignSelf: "center",
               }}
-              type="submit"
             >
-              Log in
+              Login
             </button>
           </form>
-          {error && (
-            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
-          )}
         </div>
       </div>
     </div>

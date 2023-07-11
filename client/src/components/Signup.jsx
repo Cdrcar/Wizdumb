@@ -3,8 +3,10 @@ import Logo from "./Logo";
 
 const Signup = () => {
   return (
-    <div className="bg-white border border-white rounded-md flex flex-col">
-      <Logo />
+    <div className="bg-white border border-white rounded-md flex items-center flex-col">
+      <div className="w-[320px]">
+        <Logo />
+      </div>
       <div className="grid place-items-center m-10">
         <form>
           <label className="p-3" for="username_signup">

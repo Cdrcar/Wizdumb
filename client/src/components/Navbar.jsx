@@ -19,7 +19,7 @@ const Navbar = () => {
             <span className="text-cyan-700">Dumb</span>
           </span>
         </Link>
-        <div className="hidden w-full md:block md:w-auto">
+        <div className="">
           {/* Courses */}
           <ul>{loggedIn ? <LoggedInNav /> : <LoggedOutNav />}</ul>
         </div>

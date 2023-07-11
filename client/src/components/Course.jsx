@@ -32,7 +32,7 @@ const Course = ({ name, description, icon }) => {
                 <h3 className="text-black font-bold flex flex-wrap md:text-[22px] sm:text-[14px] xs:text-[10px] ">
                   {name}
                 </h3>
-                <p className="mt-2 text-black text-[18px] flex flex-wrap md:text-[16px] sm:text-[10px] xs:text-[8px] text-[30px]">
+                <p className="mt-2 text-black text-[18px] flex flex-wrap sm:text-[16px]">
                   {description}
                 </p>
               </div>

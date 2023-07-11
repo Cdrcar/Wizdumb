@@ -2,8 +2,10 @@ import { React, useState } from "react";
 import { Link } from "react-router-dom";
 import { BiCog } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
+import { BiChevronDown } from "react-icons/bi";
 
 const LoggedInNav = () => {
+  const [open, setOpen] = useState(false);
   return (
     <div>
       <div className="flex flex-row mr-10">
@@ -16,11 +18,33 @@ const LoggedInNav = () => {
             <BiCog className="text-xl" />
           </Link>
         </li>
-        <li className="mr-5 mt-1 pt-1 hover:cursor-pointer">
-          <Link to="/home">
-            <BsFillPersonFill className="text-lg" />
-          </Link>
-        </li>
+        <div className="relative">
+          <div className="flex flex-row">
+            <li className="mt-1 pt-1 hover:cursor-pointer">
+              <Link to="/home">
+                <BsFillPersonFill className="text-lg" />
+              </Link>
+            </li>
+            <li
+              className="mr-5 mt-1 pt-1 hover:cursor-pointer"
+              onClick={() => setOpen(!open)}
+            >
+              <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
+            </li>
+          </div>
+          <ul
+            className={`mt-2 overflow-y-auto ${
+              open ? "visible max-h-60" : "invisible max-h-0"
+            } absolute right-0 bg-white border border-gray-300`}
+          >
+            <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5">
+              My Courses
+            </li>
+            <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5">
+              Logout
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

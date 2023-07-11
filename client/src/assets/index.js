@@ -5,6 +5,7 @@ import html from './HTML.json';
 import javascript from './javascript.json';
 import node from './node.json';
 import reactImage from './reactImage.json';
+import heroImage from './heroImage.jpg';
 
 export  { 
 student,
@@ -14,4 +15,5 @@ html,
 javascript,
 node,
 reactImage,
+heroImage,
  };

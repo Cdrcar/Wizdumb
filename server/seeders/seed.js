@@ -4,14 +4,14 @@ const { Comment, Course, Resource, Tag, User } = require("../models");
 const courseSeed = require("./courseSeed.json");
 //const resourceSeed = require('./resourceSeed.json');
 //const tagSeed = require('./tagSeed.json');
-const userSeed = require("./userSeed.json");
+// const userSeed = require("./userSeed.json");
 
 db.once("open", async () => {
   try {
     await Course.deleteMany({});
     await Course.insertMany(courseSeed);
     await User.deleteMany({});
-    await User.insertMany(userSeed);
+    // await User.insertMany(userSeed);
 
     const allCourses = await Course.find({});
     console.log("All courses:", allCourses);

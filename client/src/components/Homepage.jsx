@@ -46,7 +46,7 @@ const Homepage = () => {
   return (
     <>
       <section className="relative w-full h-4/6">
-        <div className="grid grid-cols-1 sm:grid-cols-3 mt-20 sm:mt-40 inset-0 top-[80px] max-w-7xl mx-auto sm:px-16 px-6 flex flex-row items-start gap-5 justify-end">
+        <div className="flex flex-col sm:flex-row items-center mt-20 sm:mt-40 inset-0 top-[80px] max-w-7xl mx-auto sm:px-16 px-6 items-start gap-5 justify-end">
           <Logo className="" />
           <div className="text-center">
             <h1 className="font-black self-center lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-sky-500 mt-10 text-center sm:text-right">
@@ -58,11 +58,11 @@ const Homepage = () => {
               </p>
             </h1>
           </div>
-          <div className="pt-20 content-center">
-            <ul className="text-center flex flex-col sm:ml-[100px]">
+          <div className="w-[90%] sm:w-[25%] align-center flex">
+            <ul className=" w-full text-center flex align-center flex-col">
               <li
                 id="authButton"
-                className="bg-sky-400 border border-sky-400 rounded-full text-white mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400 ml-auto mr-auto w-4/12 sm:w-10/12 sm:min-w-full sm:max-w-2xl"
+                className="min-w-[80%] sm:min-w-max p-1.5 pl-3 pr-3 bg-sky-400 border border-sky-400 rounded-full text-white mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400"
                 onClick={() => setShowLoginModal(true)}
               >
                 Login
@@ -70,7 +70,7 @@ const Homepage = () => {
 
               <li
                 id="authButton"
-                className="bg-red-500 border border-red-500 rounded-full text-white mb-2 hover:bg-white hover:text-red-500 hover:cursor-pointer hover:border-red-500 ml-auto mr-auto w-4/12 sm:w-10/12 sm:min-w-full"
+                className="min-w-max p-1.5 pl-3 pr-3 bg-red-500 border border-red-500 rounded-full text-white mb-2 hover:bg-white hover:text-red-500 hover:cursor-pointer hover:border-red-500 "
               >
                 <Link to="/signup">Sign Up</Link>
               </li>

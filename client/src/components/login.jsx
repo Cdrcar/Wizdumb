@@ -53,7 +53,7 @@ const Login = ({ isVisible, onClose }) => {
         <Logo />
         <p className="text-center text-lg">{message}</p>
         <div className="grid place-items-center m-10">
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <label className="p-3" for="email_or_username_login">
               Email
             </label>

@@ -20,6 +20,7 @@ const Signup = () => {
   const [loginUser, { error: loginError }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
+   
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
@@ -27,6 +28,8 @@ const Signup = () => {
 
   // Handles user registration and logs user in after registering
   const handleFormSubmit = async (event) => {
+    
+    console.log("logged")
     event.preventDefault();
     console.log(formState);
 

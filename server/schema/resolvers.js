@@ -48,10 +48,17 @@ const resolvers = {
     },
   },
   Mutation: {
-    createUser: async (parent, { firstName, lastName, email, password }) => {
-      const user = await User.create({ firstName, lastName, email, password });
+    createUser: async (parent, { firstName, lastName, email, password, username }) => {
+      console.log(email)
+      const user = await User.create({ firstName, lastName, email, password, username });
+      if (!user) {
+        throw new Error('Failed to create user');
+      }
       const token = signToken(user);
-      return { token, user };
+
+      return { token, user}
+      
+      
     },
     loginUser: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -71,14 +78,14 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in!');
       }
-      
+
       return await User.findByIdAndUpdate(id, { firstName, lastName, email }, { new: true });
     },
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in!');
       }
-      
+
       return await User.findByIdAndDelete(id);
     },
     createCourse: async (parent, { name, description }) => {
@@ -129,7 +136,7 @@ const resolvers = {
       return await Comment.find({ user: parent._id });
     },
     tags: async (parent) => {
-      return await Tag.find();
+      return await Tag.find({ _id: { $in: parent.tags } });
     },
   },
   Course: {

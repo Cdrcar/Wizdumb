@@ -4,11 +4,11 @@ import Lottie from "lottie-react";
 
 const Logo = () => {
   return (
-    <div className="justify-center top-[80px] mx-auto sm:px-16 px-6 flex flex-row gap-5 h-64">
-      <div className="flex">
+    <div className="">
+      <div className="flex justify-center">
         <Lottie
           animationData={brainLogo}
-          className="md:w-30 lg:w-60 xl:w-80 self-center"
+          className="self-center w-5/12 sm:w-full"
         />
       </div>
     </div>

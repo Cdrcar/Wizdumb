@@ -45,51 +45,42 @@ const Homepage = () => {
   const message2 = "with our courses";
   return (
     <>
-      <section className="relative w-full h-screen">
-        <div className="absolute inset-0 top-[80px] max-w-7xl mx-auto sm:px-16 px-6 flex flex-row items-start gap-5 justify-end">
-          <Logo />
-          <div className="flex">
-            <h1 className="font-black self-center lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-sky-500 text-right mt-10">
+      <section className="relative w-full h-4/6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 mt-20 sm:mt-40 inset-0 top-[80px] max-w-7xl mx-auto sm:px-16 px-6 flex flex-row items-start gap-5 justify-end">
+          <Logo className="" />
+          <div className="text-center">
+            <h1 className="font-black self-center lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-sky-500 mt-10 text-center sm:text-right">
               Wiz<span className="text-cyan-700">Dumb</span>
-              <p className="font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[30px] ml-2 mt-5 mb-2 text-cyan-700 text-left">
+              <p className="font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[30px] ml-2 mt-5 mb-2 text-cyan-700 text-center sm:text-left">
                 {message}
                 <br className="sm:block" />
                 {message2}
               </p>
             </h1>
           </div>
-          <div className="pt-20">
-            <ul className="text-center flex flex-col">
+          <div className="pt-20 content-center">
+            <ul className="text-center flex flex-col sm:ml-[100px]">
               <li
-                className="pb-10 bg-sky-400 border border-sky-400 rounded-full text-white mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400"
-                style={{
-                  marginLeft: "100px",
-                  padding: "5px",
-                  width: "150px",
-                }}
+                id="authButton"
+                className="bg-sky-400 border border-sky-400 rounded-full text-white mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400 ml-auto mr-auto w-4/12 sm:w-10/12 sm:min-w-full sm:max-w-2xl"
                 onClick={() => setShowLoginModal(true)}
               >
                 Login
               </li>
-              <Link to="/signup">
-                <li
-                  className="pb-10 bg-red-500 border border-red-500 rounded-full text-white hover:bg-white hover:text-red-500 hover:cursor-pointer hover:border-red-500"
-                  style={{
-                    marginLeft: "100px",
-                    padding: "5px",
-                    width: "150px",
-                  }}
-                >
-                  Sign Up
-                </li>
-              </Link>
+
+              <li
+                id="authButton"
+                className="bg-red-500 border border-red-500 rounded-full text-white mb-2 hover:bg-white hover:text-red-500 hover:cursor-pointer hover:border-red-500 ml-auto mr-auto w-4/12 sm:w-10/12 sm:min-w-full"
+              >
+                <Link to="/signup">Sign Up</Link>
+              </li>
             </ul>
           </div>
         </div>
       </section>
       <section>
         {/*Render the cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 ml-10 mr-10 pb-20 mt-[-450px] mb-40">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 ml-10 mr-10 pb-20 mt-20">
           <div className="border rounded-md pt-5 pb-5 bg-sky-400 border-gray-300 bg-opacity-10 text-center pl-2 pr-2">
             <AiOutlineLaptop className="mx-auto mb-5 text-2xl" />
             Explore your technical interests and advance your skillset
@@ -106,7 +97,7 @@ const Homepage = () => {
       </section>
 
       {/* Render the search Bar*/}
-      <div className="mt-[-150px] mb-20">
+      <div className=" mb-20">
         <h3 className="text-center  p-2 text-xl font-bold text-cyan-800">
           Search for a course
         </h3>

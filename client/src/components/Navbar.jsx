@@ -3,6 +3,7 @@ import AuthService from "../utils/auth";
 import brainLogo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import LoggedOutNav from "./LoggedOutNav";
+import LoggedInNav from "./LoggedInNav";
 // TODO: my-courses component and route
 
 const Navbar = () => {

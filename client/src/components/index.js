@@ -10,6 +10,7 @@ import Profile from "./Profile";
 import MyCourses from "./MyCourses";
 import Testimonials from "./testimonials";
 import LoggedOutNav from "./LoggedOutNav";
+import LoggedInNav from "./LoggedInNav";
 import CoursePage from "./CoursePage";
 import Navbar from "./Navbar";
 import SearchPage from "./SearchPage";
@@ -19,6 +20,7 @@ export {
   AccountSettings,
   Navbar,
   LoggedOutNav,
+  LoggedInNav,
   DiscussionPage,
   Homepage,
   LoggedinHomepage,

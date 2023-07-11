@@ -19,7 +19,7 @@ const LoggedOutNav = () => {
       >
         Login
       </li>
-      <li className="border rounded-full border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-red-500 hover:border-red-500">
+      <li className="border rounded-full border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-rose-600 hover:border-rose-600">
         <Link to="/signup">Sign Up</Link>
       </li>
       <Login

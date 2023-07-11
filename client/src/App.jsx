@@ -28,6 +28,7 @@ import {
 } from "./components";
 
 import courses from "./constants/index.js";
+import heroImage from "./assets";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({

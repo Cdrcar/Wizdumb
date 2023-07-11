@@ -1,7 +1,37 @@
-import React from "react";
+import {useState, React } from "react";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
 import Logo from "./Logo";
+import Auth from "../utils/auth";
 
 const Login = ({ isVisible, onClose }) => {
+
+  const [formState, setFormState] = useState({
+    email: "",
+    password: ""
+  });
+
+  const [loginUser, { error }] = useMutation(LOGIN_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({ ...formState, [name]: value });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await loginUser({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.loginUser.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
   if (!isVisible) return null;
   const message = "Welcome back!";
   const handleClose = (e) => {
@@ -29,12 +59,13 @@ const Login = ({ isVisible, onClose }) => {
             </label>
             <br></br>
             <input
-              className="m-3 p-2 border"
-              type="text"
-              id="email_or_username_login"
-              name="email_or_username_login"
-              placeholder="Email"
+              className='mb-4 p-2 border'
+              type='text'
+              id='email'
+              name='email'
+              placeholder="example@email.com"
               required
+              onChange={handleChange}
             ></input>
             <br></br>
             <label className="p-3" for="password_login">
@@ -42,12 +73,13 @@ const Login = ({ isVisible, onClose }) => {
             </label>
             <br></br>
             <input
-              className="m-3 p-2 border"
-              type="text"
-              id="password_login"
-              name="password_login"
-              placeholder="Password"
-              required
+               className='mb-4 p-2 border'
+               type='password'
+               id='password'
+               name='password'
+               placeholder='Password'
+               required
+               onChange={handleChange}
             ></input>
             <br></br>
             <button
@@ -60,6 +92,9 @@ const Login = ({ isVisible, onClose }) => {
               Login
             </button>
           </form>
+          {error && (
+            <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+          )}
         </div>
       </div>
     </div>

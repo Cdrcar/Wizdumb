@@ -136,11 +136,11 @@ const Homepage = () => {
       <div className="relative z-10 mt-10">
         <h3
           id="courses"
-          className="font-black text-cyan-700 text-4xl mb-6 mt-10 mx-11"
+          className="text-center sm:text-left font-black text-cyan-700 text-4xl mb-6 mt-10 mx-11"
         >
           Browse Our Courses
         </h3>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="block sm:flex sm:flex-wrap sm:justify-evenly">
           {courses.map((course) => (
             <Course
               key={course.name}

@@ -20,7 +20,9 @@ const Login = ({ isVisible, onClose }) => {
         >
           X
         </button>
-        <Logo />
+        <div className="w-[320px]">
+          <Logo />
+        </div>
         <p className="text-center text-lg">{message}</p>
         <div className="grid place-items-center m-10">
           <form>

@@ -9,7 +9,7 @@ const Login = ({ isVisible, onClose }) => {
   };
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center mt-10"
+      className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center"
       id="wrapper"
       onClick={handleClose}
     >

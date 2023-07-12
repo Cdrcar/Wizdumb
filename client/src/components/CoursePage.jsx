@@ -1,12 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import courses from '../constants/index.js';
+// import courses from '../constants/index.js';
 import Lottie from "lottie-react";
+import { useQuery } from "@apollo/client";
+import { QUERY_COURSES } from "../utils/queries";
 
 const CoursePage = () => {
     const { courseName }= useParams();
 
     console.log('courseName:', courseName);
+    const { loading, error, data } = useQuery(QUERY_COURSES);
+    const courses = data?.getCourses || [];
+    console.log(data);
+   
 
     const course = courses.find(course => course.name.toLowerCase()===courseName.toLowerCase());
     console.log('course:', course);
@@ -24,19 +30,19 @@ const CoursePage = () => {
         <h1 className='text-6xl font-bold text-center text-cyan-800 my-6'>{course.name}</h1>
         <div className='grid grid-cols-6 gap-4 mx-6'>
           <div className='col-start-1 col-span-3'>
-            <Lottie animationData={course.icon} className="w-full h-full object-cover rounded-xl" />
+            {/* <Lottie animationData={course.icon} className="w-full h-full object-cover rounded-xl" /> */}
           </div>
           <div className='col-span-2'>
             <p className='font-bold mt-14 flex items-center justify-center text-2xl'>{course.description}</p>
             <br></br>
             <h3 className='font-bold text-2xl' >Modules</h3>
             {course.modules.map((module) => (
-              <ol key={module.One} className='text-black marker:text-emerald-800 list-disc'>
-                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href='#module_1'>Module One: {module.One}</a>M</li>
-                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href='#module_2'>Module Two:</a>. {module.Two}</li>
-                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href='#module_3'>Module Three:</a> {module.Three}</li>
-                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href='#module_4'>Module Four:</a> {module.Four}</li>
-                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500 '><a href='#module_5'>Module Five:</a> {module.Five}</li>
+              <ol key={module[0]} className='text-black marker:text-emerald-800 list-disc'>
+                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href='#module_1'>Module One: {module[0]}</a></li>
+                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href='#module_2'>Module Two:</a>. {module[1]}</li>
+                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href='#module_3'>Module Three:</a> {module[2]}</li>
+                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href='#module_4'>Module Four:</a> {module[3]}</li>
+                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500 '><a href='#module_5'>Module Five:</a> {module[4]}</li>
               </ol>
             ))}
           </div>

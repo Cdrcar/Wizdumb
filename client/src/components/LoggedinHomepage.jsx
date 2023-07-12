@@ -64,7 +64,7 @@ const LoggedinHomepage = () => {
           />
           <div className="text-center ml-2">
             <div className="mb-1 mt-5">Hey, Username &#x1F44B;</div>
-            <div>Location</div>
+            <div>Heres a breakdown of your progress</div>
           </div>
         </div>
         <div>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import Logo from "./Logo";
 import Course from "./Course";
-// import courses from "../constants/index.js";
+import icons from "../constants/index.js";
 import { useQuery } from "@apollo/client";
 import { QUERY_COURSES } from "../utils/queries";
 
@@ -16,13 +16,28 @@ import { AiOutlineSchedule } from "react-icons/ai";
 import { AiOutlineLaptop } from "react-icons/ai";
 import { AiOutlineQuestion } from "react-icons/ai";
 
+
+
+// let iconName;
+
+
+
+
 const Homepage = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const { loading, error, data } = useQuery(QUERY_COURSES);
   const courses = data?.getCourses || [];
   console.log(data);
+
+  // fetchIcons(courses);
+  // // console.log(fetchIcons(courses));
+  // // console.log(iconName);
+  // console.log(iconName);
+ 
   const [currentSearch, setCurrentSearch] = useState([]);
+  
+
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
 

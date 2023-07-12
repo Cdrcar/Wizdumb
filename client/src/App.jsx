@@ -15,6 +15,7 @@ import {
   Course,
   CoursePage,
   DiscussionPage,
+  Forum,
   Homepage,
   Navbar,
   LoggedinHomepage,
@@ -69,6 +70,8 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profileSettings" element={<ProfileSettings />} />
             <Route path="/my-courses" element={<MyCourses />} />
+
+            <Route path="/forum" element={<Forum />} />
 
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/search" element={<SearchPage />} />

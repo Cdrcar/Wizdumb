@@ -1,6 +1,7 @@
 [
   {
     "name": "MDN Docs for HTML",
+    "courseName": "html",
     "video": "",
     "text": "",
     "description": "MDN Docs for HTML, an exhaustive reference for HTML elements",
@@ -8,6 +9,7 @@
   },
   {
     "name": "HTML Cheat sheet",
+    "courseName": "html",
     "video": "",
     "text": "",
     "description": "A cheat sheet for HTML elements and their functions",
@@ -15,6 +17,7 @@
   },
   {
     "name": "Intro to HTML",
+    "courseName": "html",
     "video": "",
     "text": "HTML (HyperText Markup Language) is a markup language that tells web browsers how to structure the web pages you visit. It can be as complicated or as simple as the web developer wants it to be. HTML consists of a series of elements, which you use to enclose, wrap, or mark up different parts of content to make it appear or act in a certain way. The enclosing tags can make content into a hyperlink to connect to another page, italicize words, and so on. For example, consider the following line of text:<p>Hi</p>, the <p> & </p> tags denote a paragraph with the content between them",
     "description": "A basic intro into HTML",
@@ -22,6 +25,7 @@
   },
   {
     "name": "HTML For beginners",
+    "courseName": "html",
     "video": "https://www.youtube.com/watch?v=FQdaUv95mR8",
     "text": "",
     "description": "A  40 minute video to act as an intro and basic tutorial for HTML, great for those starting out",
@@ -29,6 +33,7 @@
   },
   {
     "name": "CSS Crash course",
+    "courseName": "html",
     "video": "https://www.youtube.com/watch?v=yfoY53QXEnI",
     "text": "",
     "description": "A CSS course for beginners ~90 mins long",

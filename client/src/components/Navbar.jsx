@@ -3,12 +3,15 @@ import AuthService from "../utils/auth";
 import brainLogo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import LoggedOutNav from "./LoggedOutNav";
+import { useSelector } from "react-redux";
 import LoggedInNav from "./LoggedInNav";
+
 // TODO: my-courses component and route
 
 const Navbar = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const auth = useSelector((state) => state.AuthService);
 
+  const loggedIn = AuthService.loggedIn();
   return (
     <nav className="sticky top-0 z-50 bg-white border-b-2 border-b-gray-100">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 ">

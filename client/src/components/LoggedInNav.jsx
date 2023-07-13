@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import { BiCog } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
+import AuthService from "../utils/auth";
 
 const LoggedInNav = () => {
   const [open, setOpen] = useState(false);
+  const handleLogout = () => {
+    AuthService.logout();
+  };
   return (
     <div>
       <div className="flex flex-row mr-10">
@@ -37,10 +41,13 @@ const LoggedInNav = () => {
               open ? "visible max-h-60" : "invisible max-h-0"
             } absolute right-0 bg-white border border-gray-300`}
           >
-            <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5">
+            <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer">
               My Courses
             </li>
-            <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5">
+            <li
+              className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer"
+              onClick={handleLogout}
+            >
               Logout
             </li>
           </ul>

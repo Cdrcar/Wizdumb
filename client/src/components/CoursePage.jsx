@@ -7,24 +7,21 @@ import { QUERY_COURSES } from "../utils/queries";
 import { FaFire, FaPoo } from 'react-icons/fa';
 
 const CoursePage = () => {
-    const { courseName }= useParams();
-
+  const { courseName } = useParams();
     console.log('courseName:', courseName);
     const { loading, error, data } = useQuery(QUERY_COURSES);
     const courses = data?.getCourses || [];
     console.log(data);
    
 
-    const course = courses.find(course => course.name.toLowerCase()===courseName.toLowerCase());
-    console.log('course:', course);
+  const course = courses.find(
+    (course) => course.name.toLowerCase() === courseName.toLowerCase()
+  );
+  console.log("course:", course);
 
-    if (courseName === course){
-        console.log("success!");
-    }
-  
-    if (!course) {
-      return <div>Course not found.</div>;
-    }
+  if (courseName === course) {
+    console.log("success!");
+  }
 
     return (
       <>

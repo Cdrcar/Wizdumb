@@ -78,7 +78,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/account" element={<AccountSettings />} />
             <Route path="/course" element={<Course />} />
-            <Route path="/home" element={<LoggedinHomepage />} />
+            <Route path="/home" element={<Profile />} />
 
             {/* <Route path ="/course" element={<Course />} /> */}
             <Route path="/course/:courseName" element={<CoursePage />} />

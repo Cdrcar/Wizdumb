@@ -5,8 +5,8 @@ import ForumBar from './ForumBar';
 
 const Forum = () => {
     return (
-        <div>
-            <h1 className='text-6xl font-bold text-center text-cyan-800 my-6 pt-16 pb-10'>Forum</h1>
+        <div className='bg-slate-100'>
+            <h1 className='text-6xl font-bold text-center text-cyan-800 pt-24 pb-16'>Forum</h1>
             <div className='grid grid-rows-2 sm:grid-rows-none sm:grid-cols-3 mb-20'>
                 <div className='col-span-2 px-6 sm:pl-6 sm:pr-3'>
                     <div>

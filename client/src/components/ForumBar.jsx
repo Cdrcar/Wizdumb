@@ -6,7 +6,7 @@ import { QUERY_COURSES } from '../utils/queries';
 
 const ForumBar = (props) => {
     return (
-        <div className={`bg-slate-100 ${props.className} rounded-lg h-16 mb-8 shadow-md shadow-slate-400 hover:shadow-none hover:border-2 hover:border-white`}>
+        <div className={`bg-slate-100 ${props.className} rounded-lg h-16 mb-8 shadow-md shadow-slate-400 hover:shadow-none hover:border-2 hover:border-slate-100`}>
             <div className='h-full flex rounded-lg border-4 border-slate-400'>
                 <div className='h-full shrink overflow-hidden flex items-center text-lg pl-2'>
                     <p className='font-bold truncate'>Java Script efwi uby fwe yig fvds riu nosd fvuihfsuieh fseuhifgierdawdawdwadwadwadwadwadwawbhuygibfhruywfuibhaweriufbhyb</p>

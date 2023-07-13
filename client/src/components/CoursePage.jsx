@@ -1,27 +1,32 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-// import courses from '../constants/index.js';
-import Lottie from "lottie-react";
 import { useQuery } from "@apollo/client";
 import { QUERY_COURSES } from "../utils/queries";
-import { FaFire, FaPoo } from 'react-icons/fa';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const CoursePage = () => {
-  const { courseName } = useParams();
-    console.log('courseName:', courseName);
+  
+    const { courseName } = useParams();
+    const courses = useSelector((state) => state.courses);
+    const dispatch = useDispatch();
+  
     const { loading, error, data } = useQuery(QUERY_COURSES);
-    const courses = data?.getCourses || [];
-    console.log(data);
-   
-
-  const course = courses.find(
-    (course) => course.name.toLowerCase() === courseName.toLowerCase()
-  );
-  console.log("course:", course);
-
-  if (courseName === course) {
-    console.log("success!");
-  }
+    console.log(data)
+  
+    useEffect(() => {
+      if (data) {
+        dispatch({ type: 'courses/setCourses', payload: data?.getCourses || [] });
+      }
+    }, [data, dispatch]);
+  
+    const course = courses.find(
+      (course) => course.name.toLowerCase() === courseName.toLowerCase()
+    );
+  
+    if (!course) {
+      return <div>Course Not Found</div>; 
+    }
 
     return (
       <>
@@ -53,17 +58,11 @@ const CoursePage = () => {
           </div>
           <div className='flex-auto'>
             <div>
-            <p className='font-bold mt-14 flex basis-4 text-2xl'>{course.description}</p>
+            <p className='font-bold flex basis-4 text-2xl'>{course.description}</p>
             </div>
             <div className='flex-auto'>
             <br></br>
-            <h3 className='font-bold text-2xl' >Modules</h3>
-            {course.modules.map((module) => (
-              <ol key={module[0]} className='text-black marker:text-emerald-800 list-disc'>
-                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href={`#${module}`} key={module}> {module}</a></li>
-                
-              </ol>
-            ))}
+              <p className='font-bold flex basis-4 text-2xl'>Click on the modules to explore more!</p>
             </div>
           </div>
           </div>
@@ -73,5 +72,6 @@ const CoursePage = () => {
     
     );
   };
+
     
 export default CoursePage;

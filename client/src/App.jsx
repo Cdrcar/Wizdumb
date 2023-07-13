@@ -16,6 +16,7 @@ import {
   CoursePage,
   DiscussionPage,
   Forum,
+  ForumLikes,
   Homepage,
   Navbar,
   LoggedinHomepage,
@@ -72,7 +73,7 @@ function App() {
             <Route path="/my-courses" element={<MyCourses />} />
 
             <Route path="/forum" element={<Forum />} />
-
+            <Route path="/forumlikes" element={<ForumLikes />} />
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/account" element={<AccountSettings />} />

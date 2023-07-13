@@ -68,7 +68,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/home" element={<Profile />} />
             <Route path="/profileSettings" element={<ProfileSettings />} />
             <Route path="/my-courses" element={<MyCourses />} />
 
@@ -78,7 +78,6 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/account" element={<AccountSettings />} />
             <Route path="/course" element={<Course />} />
-            <Route path="/home" element={<Profile />} />
 
             {/* <Route path ="/course" element={<Course />} /> */}
             <Route path="/course/:courseName" element={<CoursePage />} />

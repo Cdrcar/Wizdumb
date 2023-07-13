@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import profileImg from "../assets/profile-image.png";
 
-const LoggedinHomepage = () => {
+const Profile = () => {
   const [completedCount, setCompletedCount] = useState(0);
   const [inProgressCount, setInProgressCount] = useState(0);
   const [courses, setCourses] = useState([]); // Placeholder for course data
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSearch, setCurrentSearch] = useState([]);
+  const [showPlaceholders, setShowPlaceholders] = useState(false); // New state
 
   const handleCompletedIncrement = () => {
     setCompletedCount((prevCount) => prevCount + 1);
@@ -25,6 +26,11 @@ const LoggedinHomepage = () => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
+    if (category === "myCourses") {
+      setShowPlaceholders(true);
+    } else {
+      setShowPlaceholders(false);
+    }
   };
 
   const handleSearch = (e) => {
@@ -113,87 +119,26 @@ const LoggedinHomepage = () => {
       </div>
 
       <div className="border-l-2 border-gray-300 pl-5">
-        <div className="flex justify-between">
+        <div className="flex justify-center">
           <div>
             <button
-              className={`border rounded-full border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-rose-600 hover:border-rose-600 ${
-                selectedCategory === "inProgress" ? "bg-rose-600 text-white" : ""
+              className={`border rounded-full mt border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-rose-600 hover:border-rose-600 ${
+                selectedCategory === "myCourses" ? "bg-rose-600 text-white" : ""
               }`}
-              onClick={() => handleCategoryClick("inProgress")}
+              onClick={() => handleCategoryClick("myCourses")}
             >
-              In Progress
-            </button>
-          </div>
-          <div>
-            <button
-              className={`border rounded-full border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-rose-600 hover:border-rose-600 ${
-                selectedCategory === "completed" ? "bg-rose-600 text-white" : ""
-              }`}
-              onClick={() => handleCategoryClick("completed")}
-            >
-              Completed
-            </button>
-          </div>
-          <div>
-            <button
-              className={`border rounded-full border-gray-300 p-1 pr-3 pl-3 hover:cursor-pointer hover:text-white hover:bg-rose-600 hover:border-rose-600 ${
-                selectedCategory === "viewAll" ? "bg-rose-600 text-white" : ""
-              }`}
-              onClick={() => handleCategoryClick("viewAll")}
-            >
-              View All
+              My Courses
             </button>
           </div>
         </div>
-
-        <div>
-          {selectedCategory === "inProgress" && (
-            <div>
-              <div className="mr-5 mt-5"></div>
-              {courses
-                .filter((course) => {
-                  /* Add your condition to filter in-progress courses */
-                })
-                .map((course) => (
-                  <div key={course.id} className="border rounded p-4 mb-2">
-                    {/* Display in-progress course information */}
-                    {course.title}
-                  </div>
-                ))}
-            </div>
-          )}
-          {selectedCategory === "completed" && (
-            <div>
-              <div className="mr-5 mt-5"></div>
-              {courses
-                .filter((course) => {
-                  /* Add your condition to filter completed courses */
-                })
-                .map((course) => (
-                  <div key={course.id} className="border rounded p-4 mb-2">
-                    {/* Display completed course information */}
-                    {course.title}
-                  </div>
-                ))}
-            </div>
-          )}
-          {selectedCategory === "viewAll" && (
-            <div className="flex flex-col justify-end mt-5">
-              {/* Display all courses here */}
-              {courses.map((course) => (
-                <div key={course.id} className="border rounded p-4 mb-2">
-                  {/* Placeholder course information */}
-                  All Course
-                </div>
-              ))}
-            </div>
-          )}
-          {selectedCategory && renderPlaceholderCards()}
-          {!selectedCategory && <div className="h-16"></div>}
-        </div>
+        {selectedCategory === "myCourses" && showPlaceholders && (
+          <div className="mt-5">
+            {renderPlaceholderCards()}
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-export default LoggedinHomepage;
+export default Profile;

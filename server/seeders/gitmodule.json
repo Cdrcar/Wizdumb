@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Intro to git",
+    "video": "",
+    "text": "Git bash is a Command line interface we can use to interface with files or directories within our computer. \\n Git allow us to create a repository where we build projects. The ability to create, clone and push (upload) these repositories is key to how we collaborate & deploy code.",
+    "description": "A breif intro to Git bash",
+    "link": ""
+  },
+  {
+    "name": "Resolving Merge Conflicts (VS code)",
+    "video": "https://www.youtube.com/watch?v=lz5OuKzvadQ",
+    "text": "",
+    "description": "A short video on resolving merge conflicts using VS code",
+    "link": ""
+  },
+  {
+    "name": "Gitbash Cheat sheet",
+    "video": "",
+    "text": "",
+    "description": "A cheat sheet with some of your most used commands and how to use them",
+    "link": "https://sidtechtalks.medium.com/a-quick-git-bash-commands-cheat-sheet-64a147220a60"
+  },
+  {
+    "name": "Gitbash Official documentation",
+    "video": "",
+    "text": "",
+    "description": "THe official Gitbash documentation, covering all the commands, features & syntax required for the Git package",
+    "link": "https://git-scm.com/doc"
+  },
+  {
+    "name": "Git and Github tutorial",
+    "video": "https://www.youtube.com/watch?v=iGutIN5t9Mo",
+    "text": "",
+    "description": "A tutorial into the basics of Git commands and how to use Github to act as a remote repository ",
+    "link": ""
+  }
+]

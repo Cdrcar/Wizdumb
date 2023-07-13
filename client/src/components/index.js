@@ -2,6 +2,8 @@ import AccountSettings from "./AccountSettings";
 import Course from "./Course";
 import DiscussionPage from "./DiscussionPage";
 import Footer from "./Footer";
+import Forum from './Forum';
+import ForumLikes from './FormLikes';
 import Homepage from "./Homepage";
 import LoggedinHomepage from "./LoggedinHomepage";
 import Login from "./login";
@@ -15,7 +17,7 @@ import CoursePage from "./CoursePage";
 import Navbar from "./Navbar";
 import SearchPage from "./SearchPage";
 import ProfileSettings from "./ProfileSettings";
-import Forum from './Forum';
+
 
 export {
   AccountSettings,
@@ -24,6 +26,7 @@ export {
   LoggedInNav,
   DiscussionPage,
   Forum,
+  ForumLikes,
   Homepage,
   LoggedinHomepage,
   Login,

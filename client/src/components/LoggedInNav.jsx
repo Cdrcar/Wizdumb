@@ -4,33 +4,71 @@ import { BiCog } from "react-icons/bi";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BiChevronDown } from "react-icons/bi";
 import AuthService from "../utils/auth";
+import { FiMenu } from "react-icons/fi";
 
 const LoggedInNav = () => {
   const [open, setOpen] = useState(false);
+  const [mainOpen, setMainOpen] = useState(false);
   const handleLogout = () => {
     AuthService.logout();
   };
   return (
     <div>
-      <div className="flex flex-row mr-10">
-        <li className="mr-5 mt-1 hover:cursor-pointer">
+      <FiMenu
+        className="sm:hidden block h-6 w-6 cursor-pointer mr-5"
+        onClick={() => setMainOpen(!mainOpen)}
+      />
+      <div
+        className={`${
+          mainOpen
+            ? "block absolute right-0 mr-2 mt-3 bg-white border border-gray-300 "
+            : "hidden"
+        } sm:flex sm:flex-row sm:mr-1`}
+      >
+        <li
+          className={`${
+            mainOpen
+              ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
+              : "mr-5  mt-1"
+          } cursor-pointer`}
+        >
           <Link to="/my-courses">Courses</Link>
         </li>
-        <li className="mr-5 mt-1 hover:cursor-pointer">Community</li>
-        <li className="mr-5 mt-1 pt-1 hover:cursor-pointer">
+        <li
+          className={`${
+            mainOpen
+              ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
+              : "mr-5  mt-1"
+          } cursor-pointer`}
+        >
+          Community
+        </li>
+        <li
+          className={`${
+            mainOpen
+              ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
+              : "mr-5  mt-1"
+          } cursor-pointer`}
+        >
           <Link to="/profilesettings">
             <BiCog className="text-xl" />
           </Link>
         </li>
         <div className="relative">
           <div className="flex flex-row">
-            <li className="mt-1 pt-1 hover:cursor-pointer">
+            <li
+              className={`${
+                mainOpen
+                  ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
+                  : "mt-1"
+              } cursor-pointer`}
+            >
               <Link to="/home">
                 <BsFillPersonFill className="text-lg" />
               </Link>
             </li>
             <li
-              className="mr-5 mt-1 pt-1 hover:cursor-pointer"
+              className="mr-5 pt-1 hover:cursor-pointer"
               onClick={() => setOpen(!open)}
             >
               <BiChevronDown size={20} className={`${open && "rotate-180"}`} />

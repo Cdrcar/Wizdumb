@@ -26,6 +26,7 @@ const typeDefs = gql`
   type Resource {
     _id: ID!
     name: String!
+    courseName: String!
     video: String
     text: String
     description: String!

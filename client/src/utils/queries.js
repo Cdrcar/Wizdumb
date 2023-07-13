@@ -149,6 +149,7 @@ query getAllUsers {
     getResource(id:$id) {
         _id
         name
+        courseName
         video
         text
         description
@@ -177,6 +178,7 @@ export const QUERY_RESOURCE = gql `
     getResources {
         _id
         name
+        courseName
         video
         text
         description

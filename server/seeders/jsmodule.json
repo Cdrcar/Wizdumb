@@ -1,6 +1,7 @@
 [
   {
     "name": "Documenation for JS",
+    "courseName": "javascript",
     "video": "",
     "text": "",
     "description": "Official documentaion for JS, has all the most up to date syntax and features",
@@ -8,6 +9,7 @@
   },
   {
     "name": "Code Snippet - for loop",
+    "courseName": "javascript",
     "video": "",
     "text": "\\n\\n<code>\\n for (let i = 0; i < array.length; i++) {\\n  let element = array[i];\\n}\\n</code> \\n The expressions within the brackets tell us how the for loop will run, \\nthe first (let i =0) tells us what index we start, in this case 0, which would refer to the 1st element in an array \\n the second expression is the stop position, stop the loop if the index is greater than the length of the array \\n the last is the itteration, each time the code runs add 1 to i",
     "description": "A code snipppet to displat usage of a for loop",
@@ -15,6 +17,7 @@
   },
   {
     "name": "Learn JS",
+    "courseName": "javascript",
     "video": "",
     "text": "",
     "description": "An interactive JS tutorial, helping guide you to competence in javascript in a fun and engaging way, perfect for beginners or as a refresher",
@@ -22,6 +25,7 @@
   },
   {
     "name": "Leetcode - Practice Algorithms in Javascript ",
+    "courseName": "javascript",
     "video": "",
     "text": "",
     "description": "A place to practice alogorithms and improve your skills in JS & problem solving (Its also super fun)",
@@ -29,6 +33,7 @@
   },
   {
     "name": "JS crashcourse of Beginners",
+    "courseName": "javascript",
     "video": "https://www.youtube.com/watch?v=hdI2bqOjy3c",
     "text": "",
     "description": "A Video intro into JS, focused on the fundementals",

@@ -30,11 +30,10 @@ const Course = ({
                 tiltMaxAngleY={10}
                 tiltMaxAngleX={10}
                 perspective={1000}>
-
-                <div className=' bg-white bg-opacity-85 hover:cursor-pointer mx-6 rounded-2xl border-slate-700 border-2 p-2 sm:w-[360px] xs:w-[250px] m-5'
+                <div className='relative bg-white bg-opacity-85 hover:cursor-pointer mx-6 rounded-2xl border-slate-700 border-2 p-2 sm:w-[360px] xs:w-[250px] m-5'
                     onClick={handleClick}>
-
-                    <div className=' flex justify-evenly items-center flex-col'>
+                       <div className='absolute top-0 right-0 bg-white rounded-full w-10 h-10 flex items-center justify-center text-4xl'>+</div>
+                    <div className='flex justify-evenly items-center flex-col'>
                         <div className='relative w-full h-[230px] rounded-xl bg-transparent'>
                             <Lottie animationData={iconName} className="w-full h-full object-cover rounded-xl" />
                         </div >
@@ -45,14 +44,10 @@ const Course = ({
                             </div>
                         </div>
                     </div>
-
                 </div>
-
             </Tilt>
         </div>
     )
-
-
 };
 
 export default Course;

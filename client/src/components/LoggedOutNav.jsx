@@ -19,7 +19,7 @@ const LoggedOutNav = () => {
       <div
         className={`${
           open
-            ? "block absolute right-0 mr-2 mt-3 bg-white border border-gray-300"
+            ? "block absolute right-0 mr-2 mt-3 bg-white border border-gray-300 "
             : "hidden"
         } sm:flex sm:flex-row sm:mr-10`}
       >
@@ -28,7 +28,7 @@ const LoggedOutNav = () => {
             open
               ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
               : "mr-5  mt-1"
-          } cursor-pointer`}
+          } cursor-pointer sm:mt-2`}
         >
           <Link to="/my-courses">Courses</Link>
         </li>
@@ -37,7 +37,7 @@ const LoggedOutNav = () => {
             open
               ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
               : "mr-5  mt-1"
-          } cursor-pointer`}
+          } cursor-pointer sm:mt-2`}
           onClick={() => setShowLoginModal(true)}
         >
           Login
@@ -47,7 +47,7 @@ const LoggedOutNav = () => {
             open
               ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
               : "mr-5  mt-1"
-          } cursor-pointer sm:border sm:rounded-full sm:border-gray-300 sm:p-1 sm:pr-3 sm:pl-3 sm:hover:text-white sm:hover:bg-rose-600 sm:hover:border-rose-600`}
+          } cursor-pointer sm:border sm:rounded-full sm:border-gray-300 sm:p-1 sm:pr-3 sm:pl-3 sm:hover:text-white sm:hover:bg-rose-600 sm:hover:border-rose-600sm:mt-2`}
         >
           <Link to="/signup">Sign Up</Link>
         </li>

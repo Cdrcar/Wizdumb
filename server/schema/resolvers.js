@@ -106,14 +106,14 @@ const resolvers = {
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);
     },
-    createResource: async (parent, { name, video, text, description, link, user, course }) => {
-      return await Resource.create({ name, video, text, description, link, user, course });
+    createResource: async (parent, { name, video, text, description, link }) => {
+      return await Resource.create({ name, video, text, description, link });
     },
-    updateResource: async (parent, { id, name, video, text, description, link, user, course }) => {
-      return await Resource.findByIdAndUpdate(id, { name, video, text, description, link, user, course }, { new: true });
+    updateResource: async (parent, { name, video, text, description, link }) => {
+      return await Resource.findOneAndUpdate({ name }, { name, video, text, description, link}, { new: true });
     },
-    deleteResource: async (parent, { id }) => {
-      return await Resource.findByIdAndDelete(id);
+    deleteResource: async (parent, { name }) => {
+      return await Resource.findOneAndDelete({ name });
     },
     createTag: async (parent, { name }) => {
       return await Tag.create({ name });

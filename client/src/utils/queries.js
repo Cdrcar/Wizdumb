@@ -159,7 +159,7 @@ query getAllUsers {
     }
 }`;
 
-export const QUERY_RESOURCE = gql `
+export const QUERY_RESOURCES = gql `
   query getResources {
     getResources {
         name

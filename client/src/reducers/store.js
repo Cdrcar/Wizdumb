@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   courses: [],
+  resources: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         courses: action.payload,
+      };
+      case 'resources/setResources': // Add resources case
+      return {
+        ...state,
+        resources: action.payload,
       };
     default:
       return state;

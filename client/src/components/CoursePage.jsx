@@ -1,32 +1,40 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
-import { QUERY_COURSES } from "../utils/queries";
+import { QUERY_COURSES, QUERY_RESOURCES } from "../utils/queries";
 import { useSelector, useDispatch } from 'react-redux'
 
 
 const CoursePage = () => {
-  
-    const { courseName } = useParams();
-    const courses = useSelector((state) => state.courses);
-    const dispatch = useDispatch();
-  
-    const { loading, error, data } = useQuery(QUERY_COURSES);
-    console.log(data)
-  
-    useEffect(() => {
-      if (data) {
-        dispatch({ type: 'courses/setCourses', payload: data?.getCourses || [] });
-      }
-    }, [data, dispatch]);
-  
-    const course = courses.find(
-      (course) => course.name.toLowerCase() === courseName.toLowerCase()
-    );
-  
-    if (!course) {
-      return <div>Course Not Found</div>; 
+ 
+  const { courseName } = useParams();
+  const courses = useSelector((state) => state.courses);
+  const resources = useSelector((state) => state.resources);
+  const dispatch = useDispatch();
+
+  const { loading: coursesLoading, error: coursesError, data: coursesData } = useQuery(QUERY_COURSES);
+  const { loading: resourcesLoading, error: resourcesError, data: resourcesData } = useQuery(QUERY_RESOURCES);
+  console.log(resourcesData);
+
+  useEffect(() => {
+    if (coursesData) {
+      dispatch({ type: 'courses/setCourses', payload: coursesData.getCourses || [] });
     }
+    if (resourcesData) {
+      dispatch({ type: 'resources/setResources', payload: resourcesData.getResources || [] });
+    }
+  }, [coursesData, resourcesData, dispatch]);
+  const course = courses.find((course) => course.name.toLowerCase() === courseName.toLowerCase());
+ if (!course) {
+    return <div>Course Not Found</div>; 
+  }
+  if (!course) {
+    return <div>Course Not Found</div>; 
+  }
+
+  const modules = resources.filter((resource) => resource.courseName.toLowerCase() === courseName.toLowerCase());
+ 
+  
 
     return (
       <>
@@ -66,7 +74,7 @@ const CoursePage = () => {
             </div>
           </div>
           </div>
-          
+ 
         </div>
         </>
     

@@ -145,30 +145,16 @@ query getAllUsers {
   }`;
 
   export const QUERY_SINGLE_RESOURCE = gql `
-  query getSingleResource($id: ID!) {
-    getResource(id:$id) {
-        _id
+  query getSingleResource($name: String!) {
+    getResource(name: $name) {
         name
         courseName
         video
         text
         description
-        link
-        comments {
-            user
-            comment
-        }
-        user {
-            username
-        }
-        course {
-            name
-        }
-        tag {
-            name
-        }
-        createdAt
-        UpdatedAt
+        link  
+        comment
+        user
 
     }
 }`;
@@ -176,29 +162,12 @@ query getAllUsers {
 export const QUERY_RESOURCE = gql `
   query getResources {
     getResources {
-        _id
         name
         courseName
         video
         text
         description
         link
-        comments {
-            user
-            comment
-        }
-        user {
-            username
-        }
-        course {
-            name
-        }
-        tag {
-            name
-        }
-        createdAt
-        UpdatedAt
-
     }
 }`;
 

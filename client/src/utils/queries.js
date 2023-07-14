@@ -153,6 +153,8 @@ query getAllUsers {
         text
         description
         link  
+        comment
+        user
 
     }
 }`;

@@ -23,6 +23,16 @@ const resourceSchema = new Schema({
   link: {
     type: String,
   },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Resource = model("Resource", resourceSchema);

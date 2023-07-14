@@ -19,7 +19,7 @@ db.once("open", async () => {
     await Course.insertMany(courseSeed);
     await User.deleteMany({});
     await Resource.deleteMany({});
-    await Resource.collection.dropIndex("name_1");
+    // await Resource.collection.dropIndex("name");
     await Resource.insertMany(modules.flat());
     // await User.insertMany(userSeed);
 

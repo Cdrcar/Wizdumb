@@ -30,6 +30,13 @@ const typeDefs = gql`
     text: String
     description: String!
     link: String
+    user: User!
+    course: Course!
+    comments: [Comment!]!
+    tags: [Tag!]!
+    createdAt: String!
+    updatedAt: String!
+    
    
   }
 

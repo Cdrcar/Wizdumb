@@ -40,7 +40,12 @@ Approach: For generating Random Strings in Javascript, we can use in-built metho
                     </div>
                 </div>
             </div>
-            <div className='mb-5'>
+            <div className='mb-5 mx-5'>
+                <ForumComment />
+                <ForumComment />
+                <ForumComment />
+                <ForumComment />
+                <ForumComment />
                 <ForumComment />
             </div>
         </div>

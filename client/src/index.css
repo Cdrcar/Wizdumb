@@ -17,8 +17,8 @@
   font-size: 12px;
   padding: 4px;
   font-family: "Satisfy";
-  bottom: 0;
+  bottom: -26px;
   left: 0;
   right: 0;
-  position: fixed;
+  position: relative;
 }

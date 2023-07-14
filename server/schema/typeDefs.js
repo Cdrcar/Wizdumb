@@ -16,9 +16,11 @@ const typeDefs = gql`
   type Comment {
     _id: ID!
     user: User!
+    title: String!
+    like: String!
     comment: String!
-    resource: Resource!
-    course: Course!
+    resource: Resource
+    course: Course
     createdAt: String!
     updatedAt: String!
   }
@@ -104,13 +106,17 @@ const typeDefs = gql`
     createComment(
       user: ID!
       comment: String!
-      resource: ID!
-      course: ID!
+      title: String!
+      like: String
+      resource: ID
+      course: ID
     ): Comment!
     updateComment(
       id: ID!
       user: ID
       comment: String
+      title: String
+      like: String
       resource: ID
       course: ID
     ): Comment!

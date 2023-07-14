@@ -110,12 +110,14 @@ export const CREATE_COMMENT = gql`
   mutation createComment(
     $user: ID!
     $comment: String!
-    $resource: ID!
-    $course: ID!
+    $title: String!
+    $resource: ID
+    $course: ID
   ) {
     createComment(
       user: $user
       comment: $comment
+      title: $title
       resource: $resource
       course: $course
     ) {
@@ -128,6 +130,7 @@ export const CREATE_COMMENT = gql`
         email
       }
       comment
+      title
       resource {
         _id
         name
@@ -136,8 +139,6 @@ export const CREATE_COMMENT = gql`
         _id
         name
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -147,6 +148,7 @@ export const UPDATE_COMMENT = gql`
     $id: ID!
     $user: ID
     $comment: String
+    $title: String
     $resource: ID
     $course: ID
   ) {
@@ -166,6 +168,8 @@ export const UPDATE_COMMENT = gql`
         email
       }
       comment
+      title
+      like
       resource {
         _id
         name
@@ -174,8 +178,6 @@ export const UPDATE_COMMENT = gql`
         _id
         name
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -192,6 +194,8 @@ export const DELETE_COMMENT = gql`
         email
       }
       comment
+      title
+      like
       resource {
         _id
         name
@@ -200,8 +204,6 @@ export const DELETE_COMMENT = gql`
         _id
         name
       }
-      createdAt
-      updatedAt
     }
   }
 `;

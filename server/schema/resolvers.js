@@ -97,11 +97,11 @@ const resolvers = {
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
     },
-    createComment: async (parent, { user, comment, resource, course }) => {
-      return await Comment.create({ user, comment, resource, course });
+    createComment: async (parent, { user, comment, title, resource, course }) => {
+      return await Comment.create({ user, comment, title, resource, course });
     },
-    updateComment: async (parent, { id, user, comment, resource, course }) => {
-      return await Comment.findByIdAndUpdate(id, { user, comment, resource, course }, { new: true });
+    updateComment: async (parent, { id, user, comment, title, like, resource, course }) => {
+      return await Comment.findByIdAndUpdate(id, { user, comment, title, like, resource, course }, { new: true });
     },
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);

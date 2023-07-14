@@ -112,7 +112,9 @@ query getAllUsers {
         user {
             username
         }
+        title
         comment
+        like
         resource {
             name
         }
@@ -132,7 +134,9 @@ query getAllUsers {
         user {
             username
         }
+        title
         comment
+        like
         resource {
             name
         }

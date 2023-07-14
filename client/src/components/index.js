@@ -4,6 +4,7 @@ import DiscussionPage from "./DiscussionPage";
 import Footer from "./Footer";
 import Forum from './Forum';
 import ForumLikes from './FormLikes';
+import ForumPost from "./ForumPost";
 import Homepage from "./Homepage";
 import LoggedinHomepage from "./LoggedinHomepage";
 import Login from "./login";
@@ -27,6 +28,7 @@ export {
   DiscussionPage,
   Forum,
   ForumLikes,
+  ForumPost,
   Homepage,
   LoggedinHomepage,
   Login,

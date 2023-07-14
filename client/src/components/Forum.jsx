@@ -25,12 +25,12 @@ const Forum = () => {
                         </div>
                     </div>
                 </div>
-                <div className='flex pr-6 sm:pr-6 pl-3 col-span-2 sm:col-span-1 sm:w-full self-center justify-self-end'>
+                <div className='flex pr-6 sm:pr-6 pl-3 col-span-2 sm:col-span-1 sm:w-full self-center justify-self-end relative z-10'>
                     <div className='grid w-full'>
                         <h3 className='hidden sm:block text-center p-2 text-2xl font-bold text-cyan-800'>Liked posts</h3>
                         <button className="flex items-center self-center h-16 w-32 sm:w-full ">
                             <div className='relative w-full h-full'>
-                                <div className='h-full bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 p-1 rounded-full border-xl shadow-md shadow-slate-400 hover:shadow-none hover:border-2 hover:border-white'>
+                                <div className='h-full bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 p-1 rounded-full border-xl shadow-md shadow-slate-400 hover:shadow-none hover:border-2 hover:border-transparent'>
                                     <div className='flex h-full w-full rounded-full p-4 bg-slate-200 text-black'>
                                         <p className='hidden lg:block text-slate-400 self-start'>View All Liked Posts</p>
                                         <div className='absolute sm:right-1 top-1/2 -translate-y-1/2 p-4 rounded-full mx-2'>

@@ -1,12 +1,14 @@
 import { React, Fragment } from "react";
 import Login from "./login";
 import Signup from "./Signup";
+import { useSelector } from "react-redux";
+import AuthService from "../utils/auth";
 
 import { Link } from "react-router-dom";
 
 import Logo from "./Logo";
 import Course from "./Course";
-// import courses from "../constants/index.js";
+import icons from "../constants/index.js";
 import { useQuery } from "@apollo/client";
 import { QUERY_COURSES } from "../utils/queries";
 
@@ -16,13 +18,25 @@ import { AiOutlineSchedule } from "react-icons/ai";
 import { AiOutlineLaptop } from "react-icons/ai";
 import { AiOutlineQuestion } from "react-icons/ai";
 
+// let iconName;
+
 const Homepage = () => {
+  const auth = useSelector((state) => state.AuthService);
+
+  const loggedIn = AuthService.loggedIn();
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   const { loading, error, data } = useQuery(QUERY_COURSES);
   const courses = data?.getCourses || [];
   console.log(data);
+
+  // fetchIcons(courses);
+  // // console.log(fetchIcons(courses));
+  // // console.log(iconName);
+  // console.log(iconName);
+
   const [currentSearch, setCurrentSearch] = useState([]);
+
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
 
@@ -58,20 +72,24 @@ const Homepage = () => {
           </div>
           <div className="w-[90%] sm:w-[25%] align-center flex">
             <ul className=" w-full text-center flex align-center flex-col ml-10">
-              <li
-                id="authButton"
-                className="min-w-[80%] sm:min-w-max p-1.5 pl-3 pr-3 bg-sky-400 border border-sky-400 rounded-full text-white mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400"
-                onClick={() => setShowLoginModal(true)}
-              >
-                Login
-              </li>
+              {!loggedIn && (
+                <div>
+                  <li
+                    id="authButton"
+                    className="min-w-[80%] sm:min-w-max p-1.5 pl-3 pr-3 bg-sky-400 border border-sky-400 rounded-full text-white mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400"
+                    onClick={() => setShowLoginModal(true)}
+                  >
+                    Login
+                  </li>
 
-              <li
-                id="authButton"
-                className="min-w-max p-1.5 pl-3 pr-3 bg-rose-600 border border-rose-600 rounded-full text-white mb-2 hover:bg-white hover:text-rose-600 hover:cursor-pointer hover:border-rose-600 "
-              >
-                <Link to="/signup">Sign Up</Link>
-              </li>
+                  <li
+                    id="authButton"
+                    className="min-w-max p-1.5 pl-3 pr-3 bg-rose-600 border border-rose-600 rounded-full text-white mb-2 hover:bg-white hover:text-rose-600 hover:cursor-pointer hover:border-rose-600 "
+                  >
+                    <Link to="/signup">Sign Up</Link>
+                  </li>
+                </div>
+              )}
             </ul>
           </div>
         </div>

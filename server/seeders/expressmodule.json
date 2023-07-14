@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Express documentation",
+    "courseName": "express",
+    "video": "",
+    "text": "",
+    "description": "The official documentation for Express, great place to find syntax and up to date information",
+    "link": "https://expressjs.com/en/guide/routing.html"
+  },
+  {
+    "name": "MDN Web docs- ExpressJS",
+    "courseName": "express",
+    "video": "",
+    "text": "",
+    "description": "MDN Web docs tutorial on ExpressJS, with examples & and some troubleshooting tips",
+    "link": "https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs"
+  },
+  {
+    "name": "Learn Express JS in 35 Minutes",
+    "courseName": "express",
+    "video": "https://www.youtube.com/watch?v=SccSCuHhOw0",
+    "text": "",
+    "description": "Express JS condensed into a 35 minute video, The host builds an app to showcase the feature and their implementation",
+    "link": ""
+  },
+  {
+    "name": "ExpressJS Video series",
+    "courseName": "express",
+    "video": "https://www.youtube.com/watch?v=39znK--Yo1o&list=PL_cUvD4qzbkwp6pxx27pqgohrsP8v1Wj2",
+    "text": "",
+    "description": "The first in a playlist, Anson goes through Express in great detail and splits the topic into 20 videos, even including testing using the Jest Package and using PassportJS",
+    "link": ""
+  },
+  {
+    "name": "Example of express router (With comments)",
+    "courseName": "express",
+    "video": "",
+    "text": "\\n<code>const express = require('express');\\nconst path = require('path');\\nconst api = require('./routes/index.js');\\n\\nconst PORT = 3001;\\n\\nconst app = express();\\n\\n// Middleware for parsing JSON and urlencoded form data\\napp.use(express.json());\\napp.use(express.urlencoded({ extended: true }));\\napp.use('/api', api);\\n\\napp.use(express.static('public'));\\n\\n// GET Route for homepage\\napp.get('/', (req, res) =>\\n  res.sendFile(path.join(__dirname, '/public/index.html'))\\n);\\n\\n// GET Route for feedback page\\napp.get('/feedback', (req, res) =>\\n  res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))\\n);\\n\\napp.listen(PORT, () =>\\n  console.log(`App listening at http://localhost:${PORT} 🚀`))\\n</code>\\n",
+    "description": "An example of a router written in Express",
+    "link": ""
+  }
+]

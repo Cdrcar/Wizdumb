@@ -6,6 +6,7 @@ const Logo = () => {
   return (
     <div className="">
       <div className="flex justify-center">
+
         <Lottie animationData={brainLogo} />
 
       </div>

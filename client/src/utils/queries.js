@@ -93,11 +93,12 @@ query getAllUsers {
       modules
       name
       resources {
-        text
+        description
+        link
         name
-        user {
-          username
-        }
+        text
+        video
+        courseName
         comments {
           comment
         }

@@ -1,31 +1,40 @@
-import { configureStore } from '@reduxjs/toolkit';
-
+import { createSlice, configureStore } from '@reduxjs/toolkit';
 
 const initialState = {
   courses: [],
   resources: [],
 };
 
-const rootReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'courses/setCourses':
-      return {
-        ...state,
-        courses: action.payload,
-      };
-      case 'resources/setResources': // Add resources case
-      return {
-        ...state,
-        resources: action.payload,
-      };
-    default:
-      return state;
-  }
-};
+const coursesSlice = createSlice({
+  name: 'courses',
+  initialState: [],
+  reducers: {
+    setCourses: (state, action) => {
+      return action.payload;
+    },
+  },
+});
 
+const resourcesSlice = createSlice({
+  name: 'resources',
+  initialState: [],
+  reducers: {
+    setResources: (state, action) => {
+      return action.payload;
+    },
+  },
+});
+
+const rootReducer = {
+  courses: coursesSlice.reducer,
+  resources: resourcesSlice.reducer,
+};
 
 const store = configureStore({
   reducer: rootReducer,
 });
+
+export const { setCourses } = coursesSlice.actions;
+export const { setResources } = resourcesSlice.actions;
 
 export default store;

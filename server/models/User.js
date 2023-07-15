@@ -1,82 +1,109 @@
 const { Schema, model } = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const userSchema = new Schema({
-  firstName: {
-    type: String,
-    required: false,
-    trim: true
-
-  },
-  lastName: {
-    type: String,
-    required: false,
-    trim: true
-
-  },
-  username: {
-    type: String,
-    required: [true, `Username required`],
-    unique: true,
-    trim: true,
-    min: 4,
-    max: 20,
-    validate: {
-      validator: function (v) {
-        return /[a-zA-Z0-9_.-]*/.test(v);
+const userSchema = new Schema(
+  {
+    firstName: {
+      type: String,
+      required: false,
+      trim: true
+    },
+    lastName: {
+      type: String,
+      required: false,
+      trim: true
+    },
+    username: {
+      type: String,
+      required: [true, `Username required`],
+      unique: true,
+      trim: true,
+      min: 4,
+      max: 20,
+      validate: {
+        validator: function (v) {
+          return /[a-zA-Z0-9_.-]*/.test(v);
+        },
+        message: `Username does not meet the requirements, please try again`,
       },
-      message: `Username does not meet the requirements, please try again`,
     },
-  },
-  email: {
-    type: String,
-    required: [true, `Email required`],
-    unique: true,
-    trim: true,
-    validate: {
-      validator: function (v) {
-        return /([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}/i.test(v);
+    email: {
+      type: String,
+      required: [true, `Email required`],
+      unique: true,
+      trim: true,
+      validate: {
+        validator: function (v) {
+          return /([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}/i.test(v);
+        },
+        message: `Email invalid, please try again`,
       },
-      message: `Email invalid, please try again`,
     },
-  },
-  password: {
-    type: String,
-    required: [true, `Password required`],
-    trim: true,
-    min: 4,
-    validate: {
-      validator: function (v) {
-        return;
+    password: {
+      type: String,
+      required: [true, `Password required`],
+      trim: true,
+      min: 4,
+      validate: {
+        validator: function (v) {
+          return true; // Add your password validation logic here
+        },
+        message: `Password does not meet the requirements, please try again`,
       },
-      message: `Password does not meet the requirements, please try again`,
     },
+    aboutMe: {
+      type: String,
+      default: "hey"
+      
+    },
+    location: {
+      type: String,
+      default: "hey"
+      
+    },
+    topSkills: {
+      type: [String],
+      default: "hey"
+      
+    },
+    profilePhoto: {
+      type: String,
+      default: "hey"
+      
+    },
+    courses: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Course",
+      },
+    ],
+    resources: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Resource",
+      },
+    ],
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
+    tags: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Tag",
+      },
+    ],
   },
-  courses: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Course",
+  {
+    toJSON: {
+      virtuals: true,
+      getters: true,
     },
-  ],
-  resources: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Resource",
-    },
-  ],
-  comments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Comment",
-    },
-  ],
-  tags: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Tag",
-    },
-  ],
-});
+    id: false,
+  }
+);
 
 userSchema.pre("save", async function (next) {
   if (this.isNew || this.isModified("password")) {

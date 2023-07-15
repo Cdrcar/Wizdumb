@@ -4,12 +4,21 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    getUser: async (parent, args, context) => {
+    me: async (parents, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          "-__v -password"
+        );
+
+        return userData;
+      }
+      throw new AuthenticationError("Not logged in");
+    },
+    getUser: async (parent, { id }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in!');
       }
-
-      return await User.findById(context.user._id);
+      return await User.findById(id);
     },
     getUsers: async () => {
       return await User.find();
@@ -43,22 +52,18 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in!');
       }
-
-      return await User.findById(context.user._id).populate('thoughts');
+      return await User.findById(context.user._id).populate('courses');
     },
   },
   Mutation: {
     createUser: async (parent, { firstName, lastName, email, password, username }) => {
-      console.log(email)
       const user = await User.create({ firstName, lastName, email, password, username });
       if (!user) {
         throw new Error('Failed to create user');
       }
       const token = signToken(user);
 
-      return { token, user}
-      
-      
+      return { token, user };
     },
     loginUser: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
@@ -74,18 +79,36 @@ const resolvers = {
 
       return { token, user };
     },
-    updateUser: async (parent, { id, firstName, lastName, email }, context) => {
+    updateUserProfile: async (parent, { input }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in!');
       }
-
-      return await User.findByIdAndUpdate(id, { firstName, lastName, email }, { new: true });
+    
+      const { firstName, lastName, aboutMe, location, topSkills, profilePhoto } = input;
+    
+      const updatedUser = await User.findByIdAndUpdate(
+        context.user._id,
+        {
+          firstName,
+          lastName,
+          aboutMe,
+          location,
+          topSkills,
+          profilePhoto,
+        },
+        { new: true }
+      ).populate('courses');
+    
+      const token = signToken(updatedUser); // Generate a new token for the updated user
+    
+      return { token, user: updatedUser };
     },
+    
+    
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in!');
       }
-
       return await User.findByIdAndDelete(id);
     },
     createCourse: async (parent, { name, description }) => {
@@ -127,7 +150,7 @@ const resolvers = {
   },
   User: {
     courses: async (parent) => {
-      return await Course.find({ users: parent._id });
+      return await Course.find({ _id: { $in: parent.courses } });
     },
     resources: async (parent) => {
       return await Resource.find({ user: parent._id });
@@ -149,8 +172,8 @@ const resolvers = {
     resources: async (parent) => {
       return await Resource.find({ course: parent._id });
     },
-    tags: async () => {
-      return await Tag.find();
+    tags: async (parent) => {
+      return await Tag.find({ _id: { $in: parent.tags } });
     },
   },
   Comment: {

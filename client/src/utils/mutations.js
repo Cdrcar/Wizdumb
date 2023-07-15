@@ -20,7 +20,6 @@ export const ADD_USER = gql`
         email
         firstName
         lastName
-        password
         username
       }
     }
@@ -42,27 +41,23 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const UPDATE_USER = gql`
-  mutation updateUser(
-    $id: ID!
-    $firstName: String
-    $lastName: String
-    $email: String
-  ) {
-    updateUser(
-      id: $id
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-    ) {
+export const UPDATE_USER_PROFILE = gql`
+mutation updateUserProfile($input: UpdateUserInput!) {
+  updateUserProfile(input: $input) {
+    token
+    user {
+      aboutMe
       _id
+      email
       firstName
       lastName
-      username
-      email
+      location
+      profilePhoto
+      password
+      topSkills
     }
   }
-`;
+}`;
 
 export const DELETE_USER = gql`
   mutation deleteUser($id: ID!) {

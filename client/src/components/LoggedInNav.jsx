@@ -41,7 +41,7 @@ const LoggedInNav = () => {
               : "mr-5  mt-1"
           } cursor-pointer`}
         >
-          Community
+          <Link to="/forum">Forum</Link>
         </li>
         <li
           className={`${

@@ -28,6 +28,8 @@ const Course = ({
         console.log(iconName);
     };
 
+    console.log(iconName);
+
     return (
         <div>
             <Tilt

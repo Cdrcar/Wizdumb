@@ -4,12 +4,21 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    getUser: async (parent, args, context) => {
+    me: async (parents, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          "-__v -password"
+        );
+
+        return userData;
+      }
+      throw new AuthenticationError("Not logged in");
+    },
+    getUser: async (parent, { id }, context) => {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
-
-      return await User.findById(context.user._id);
+      return await User.findById(id);
     },
     getUsers: async () => {
       return await User.find().populate("courses");
@@ -18,6 +27,14 @@ const resolvers = {
       return await Course.findById(id);
     },
     getCourses: async () => {
+      resources: async (parent) => {
+        try {
+          const resources = await Resource.find({ courseName: parent._id });
+          return resources;
+        } catch (error) {
+          throw new Error("Error occurred while fetching resources for the course.");
+        }
+      },
       console.log("testing courses");
       return await Course.find();
     },
@@ -43,28 +60,18 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
-
-      return await User.findById(context.user._id).populate("thoughts");
+      return await User.findById(context.user._id).populate('courses');
     },
   },
   Mutation: {
-    createUser: async (
-      parent,
-      { firstName, lastName, email, password, username }
-    ) => {
-      console.log(email);
-      const user = await User.create({
-        firstName,
-        lastName,
-        email,
-        password,
-        username,
-      });
+    createUser: async (parent, { firstName, lastName, email, password, username }) => {
+      const user = await User.create({ firstName, lastName, email, password, username });
       if (!user) {
         throw new Error("Failed to create user");
       }
       const token = signToken(user);
 
+      return { token, user };
       return { token, user };
     },
     loginUser: async (parent, { email, password }) => {
@@ -89,23 +96,36 @@ const resolvers = {
 
       return { token, user };
     },
-
-    updateUser: async (parent, { id, firstName, lastName, email }, context) => {
+    updateUserProfile: async (parent, { input }, context) => {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
-
-      return await User.findByIdAndUpdate(
-        id,
-        { firstName, lastName, email },
+    
+      const { firstName, lastName, aboutMe, location, topSkills, profilePhoto } = input;
+    
+      const updatedUser = await User.findByIdAndUpdate(
+        context.user._id,
+        {
+          firstName,
+          lastName,
+          aboutMe,
+          location,
+          topSkills,
+          profilePhoto,
+        },
         { new: true }
-      );
+      ).populate('courses');
+    
+      const token = signToken(updatedUser); // Generate a new token for the updated user
+    
+      return { token, user: updatedUser };
     },
+    
+    
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
-
       return await User.findByIdAndDelete(id);
     },
 
@@ -150,32 +170,14 @@ const resolvers = {
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);
     },
-    createResource: async (
-      parent,
-      { name, video, text, description, link, user, course }
-    ) => {
-      return await Resource.create({
-        name,
-        video,
-        text,
-        description,
-        link,
-        user,
-        course,
-      });
+    createResource: async (parent, { name, video, text, description, link }) => {
+      return await Resource.create({ name, video, text, description, link });
     },
-    updateResource: async (
-      parent,
-      { id, name, video, text, description, link, user, course }
-    ) => {
-      return await Resource.findByIdAndUpdate(
-        id,
-        { name, video, text, description, link, user, course },
-        { new: true }
-      );
+    updateResource: async (parent, { name, video, text, description, link }) => {
+      return await Resource.findOneAndUpdate({ name }, { name, video, text, description, link}, { new: true });
     },
-    deleteResource: async (parent, { id }) => {
-      return await Resource.findByIdAndDelete(id);
+    deleteResource: async (parent, { name }) => {
+      return await Resource.findOneAndDelete({ name });
     },
     createTag: async (parent, { name }) => {
       return await Tag.create({ name });
@@ -189,7 +191,7 @@ const resolvers = {
   },
   User: {
     courses: async (parent) => {
-      return await Course.find({ users: parent._id });
+      return await Course.find({ _id: { $in: parent.courses } });
     },
     resources: async (parent) => {
       return await Resource.find({ user: parent._id });
@@ -209,10 +211,15 @@ const resolvers = {
       return await Comment.find({ course: parent._id });
     },
     resources: async (parent) => {
-      return await Resource.find({ course: parent._id });
+      try {
+        const resources = await Resource.find({ course: parent._id });
+        return resources;
+      } catch (error) {
+        throw new Error("Error occurred while fetching resources for the course.");
+      }
     },
-    tags: async () => {
-      return await Tag.find();
+    tags: async (parent) => {
+      return await Tag.find({ _id: { $in: parent.tags } });
     },
   },
   Comment: {

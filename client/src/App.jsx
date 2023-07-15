@@ -6,7 +6,9 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Provider } from 'react-redux';
+import store from './reducers/store';
 
 import "./index.css";
 
@@ -65,6 +67,7 @@ const isAuthenticated = () => {
 function App() {
   return (
     <ApolloProvider client={client}>
+      <Provider store={store}>
       <Router>
         <div className="relative z-0 bg-cover bg-no-repeat bg-center">
           <Navbar />
@@ -99,6 +102,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+      </Provider>
     </ApolloProvider>
   );
 }

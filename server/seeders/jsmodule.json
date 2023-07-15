@@ -1,6 +1,6 @@
 [
   {
-    "name": "Documenation for JS",
+    "name": "Documentation for JS",
     "courseName": "javascript",
     "video": "",
     "text": "",
@@ -8,7 +8,7 @@
     "link": "https://devdocs.io/javascript/"
   },
   {
-    "name": "Code Snippet - for loop",
+    "name": "For Loop",
     "courseName": "javascript",
     "video": "",
     "text": "\\n\\n<code>\\n for (let i = 0; i < array.length; i++) {\\n  let element = array[i];\\n}\\n</code> \\n The expressions within the brackets tell us how the for loop will run, \\nthe first (let i =0) tells us what index we start, in this case 0, which would refer to the 1st element in an array \\n the second expression is the stop position, stop the loop if the index is greater than the length of the array \\n the last is the itteration, each time the code runs add 1 to i",
@@ -24,7 +24,7 @@
     "link": "https://www.learn-js.org/"
   },
   {
-    "name": "Leetcode - Practice Algorithms in Javascript ",
+    "name": "Algorithms",
     "courseName": "javascript",
     "video": "",
     "text": "",
@@ -32,7 +32,7 @@
     "link": "https://leetcode.com/"
   },
   {
-    "name": "JS crashcourse of Beginners",
+    "name": "JS Crash Course",
     "courseName": "javascript",
     "video": "https://www.youtube.com/watch?v=hdI2bqOjy3c",
     "text": "",

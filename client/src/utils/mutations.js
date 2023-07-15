@@ -61,10 +61,6 @@ export const DELETE_USER = gql`
   mutation deleteUser($id: ID!) {
     deleteUser(id: $id) {
       _id
-      firstName
-      lastName
-      username
-      email
     }
   }
 `;

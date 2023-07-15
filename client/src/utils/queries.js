@@ -26,7 +26,6 @@ export const QUERY_ME = gql`
         _id
         name
       }
-
     }
   }
 `;
@@ -194,23 +193,21 @@ export const QUERY_ALL_COMMENTS = gql`
   }
 `;
 
-
-  export const QUERY_SINGLE_RESOURCE = gql `
+export const QUERY_SINGLE_RESOURCE = gql`
   query getSingleResource($name: String!) {
     getResource(name: $name) {
-        name
-        courseName
-        video
-        text
-        description
-        link  
-        comment
-        user
+      name
+      video
+      text
+      description
+      link
+      comment
+      user
     }
   }
 `;
 
-export const QUERY_RESOURCE = gql`
+export const QUERY_RESOURCES = gql`
   query getResources {
     getResources {
       name
@@ -218,7 +215,6 @@ export const QUERY_RESOURCE = gql`
       text
       description
       link
-
     }
   }
 `;

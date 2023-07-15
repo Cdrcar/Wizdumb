@@ -50,25 +50,33 @@ const Profile = () => {
         .map((course) => course.title)
     );
   };
+  
 
   const getLoggedInUserId = () => {
     const token = localStorage.getItem("id_token");
     // Extract and decode the token payload
     const tokenPayload = token ? JSON.parse(atob(token.split(".")[1])) : null;
-    // Return the user ID from the token payload
-    return tokenPayload ? tokenPayload.sub : null;
+  
+    // Get the _id value from the token payload
+    const userId = tokenPayload && tokenPayload.data._id;
+  
+    // Store the _id value in a const
+    const loggedInUserId = userId;
+  
+    // Return the _id value
+    return loggedInUserId;
   };
-
+  
   const { loading, data } = useQuery(QUERY_USER, {
-    variables: { email: getLoggedInUserId() },
+    variables: { id: getLoggedInUserId() },
   });
-
+  
   useEffect(() => {
     if (data && data.getUser) {
       setUsername(data.getUser.username);
     }
-  }, [data]);
-
+  }, [data, username]);
+  
   if (loading) {
     return <div>Loading...</div>;
   }

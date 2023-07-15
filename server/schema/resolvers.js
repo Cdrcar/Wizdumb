@@ -78,7 +78,6 @@ const resolvers = {
       return { token, user };
     },
     loginUser: async (parent, { email, password }, context) => {
-
       const user = await User.findOne({ email });
 
       if (!user) {

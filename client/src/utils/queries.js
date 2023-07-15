@@ -211,15 +211,17 @@ export const QUERY_SINGLE_RESOURCE = gql`
   }
 `;
 
-export const QUERY_RESOURCES = gql`
+
+export const QUERY_RESOURCE = gql`
   query getResources {
     getResources {
       name
-      courseName
       video
       text
       description
       link
+
+
     }
   }
 `;

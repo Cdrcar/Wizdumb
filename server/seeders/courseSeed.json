@@ -3,7 +3,12 @@
     "name": "Javascript",
     "description": "JavaScript is a dynamic programming language that's used for web development, in web applications, for game development, and lots more. It allows you to implement dynamic features on web pages that cannot be done with only HTML and CSS.",
     "icon": "javascript",
-    "modules": ["Learn JS", "JS Crash course", "For Loop", "Algorithms", "Documentation for JS"],
+    "modules": [
+      "Introduction to JavaScript", 
+    "Variables and Data Types",
+    "Conditional Statements",
+    "Arrays and Looping",
+    "Functions and Scope"],
     "users": [],
     "comments": [],
     "resources": [],
@@ -14,11 +19,11 @@
     "description": "HTML and CSS are the building blocks of web development.Learn to create and style structured  webpages and develop an understanding of HTML's markup capabilities. This course covers how to create, structure and style web pages.",
     "icon": "html",
     "modules": [
-      "Intro to HTML",
-      "HTML For beginners",
-      "MDN Docs for HTML",
-      "HTML Cheat sheet",
-      "CSS Crash course"
+      "Introduction to HTML",
+      "Introduction to CSS",
+      "Responsive Web Design",
+      "CSS Flexbox",
+      "CSS Grid Layout"
     ],
     "users": [],
     "comments": [],
@@ -31,10 +36,10 @@
     "icon": "node",
     "modules": [
       "Introduction to NodeJS",
-      "Node Package Manager",
-      "Node Modules",
-      "Javascript for NodeJS",
-      "Understanding JSON"
+      "Modules and NPM",
+      "Asynchronous Programming",
+      "Databases in Node.js",
+      "Error Handling"
     ],
     "users": [],
     "comments": [],
@@ -47,11 +52,11 @@
     "description": "Express.js is a popular web application framework for Node.js. In this course, you'll learn how to build web applications using Express.js. Topics covered include routing, middleware and template engines.",
     "icon": "express",
     "modules": [
-      "Introduction to ExpressJS",
-      "Example Router",
-      "MDN Docs",
-      "official Documentation",
-      "Video Series"
+      "Intro to Express.JS",
+      "Routing",
+      "Middleware",
+      "Templating Engines",
+      "Error Handling"
     ],
     "users": [],
     "comments": [],
@@ -64,10 +69,10 @@
     "icon": "github",
     "modules": [
       "Intro to git",
-      "Github tutorial",
-      "Gitbash Cheat sheet",
-      "Resolving Merge Conflicts",
-      "Official documentation"
+      "Branching and Merging",
+      "GitHub Collaborations",
+      "GitHub Actions",
+      "GitHub Pages"
     ],
     "users": [],
     "comments": [],
@@ -79,11 +84,11 @@
     "description": "Introducing React, a JavaScript library for building dynamic user interfaces. Learn how to create reusable UI components and build fast and interactive web applications. Gain skills in component-based development and enhance your understanding of React.",
     "icon": "reactImage",
     "modules": [
-      "React Essentials: Mastering the fundamentals",
-      "Dynamic User Interfaces",
-      "Reusable UI Elements",
-      "Data Rendering and Manipulation",
-      "React Project"
+      "Introduction to React",
+      "React Hooks",
+      "React Router",
+      "Global State",
+      "React Testing Library"
     ],
     "users": [],
     "comments": [],

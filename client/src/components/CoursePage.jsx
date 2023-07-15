@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { QUERY_COURSES, QUERY_RESOURCES } from "../utils/queries";
+import learning from '../assets/learning.png';
 
 const CoursePage = () => {
 
@@ -91,6 +92,9 @@ const CoursePage = () => {
                   <div className='flex-auto'>
                     <br></br>
                     <p className='font-bold flex text-2xl'>Click on the modules to explore more!</p>
+                  </div>
+                  <div>
+                    <img src={learning} alt="learning" />
                   </div>
                 </div>
               </div>

@@ -1,10 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import AuthServices from "../utils/auth";
+import { QUERY_USER } from "../utils/queries";
+import { useQuery } from "@apollo/client";
 
 const Profile = () => {
-  const [fullName, setFullName] = useState("Lewis Hamilton");
+  const [userId, setUserId] = useState(null);
+  const [fullName, setFullName] = useState("");
   const [aboutMe, setAboutMe] = useState("");
   const [location, setLocation] = useState("");
   const [topSkills, setTopSkills] = useState("");
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const profileData = await AuthServices.getProfile().data;
+      setUserId(profileData._id);
+    };
+    fetchProfile();
+  }, []);
+
+  const { loading, error, data } = useQuery(QUERY_USER, {
+    variables: { id: userId },
+    skip: !userId,
+  });
+
+  const details = data?.getUser;
+  console.log(data);
 
   const handleFullNameChange = (e) => {
     setFullName(e.target.value);

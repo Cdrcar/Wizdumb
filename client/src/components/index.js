@@ -5,7 +5,6 @@ import Footer from "./Footer";
 import Forum from './Forum';
 import ForumLikes from './FormLikes';
 import Homepage from "./Homepage";
-import LoggedinHomepage from "./LoggedinHomepage";
 import Login from "./login";
 import Signup from "./Signup";
 import Profile from "./Profile";
@@ -28,7 +27,6 @@ export {
   Forum,
   ForumLikes,
   Homepage,
-  LoggedinHomepage,
   Login,
   Signup,
   Profile,

@@ -1,6 +1,6 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError } = require("apollo-server-express");
 const { User, Course, Comment, Resource, Tag } = require("../models");
-const { signToken } = require('../utils/auth');
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -16,12 +16,12 @@ const resolvers = {
     },
     getUser: async (parent, { id }, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
       return await User.findById(id);
     },
     getUsers: async () => {
-      return await User.find();
+      return await User.find().populate("courses");
     },
     getCourse: async (parent, { id }) => {
       return await Course.findById(id);
@@ -58,7 +58,7 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
       return await User.findById(context.user._id).populate('courses');
     },
@@ -67,29 +67,38 @@ const resolvers = {
     createUser: async (parent, { firstName, lastName, email, password, username }) => {
       const user = await User.create({ firstName, lastName, email, password, username });
       if (!user) {
-        throw new Error('Failed to create user');
+        throw new Error("Failed to create user");
       }
       const token = signToken(user);
 
       return { token, user };
+      return { token, user };
     },
     loginUser: async (parent, { email, password }) => {
+      console.log("Login email:", email);
+
       const user = await User.findOne({ email });
+      console.log("User found:", user);
+
       if (!user) {
-        throw new AuthenticationError('Invalid email or password');
+        throw new AuthenticationError("Invalid email or password");
       }
+
       const correctPw = await user.isCorrectPassword(password);
+      console.log("Correct password:", correctPw);
+
       if (!correctPw) {
-        throw new AuthenticationError('Invalid email or password');
+        throw new AuthenticationError("Invalid email or password");
       }
 
       const token = signToken(user);
+      console.log("Generated token:", token);
 
       return { token, user };
     },
     updateUserProfile: async (parent, { input }, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
     
       const { firstName, lastName, aboutMe, location, topSkills, profilePhoto } = input;
@@ -115,15 +124,35 @@ const resolvers = {
     
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
       return await User.findByIdAndDelete(id);
     },
+
+    saveCourse: async (parent, { courseId }, context) => {
+      const user = context.user; // Access the user object from the context directly
+
+      if (user) {
+        const updateUser = await User.findOneAndUpdate(
+          { _id: user._id },
+          { $push: { courses: courseId } },
+          { new: true }
+        );
+        return updateUser;
+      }
+
+      throw new Error("User not authenticated");
+    },
+
     createCourse: async (parent, { name, description }) => {
       return await Course.create({ name, description });
     },
     updateCourse: async (parent, { id, name, description }) => {
-      return await Course.findByIdAndUpdate(id, { name, description }, { new: true });
+      return await Course.findByIdAndUpdate(
+        id,
+        { name, description },
+        { new: true }
+      );
     },
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
@@ -132,7 +161,11 @@ const resolvers = {
       return await Comment.create({ user, comment, resource, course });
     },
     updateComment: async (parent, { id, user, comment, resource, course }) => {
-      return await Comment.findByIdAndUpdate(id, { user, comment, resource, course }, { new: true });
+      return await Comment.findByIdAndUpdate(
+        id,
+        { user, comment, resource, course },
+        { new: true }
+      );
     },
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);
@@ -201,6 +234,7 @@ const resolvers = {
     },
   },
   Resource: {
+    _id: (parent) => parent._id, 
     user: async (parent) => {
       return await User.findById(parent.user);
     },

@@ -26,6 +26,7 @@ const typeDefs = gql`
   }
 
   type Resource {
+    _id: ID!
     name: String!
     courseName: String!
     video: String
@@ -112,6 +113,9 @@ const typeDefs = gql`
     createCourse(name: String!, description: String!): Course!
     updateCourse(id: ID!, name: String, description: String): Course!
     deleteCourse(id: ID!): Course!
+    saveCourse(
+      courseId: ID!
+    ): User!
     createComment(
       user: ID!
       comment: String!

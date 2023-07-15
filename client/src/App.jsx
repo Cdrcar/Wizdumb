@@ -76,7 +76,6 @@ function App() {
 
             <Route path="/forum" element={<Forum />} />
             <Route path="/forumlikes" element={<ForumLikes />} />
-            <Route path="/forumpost" element={<ForumPost />} />
             <Route path="/forumwrite" element={<ForumWrite />} />
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/search" element={<SearchPage />} />

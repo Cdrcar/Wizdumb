@@ -5,16 +5,16 @@ import { useQuery } from "@apollo/client";
 import { QUERY_SINGLE_COMMENT } from '../utils/queries';
 import { useParams } from 'react-router-dom';
 
-const ForumPost = ({id}) => {
+const ForumPost = () => {
 
     const { currentId } = useParams();
     console.log(currentId);
 
     const { loading, error, data } = useQuery(QUERY_SINGLE_COMMENT, {
-        variables: { id: currentId }
+        variables: { getCommentId: currentId }
     });
     console.log('Data:', data)
-    const comments = data?.getComments || [];
+    const comments = data?.getComment || [];
     console.log('Comments:', comments);
 
 

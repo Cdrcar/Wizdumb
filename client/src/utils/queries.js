@@ -146,7 +146,6 @@ export const QUERY_COURSES = gql`
         name
         text
         video
-        courseName
         comments {
           comment
         }

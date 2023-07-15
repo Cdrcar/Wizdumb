@@ -35,6 +35,8 @@ export const QUERY_USER = gql`
     getUser(id: $id) {
       _id
       username
+      firstName
+      lastName
       email
       aboutMe
       location
@@ -207,6 +209,7 @@ export const QUERY_SINGLE_RESOURCE = gql`
   }
 `;
 
+
 export const QUERY_RESOURCES = gql`
   query getResources {
     getResources {
@@ -215,6 +218,7 @@ export const QUERY_RESOURCES = gql`
       text
       description
       link
+
     }
   }
 `;

@@ -76,15 +76,15 @@ function App() {
             {/* Protected Routes */}
             <Route
               path="/home"
-              element={isAuthenticated() ? <Profile /> : <Navigate to="/login" replace />}
+              element={isAuthenticated() ? <Profile /> : <Navigate to="/" replace />}
             />
             <Route
               path="/profileSettings"
-              element={isAuthenticated() ? <ProfileSettings /> : <Navigate to="/login" replace />}
+              element={isAuthenticated() ? <ProfileSettings /> : <Navigate to="/" replace />}
             />
             <Route
               path="/my-courses"
-              element={isAuthenticated() ? <MyCourses /> : <Navigate to="/login" replace />}
+              element={isAuthenticated() ? <MyCourses /> : <Navigate to="/" replace />}
             />
 
             <Route path="/forum" element={<Forum />} />

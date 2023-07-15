@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import profileImg from "../assets/profile-image.png";
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_USERS } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
 
 const Profile = () => {
   const [completedCount, setCompletedCount] = useState(0);
@@ -11,6 +11,8 @@ const Profile = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSearch, setCurrentSearch] = useState([]);
   const [showPlaceholders, setShowPlaceholders] = useState(false); // New state
+  const [username, setUsername] = useState("");
+
 
   const handleCompletedIncrement = () => {
     setCompletedCount((prevCount) => prevCount + 1);
@@ -51,6 +53,20 @@ const Profile = () => {
     );
   };
 
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { id: "" }, 
+  });
+
+  useEffect(() => {
+    if (data && data.getUser) {
+      setUsername(data.getUser.username);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
   const renderPlaceholderCards = () => {
     return (
       <div className="flex flex-col justify-end ml-5">
@@ -71,7 +87,7 @@ const Profile = () => {
             className="inline-block h-20 rounded-full mt-2 mr-2"
           />
           <div className="text-center ml-2">
-            <div className="mb-1 mt-5">Hey, Username &#x1F44B;</div>
+            <div className="mb-1 mt-5">Hey, { username } &#x1F44B;</div>
             <div>Heres a breakdown of your progress</div>
           </div>
         </div>

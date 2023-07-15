@@ -214,7 +214,6 @@ export const CREATE_RESOURCE = gql`
     $description: String!
     $link: String
     $user: ID!
-    $course: ID!
   ) {
     createResource(
       name: $name
@@ -223,7 +222,6 @@ export const CREATE_RESOURCE = gql`
       description: $description
       link: $link
       user: $user
-      course: $course
     ) {
       _id
       name
@@ -248,10 +246,6 @@ export const CREATE_RESOURCE = gql`
         lastName
         username
         email
-      }
-      course {
-        _id
-        name
       }
       tags {
         _id
@@ -272,7 +266,6 @@ export const UPDATE_RESOURCE = gql`
     $description: String
     $link: String
     $user: ID
-    $course: ID
   ) {
     updateResource(
       id: $id
@@ -282,7 +275,6 @@ export const UPDATE_RESOURCE = gql`
       description: $description
       link: $link
       user: $user
-      course: $course
     ) {
       _id
       name
@@ -309,10 +301,6 @@ export const UPDATE_RESOURCE = gql`
         email
       }
       tags {
-        _id
-        name
-      }
-      course {
         _id
         name
       }
@@ -350,10 +338,6 @@ export const DELETE_RESOURCE = gql`
         email
       }
       tags {
-        _id
-        name
-      }
-      course {
         _id
         name
       }

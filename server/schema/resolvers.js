@@ -1,12 +1,12 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError } = require("apollo-server-express");
 const { User, Course, Comment, Resource, Tag } = require("../models");
-const { signToken } = require('../utils/auth');
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     getUser: async (parent, args, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
 
       return await User.findById(context.user._id);
@@ -18,9 +18,9 @@ const resolvers = {
       return await Course.findById(id);
     },
     getCourses: async () => {
-      console.log("testing courses");
       return await Course.find();
     },
+
     getComment: async (parent, { id }) => {
       return await Comment.findById(id);
     },
@@ -41,33 +41,40 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
 
-      return await User.findById(context.user._id).populate('thoughts');
+      return await User.findById(context.user._id).populate("thoughts");
     },
   },
   Mutation: {
-    createUser: async (parent, { firstName, lastName, email, password, username }) => {
-      console.log(email)
-      const user = await User.create({ firstName, lastName, email, password, username });
+    createUser: async (
+      parent,
+      { firstName, lastName, email, password, username }
+    ) => {
+      console.log(email);
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        username,
+      });
       if (!user) {
-        throw new Error('Failed to create user');
+        throw new Error("Failed to create user");
       }
       const token = signToken(user);
 
-      return { token, user}
-      
-      
+      return { token, user };
     },
     loginUser: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
       if (!user) {
-        throw new AuthenticationError('Invalid email or password');
+        throw new AuthenticationError("Invalid email or password");
       }
       const correctPw = await user.isCorrectPassword(password);
       if (!correctPw) {
-        throw new AuthenticationError('Invalid email or password');
+        throw new AuthenticationError("Invalid email or password");
       }
 
       const token = signToken(user);
@@ -76,14 +83,18 @@ const resolvers = {
     },
     updateUser: async (parent, { id, firstName, lastName, email }, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
 
-      return await User.findByIdAndUpdate(id, { firstName, lastName, email }, { new: true });
+      return await User.findByIdAndUpdate(
+        id,
+        { firstName, lastName, email },
+        { new: true }
+      );
     },
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
 
       return await User.findByIdAndDelete(id);
@@ -92,7 +103,11 @@ const resolvers = {
       return await Course.create({ name, description });
     },
     updateCourse: async (parent, { id, name, description }) => {
-      return await Course.findByIdAndUpdate(id, { name, description }, { new: true });
+      return await Course.findByIdAndUpdate(
+        id,
+        { name, description },
+        { new: true }
+      );
     },
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
@@ -101,16 +116,30 @@ const resolvers = {
       return await Comment.create({ user, comment, resource, course });
     },
     updateComment: async (parent, { id, user, comment, resource, course }) => {
-      return await Comment.findByIdAndUpdate(id, { user, comment, resource, course }, { new: true });
+      return await Comment.findByIdAndUpdate(
+        id,
+        { user, comment, resource, course },
+        { new: true }
+      );
     },
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);
     },
-    createResource: async (parent, { name, video, text, description, link }) => {
+    createResource: async (
+      parent,
+      { name, video, text, description, link }
+    ) => {
       return await Resource.create({ name, video, text, description, link });
     },
-    updateResource: async (parent, { name, video, text, description, link }) => {
-      return await Resource.findOneAndUpdate({ name }, { name, video, text, description, link}, { new: true });
+    updateResource: async (
+      parent,
+      { name, video, text, description, link }
+    ) => {
+      return await Resource.findOneAndUpdate(
+        { name },
+        { name, video, text, description, link },
+        { new: true }
+      );
     },
     deleteResource: async (parent, { name }) => {
       return await Resource.findOneAndDelete({ name });
@@ -147,7 +176,11 @@ const resolvers = {
       return await Comment.find({ course: parent._id });
     },
     resources: async (parent) => {
-      return await Resource.find({ course: parent._id });
+      const courseId = parent._id.toString();
+      const course = await Course.findById(courseId).populate("resources");
+      const resources = course.resources;
+
+      return resources;
     },
     tags: async () => {
       return await Tag.find();
@@ -167,9 +200,6 @@ const resolvers = {
   Resource: {
     user: async (parent) => {
       return await User.findById(parent.user);
-    },
-    course: async (parent) => {
-      return await Course.findById(parent.course);
     },
     comments: async (parent) => {
       return await Comment.find({ resource: parent._id });

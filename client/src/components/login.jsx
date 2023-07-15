@@ -1,6 +1,7 @@
 import {useState, React } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
+import { login } from "../reducers/authReducer";
 import Logo from "./Logo";
 import Auth from "../utils/auth";
 
@@ -21,17 +22,16 @@ const Login = ({ isVisible, onClose }) => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log('Form state:', formState);
-    
+  
     try {
       const { data } = await loginUser({
         variables: { ...formState },
       });
   
-      console.log('Login data:', data);
   
-      if (data.loginUser.token) {
-        console.log('User authenticated!');
-        console.log('User information:', data.loginUser.user);
+      if (data?.loginUser?.token) {
+        console.log('User sucessfully authenticated!', data.loginUser.user.email);
+        localStorage.setItem('email', data.loginUser.user.email);
         Auth.login(data.loginUser.token);
       } else {
         console.log('Authentication failed!');
@@ -42,11 +42,13 @@ const Login = ({ isVisible, onClose }) => {
   };
   
   
+  
   if (!isVisible) return null;
   const message = "Welcome back!";
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex justify-center items-center"
@@ -66,7 +68,7 @@ const Login = ({ isVisible, onClose }) => {
         <p className="text-center text-lg">{message}</p>
         <div className="grid place-items-center m-10">
           <form onSubmit={handleFormSubmit}>
-            <label className="p-3" for="email_or_username_login">
+            <label className="p-3" htmlFor="email_or_username_login">
               Email
             </label>
             <br></br>
@@ -80,7 +82,7 @@ const Login = ({ isVisible, onClose }) => {
               onChange={handleChange}
             ></input>
             <br></br>
-            <label className="p-3" for="password_login">
+            <label className="p-3" htmlFor="password_login">
               Password
             </label>
             <br></br>

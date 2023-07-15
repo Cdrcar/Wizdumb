@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import profileImg from "../assets/profile-image.png";
 import { useQuery } from "@apollo/client";
-import { QUERY_ALL_USERS } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
 
 const Profile = () => {
   const [completedCount, setCompletedCount] = useState(0);
   const [inProgressCount, setInProgressCount] = useState(0);
-  const [courses, setCourses] = useState([]); // Placeholder for course data
+  const [courses, setCourses] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSearch, setCurrentSearch] = useState([]);
-  const [showPlaceholders, setShowPlaceholders] = useState(false); // New state
+  const [showPlaceholders, setShowPlaceholders] = useState(false);
+  const [username, setUsername] = useState("");
 
   const handleCompletedIncrement = () => {
     setCompletedCount((prevCount) => prevCount + 1);
@@ -20,9 +21,8 @@ const Profile = () => {
     setInProgressCount((prevCount) => prevCount + 1);
   };
 
-  // Placeholder function to add course to the data
   const handleAddCourse = () => {
-    const newCourse = { id: courses.length + 1, title: "New Course" }; // Example course data
+    const newCourse = { id: courses.length + 1, title: "New Course" };
     setCourses((prevCourses) => [...prevCourses, newCourse]);
   };
 
@@ -51,6 +51,29 @@ const Profile = () => {
     );
   };
 
+  const getLoggedInUserId = () => {
+    const token = localStorage.getItem("id_token");
+    // Extract and decode the token payload
+    const tokenPayload = token ? JSON.parse(atob(token.split(".")[1])) : null;
+    // Return the user ID from the token payload
+    return tokenPayload ? tokenPayload.sub : null;
+  };
+
+  const { loading, data } = useQuery(QUERY_USER, {
+    variables: { email: getLoggedInUserId() },
+  });
+
+  useEffect(() => {
+    if (data && data.getUser) {
+      setUsername(data.getUser.username);
+    }
+  }, [data]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+
   const renderPlaceholderCards = () => {
     return (
       <div className="flex flex-col justify-end ml-5">
@@ -71,7 +94,7 @@ const Profile = () => {
             className="inline-block h-20 rounded-full mt-2 mr-2"
           />
           <div className="text-center ml-2">
-            <div className="mb-1 mt-5">Hey, Username &#x1F44B;</div>
+            <div className="mb-1 mt-5">Hey, { username } &#x1F44B;</div>
             <div>Heres a breakdown of your progress</div>
           </div>
         </div>
@@ -134,13 +157,12 @@ const Profile = () => {
           </div>
         </div>
         {selectedCategory === "myCourses" && showPlaceholders && (
-          <div className="mt-5">
-            {renderPlaceholderCards()}
-          </div>
+          <div className="mt-5">{renderPlaceholderCards()}</div>
         )}
       </div>
     </div>
   );
+  
 };
 
 export default Profile;

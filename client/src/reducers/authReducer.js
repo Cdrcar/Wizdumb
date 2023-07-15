@@ -7,7 +7,7 @@ export const authReducer = createSlice({
     user: { token: "", username: "", userId: "" },
   },
   reducers: {
-    login(state, action) {
+    loginUser(state, action) {
       return {
         ...state,
         isLoggedIn: true,

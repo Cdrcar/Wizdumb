@@ -4,13 +4,23 @@ const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
-    getUser: async (parent, args, context) => {
-      if (!context.user) {
-        throw new AuthenticationError("You need to be logged in!");
-      }
+    me: async (parents, args, context) => {
+      if (context.user) {
+        const userData = await User.findOne({ _id: context.user._id }).select(
+          "-__v -password"
+        );
 
-      return await User.findById(context.user._id);
+        return userData;
+      }
+      throw new AuthenticationError("Not logged in");
     },
+    // getUser: async (parent, args, context) => {
+    //   if (!context.user) {
+    //     throw new AuthenticationError("You need to be logged in!");
+    //   }
+
+    //   return await User.findById(context.user._id);
+    // },
     getUsers: async () => {
       return await User.find().populate("courses");
     },
@@ -67,11 +77,9 @@ const resolvers = {
 
       return { token, user };
     },
-    loginUser: async (parent, { email, password }) => {
-      console.log("Login email:", email);
+    loginUser: async (parent, { email, password }, context) => {
 
       const user = await User.findOne({ email });
-      console.log("User found:", user);
 
       if (!user) {
         throw new AuthenticationError("Invalid email or password");
@@ -85,9 +93,12 @@ const resolvers = {
       }
 
       const token = signToken(user);
-      console.log("Generated token:", token);
 
-      return { token, user };
+      context.res.cookie("token", token, { httpOnly: true });
+
+      const userEmail = user.email;
+      console.log("User authenticated!");
+      return { token, user, userEmail };
     },
 
     updateUser: async (parent, { id, firstName, lastName, email }, context) => {

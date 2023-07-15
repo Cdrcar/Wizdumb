@@ -7,6 +7,7 @@ export const QUERY_USER = gql`
       username
       email
       courses {
+        _id
         name
       }
       resources {

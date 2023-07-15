@@ -1,18 +1,18 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError } = require("apollo-server-express");
 const { User, Course, Comment, Resource, Tag } = require("../models");
-const { signToken } = require('../utils/auth');
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
     getUser: async (parent, args, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
 
       return await User.findById(context.user._id);
     },
     getUsers: async () => {
-      return await User.find();
+      return await User.find().populate("courses");
     },
     getCourse: async (parent, { id }) => {
       return await Course.findById(id);
@@ -41,58 +41,98 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
 
-      return await User.findById(context.user._id).populate('thoughts');
+      return await User.findById(context.user._id).populate("thoughts");
     },
   },
   Mutation: {
-    createUser: async (parent, { firstName, lastName, email, password, username }) => {
-      console.log(email)
-      const user = await User.create({ firstName, lastName, email, password, username });
+    createUser: async (
+      parent,
+      { firstName, lastName, email, password, username }
+    ) => {
+      console.log(email);
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        username,
+      });
       if (!user) {
-        throw new Error('Failed to create user');
+        throw new Error("Failed to create user");
       }
-      const token = signToken(user);
-
-      return { token, user}
-      
-      
-    },
-    loginUser: async (parent, { email, password }) => {
-      const user = await User.findOne({ email });
-      if (!user) {
-        throw new AuthenticationError('Invalid email or password');
-      }
-      const correctPw = await user.isCorrectPassword(password);
-      if (!correctPw) {
-        throw new AuthenticationError('Invalid email or password');
-      }
-
       const token = signToken(user);
 
       return { token, user };
     },
-    updateUser: async (parent, { id, firstName, lastName, email }, context) => {
-      if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+    loginUser: async (parent, { email, password }) => {
+      console.log("Login email:", email);
+
+      const user = await User.findOne({ email });
+      console.log("User found:", user);
+
+      if (!user) {
+        throw new AuthenticationError("Invalid email or password");
       }
 
-      return await User.findByIdAndUpdate(id, { firstName, lastName, email }, { new: true });
+      const correctPw = await user.isCorrectPassword(password);
+      console.log("Correct password:", correctPw);
+
+      if (!correctPw) {
+        throw new AuthenticationError("Invalid email or password");
+      }
+
+      const token = signToken(user);
+      console.log("Generated token:", token);
+
+      return { token, user };
+    },
+
+    updateUser: async (parent, { id, firstName, lastName, email }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      return await User.findByIdAndUpdate(
+        id,
+        { firstName, lastName, email },
+        { new: true }
+      );
     },
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
-        throw new AuthenticationError('You need to be logged in!');
+        throw new AuthenticationError("You need to be logged in!");
       }
 
       return await User.findByIdAndDelete(id);
     },
+
+    saveCourse: async (parent, { courseId }, context) => {
+      const user = context.user; // Access the user object from the context directly
+
+      if (user) {
+        const updateUser = await User.findOneAndUpdate(
+          { _id: user._id },
+          { $push: { courses: courseId } },
+          { new: true }
+        );
+        return updateUser;
+      }
+
+      throw new Error("User not authenticated");
+    },
+
     createCourse: async (parent, { name, description }) => {
       return await Course.create({ name, description });
     },
     updateCourse: async (parent, { id, name, description }) => {
-      return await Course.findByIdAndUpdate(id, { name, description }, { new: true });
+      return await Course.findByIdAndUpdate(
+        id,
+        { name, description },
+        { new: true }
+      );
     },
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
@@ -101,16 +141,38 @@ const resolvers = {
       return await Comment.create({ user, comment, resource, course });
     },
     updateComment: async (parent, { id, user, comment, resource, course }) => {
-      return await Comment.findByIdAndUpdate(id, { user, comment, resource, course }, { new: true });
+      return await Comment.findByIdAndUpdate(
+        id,
+        { user, comment, resource, course },
+        { new: true }
+      );
     },
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);
     },
-    createResource: async (parent, { name, video, text, description, link, user, course }) => {
-      return await Resource.create({ name, video, text, description, link, user, course });
+    createResource: async (
+      parent,
+      { name, video, text, description, link, user, course }
+    ) => {
+      return await Resource.create({
+        name,
+        video,
+        text,
+        description,
+        link,
+        user,
+        course,
+      });
     },
-    updateResource: async (parent, { id, name, video, text, description, link, user, course }) => {
-      return await Resource.findByIdAndUpdate(id, { name, video, text, description, link, user, course }, { new: true });
+    updateResource: async (
+      parent,
+      { id, name, video, text, description, link, user, course }
+    ) => {
+      return await Resource.findByIdAndUpdate(
+        id,
+        { name, video, text, description, link, user, course },
+        { new: true }
+      );
     },
     deleteResource: async (parent, { id }) => {
       return await Resource.findByIdAndDelete(id);

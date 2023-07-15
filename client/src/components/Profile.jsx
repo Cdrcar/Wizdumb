@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import profileImg from "../assets/profile-image.png";
+import { useQuery } from "@apollo/client";
+import { QUERY_ALL_USERS } from "../utils/queries";
 
 const Profile = () => {
   const [completedCount, setCompletedCount] = useState(0);

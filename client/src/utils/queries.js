@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_ME = gql`
   {
@@ -211,16 +211,14 @@ export const QUERY_ALL_COMMENTS = gql`
   }
 `;
 
-
-export const QUERY_RESOURCES = gql `
+export const QUERY_RESOURCE = gql`
   query getResources {
     getResources {
-        name
-        courseName
-        video
-        text
-        description
-        link
+      name
+      video
+      text
+      description
+      link
 
     }
   }

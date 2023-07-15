@@ -28,19 +28,15 @@ const typeDefs = gql`
   type Resource {
     _id: ID!
     name: String!
-    courseName: String!
     video: String
     text: String
     description: String!
     link: String
     user: User!
-    course: Course!
     comments: [Comment!]!
     tags: [Tag!]!
     createdAt: String!
     updatedAt: String!
-    
-   
   }
 
   type Tag {
@@ -92,7 +88,7 @@ const typeDefs = gql`
     getCourses: [Course!]
     getComment(id: ID!): Comment
     getComments: [Comment!]!
-    getResource(name: String!): Resource
+    getResource(id: ID!): Resource
     getResources: [Resource!]!
     getTag(id: ID!): Tag
     getTags: [Tag!]!
@@ -137,7 +133,7 @@ const typeDefs = gql`
       description: String!
       link: String
       user: ID!
-      course: ID!
+      course: ID
     ): Resource!
     updateResource(
       id: ID!

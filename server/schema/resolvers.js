@@ -27,17 +27,9 @@ const resolvers = {
       return await Course.findById(id);
     },
     getCourses: async () => {
-      resources: async (parent) => {
-        try {
-          const resources = await Resource.find({ courseName: parent._id });
-          return resources;
-        } catch (error) {
-          throw new Error("Error occurred while fetching resources for the course.");
-        }
-      },
-      console.log("testing courses");
       return await Course.find();
     },
+
     getComment: async (parent, { id }) => {
       return await Comment.findById(id);
     },
@@ -72,7 +64,7 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
-      return { token, user };
+
     },
     loginUser: async (parent, { email, password }) => {
       console.log("Login email:", email);
@@ -121,7 +113,7 @@ const resolvers = {
       return { token, user: updatedUser };
     },
     
-    
+
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
@@ -170,11 +162,21 @@ const resolvers = {
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);
     },
-    createResource: async (parent, { name, video, text, description, link }) => {
+    createResource: async (
+      parent,
+      { name, video, text, description, link }
+    ) => {
       return await Resource.create({ name, video, text, description, link });
     },
-    updateResource: async (parent, { name, video, text, description, link }) => {
-      return await Resource.findOneAndUpdate({ name }, { name, video, text, description, link}, { new: true });
+    updateResource: async (
+      parent,
+      { name, video, text, description, link }
+    ) => {
+      return await Resource.findOneAndUpdate(
+        { name },
+        { name, video, text, description, link },
+        { new: true }
+      );
     },
     deleteResource: async (parent, { name }) => {
       return await Resource.findOneAndDelete({ name });
@@ -211,12 +213,11 @@ const resolvers = {
       return await Comment.find({ course: parent._id });
     },
     resources: async (parent) => {
-      try {
-        const resources = await Resource.find({ course: parent._id });
-        return resources;
-      } catch (error) {
-        throw new Error("Error occurred while fetching resources for the course.");
-      }
+      const courseId = parent._id.toString();
+      const course = await Course.findById(courseId).populate("resources");
+      const resources = course.resources;
+
+      return resources;
     },
     tags: async (parent) => {
       return await Tag.find({ _id: { $in: parent.tags } });
@@ -237,9 +238,6 @@ const resolvers = {
     _id: (parent) => parent._id, 
     user: async (parent) => {
       return await User.findById(parent.user);
-    },
-    course: async (parent) => {
-      return await Course.findById(parent.course);
     },
     comments: async (parent) => {
       return await Comment.find({ resource: parent._id });

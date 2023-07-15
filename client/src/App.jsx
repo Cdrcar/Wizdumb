@@ -69,8 +69,9 @@ function App() {
     <ApolloProvider client={client}>
       <Provider store={store}>
       <Router>
-        <div className="relative z-0 bg-cover bg-no-repeat bg-center">
+        <div className="flex flex-col z-0 bg-cover bg-no-repeat bg-center">
           <Navbar />
+        
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
@@ -90,6 +91,7 @@ function App() {
               element={isAuthenticated() ? <MyCourses /> : <Navigate to="/" replace />}
             />
 
+
             <Route path="/forum" element={<Forum />} />
             <Route path="/forumlikes" element={<ForumLikes />} />
             <Route path="/discussion" element={<DiscussionPage />} />
@@ -99,7 +101,8 @@ function App() {
 
             <Route path="/course/:courseName" element={<CoursePage />} />
           </Routes>
-          <Footer />
+        
+          <Footer/>
         </div>
       </Router>
       </Provider>

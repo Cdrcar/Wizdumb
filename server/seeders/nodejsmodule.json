@@ -1,42 +1,42 @@
 [
   {
-    "name": "Introduction to NodeJ",
-    "courseName": "nodejs",
-    "video": "",
+    "name": "Introduction to Node.js",
+    "courseName": "NodeJS",
+    "video": "https://www.youtube.com/embed/TlB_eWDSMt4",
     "text": "",
-    "description": "Descr",
+    "description": "Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. It allows developers to run JavaScript code outside of a web browser and use it to build scalable network applications. In this resource, you'll get an introduction to Node.js, including its features, architecture, and use cases. You'll learn about its event-driven, non-blocking I/O model, which makes it highly efficient for handling concurrent operations. By the end, you'll have a solid understanding of why Node.js is a popular choice for server-side development.",
     "link": ""
   },
   {
-    "name": "Node Modules",
-    "courseName": "nodejs",
+    "name": "Modules and NPM",
+    "courseName": "NodeJS",
     "video": "",
     "text": "",
-    "description": "Descr",
+    "description": "Modules and the Node Package Manager (NPM) are essential tools in Node.js development. Modules allow you to organize and reuse your code, while NPM provides a vast ecosystem of third-party packages to enhance your applications. In this resource, you'll learn how to work with modules in Node.js, including creating modules, importing/exporting functionality, and managing dependencies using NPM. You'll also explore common NPM commands and discover useful packages to add functionality to your Node.js projects.",
+    "link": "https://www.w3schools.com/nodejs/nodejs_modules.asp"
+  },
+  {
+    "name": "Asynchronous Programming",
+    "courseName": "NodeJS",
+    "video": "https://www.youtube.com/embed/z03tYranyWs",
+    "text": "",
+    "description": "Asynchronous programming is a key aspect of Node.js, allowing you to handle I/O operations efficiently without blocking the execution of other tasks. Callback functions are widely used in Node.js to handle asynchronous operations. In this resource, you'll dive into asynchronous programming with callbacks in Node.js. You'll learn how to write and use callback functions, handle errors, and work with asynchronous APIs. Understanding callbacks is crucial for building scalable and performant Node.js applications.",
     "link": ""
   },
   {
-    "name": "Javascript for NodeJS",
-    "courseName": "nodejs",
-    "video": "",
+    "name": "Databases in Node.js",
+    "courseName": "NodeJS",
+    "video": "https://www.youtube.com/embed/EN6Dx22cPRI",
     "text": "",
-    "description": "Descr",
+    "description": "Databases are a critical component of many applications, and Node.js provides various options for working with them. In this resource, you'll learn how to work with databases in Node.js. You'll explore different database systems like MongoDB and MySQL. Understanding database integration is essential for building data-driven applications with Node.js.",
     "link": ""
   },
   {
-    "name": "Understanding JSON",
-    "courseName": "nodejs",
+    "name": "Error Handling",
+    "courseName": "NodeJS",
     "video": "",
     "text": "",
-    "description": "Descr",
-    "link": ""
-  },
-  {
-    "name": "Node Package Manager",
-    "courseName": "nodejs",
-    "video": "",
-    "text": "",
-    "description": "Descr",
-    "link": ""
+    "description": "Debugging and error handling are crucial skills for Node.js developers to effectively identify and fix issues in their applications. In this resource, you'll learn various techniques for debugging and error handling in Node.js. You'll explore the built-in debugging capabilities of Node.js, use logging and error reporting libraries, and implement error handling strategies to ensure robustness in your applications. By mastering these skills, you'll become proficient in troubleshooting and maintaining Node.js projects.",
+    "link": "https://nodejs.org/en/docs/guides/debugging-getting-started"
   }
 ]

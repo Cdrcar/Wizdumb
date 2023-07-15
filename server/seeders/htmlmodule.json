@@ -1,42 +1,42 @@
 [
   {
-    "name": "MDN Docs for HTML",
-    "courseName": "html",
-    "video": "",
+    "name": "Introduction to HTML",
+    "courseName": "HTML & CSS",
+    "video": "https://www.youtube.com/embed/UB1O30fR-EE",
     "text": "",
-    "description": "MDN Docs for HTML, an exhaustive reference for HTML elements",
-    "link": "https://developer.mozilla.org/en-US/docs/Web/HTML"
-  },
-  {
-    "name": "HTML Cheat sheet",
-    "courseName": "html",
-    "video": "",
-    "text": "",
-    "description": "A cheat sheet for HTML elements and their functions",
-    "link": "https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf"
-  },
-  {
-    "name": "Intro to HTML",
-    "courseName": "html",
-    "video": "",
-    "text": "HTML (HyperText Markup Language) is a markup language that tells web browsers how to structure the web pages you visit. It can be as complicated or as simple as the web developer wants it to be. HTML consists of a series of elements, which you use to enclose, wrap, or mark up different parts of content to make it appear or act in a certain way. The enclosing tags can make content into a hyperlink to connect to another page, italicize words, and so on. For example, consider the following line of text:<p>Hi</p>, the <p> & </p> tags denote a paragraph with the content between them",
-    "description": "A basic intro into HTML",
+    "description": "HTML (Hypertext Markup Language) is the standard markup language used for creating web pages. In this resource, you'll get an introduction to HTML and learn its basic structure, tags, and attributes. You'll understand how to create headings, paragraphs, lists, links, images, and more. By the end, you'll be familiar with the foundational elements of HTML and ready to start building web pages.",
     "link": ""
   },
   {
-    "name": "HTML For beginners",
-    "courseName": "html",
-    "video": "https://www.youtube.com/watch?v=FQdaUv95mR8",
+    "name": "Introduction to CSS",
+    "courseName": "HTML & CSS",
+    "video": "https://www.youtube.com/embed/1PnVor36_40",
     "text": "",
-    "description": "A  40 minute video to act as an intro and basic tutorial for HTML, great for those starting out",
+    "description": "CSS (Cascading Style Sheets) is a styling language used to control the visual appearance of HTML elements on a web page. In this resource, you'll learn the basics of CSS, including selectors, properties, and values. You'll discover how to apply styles to elements, control layout, change colors and fonts, and create responsive designs. With CSS, you can enhance the look and feel of your web pages and create engaging user interfaces.",
     "link": ""
   },
   {
-    "name": "CSS Crash course",
-    "courseName": "html",
-    "video": "https://www.youtube.com/watch?v=yfoY53QXEnI",
+    "name": "Responsive Web Design",
+    "courseName": "HTML & CSS",
+    "video": "",
     "text": "",
-    "description": "A CSS course for beginners ~90 mins long",
+    "description": "Responsive web design is an approach that ensures web pages adapt to different screen sizes and devices, providing an optimal viewing experience for users. In this resource, you'll learn about the principles and techniques of responsive web design. You'll explore media queries, flexible grids, and responsive images to create fluid and responsive layouts. By mastering responsive web design, you'll be able to build websites that look great on any device.",
+    "link": "https://www.w3schools.com/html/html_responsive.asp"
+  },
+  {
+    "name": "CSS Flexbox",
+    "courseName": "HTML & CSS",
+    "video": "",
+    "text": "",
+    "description": "CSS Flexbox is a powerful layout mechanism that allows you to create flexible and responsive layouts with ease. In this resource, you'll dive into CSS Flexbox and learn how to use flex containers and flex items to create different layout patterns. You'll understand how to align and distribute elements, control the order and size of items, and handle wrapping and stacking. With CSS Flexbox, you'll have more control over the positioning and arrangement of elements on your web pages.",
+    "link": "https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
+  },
+  {
+    "name": "CSS Grid Layout",
+    "courseName": "HTML & CSS",
+    "video": "https://www.youtube.com/embed/9zBsdzdE4sM",
+    "text": "",
+    "description": "CSS Grid Layout is a powerful two-dimensional grid system that allows you to create complex and responsive grid-based layouts. In this resource, you'll explore CSS Grid Layout and learn how to define grid containers and grid items. You'll discover how to control columns, rows, gaps, and alignments, and create versatile grid layouts for your web pages. With CSS Grid Layout, you'll have a powerful tool to design sophisticated and flexible grid structures.",
     "link": ""
   }
 ]

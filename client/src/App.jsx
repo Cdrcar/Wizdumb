@@ -65,8 +65,9 @@ function App() {
     <ApolloProvider client={client}>
       <Provider store={store}>
       <Router>
-        <div className="relative z-0 bg-cover bg-no-repeat bg-center">
+        <div className="flex flex-col z-0 bg-cover bg-no-repeat bg-center">
           <Navbar />
+          <main className="grow">
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
@@ -74,7 +75,6 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profileSettings" element={<ProfileSettings />} />
             <Route path="/my-courses" element={<MyCourses />} />
-
             <Route path="/forum" element={<Forum />} />
             <Route path="/forumlikes" element={<ForumLikes />} />
             <Route path="/discussion" element={<DiscussionPage />} />
@@ -86,7 +86,8 @@ function App() {
             {/* <Route path ="/course" element={<Course />} /> */}
             <Route path="/course/:courseName" element={<CoursePage />} />
           </Routes>
-          <Footer />
+          </main>
+          <Footer/>
         </div>
       </Router>
       </Provider>

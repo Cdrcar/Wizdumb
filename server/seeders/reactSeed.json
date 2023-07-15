@@ -1,0 +1,43 @@
+[
+    {
+      "name": "Introduction to React",
+      "courseName": "React",
+      "video":"https://www.youtube.com/embed/Rh3tobg7hEo",
+      "text": "",
+      "description": "React is a popular JavaScript library for building user interfaces. In this resource, you'll be introduced to React and learn its core concepts. You'll explore components, JSX syntax, state management, and the virtual DOM. Additionally, you'll understand how to create reusable components, handle events, and leverage React's ecosystem of tools and libraries. By the end, you'll have a solid foundation in React and be ready to build dynamic and interactive web applications.",
+      "link": ""
+    },
+    {
+      "name": "React Hooks",
+      "courseName": "React",
+      "video":"https://www.youtube.com/embed/TNhaISOUy6Q",
+      "text": "",
+      "description": "React Hooks introduced in React 16.8 provide a new way to manage state and side effects in functional components. In this resource, you'll dive into React Hooks and learn how to use useState, useEffect, and other hooks to handle state, lifecycle events, and side effects. You'll discover how hooks can simplify your code, improve reusability, and make your components more maintainable. Understanding React Hooks will empower you to write cleaner and more efficient React applications.",
+      "link": ""
+    },
+    {
+      "name": "React Router",
+      "courseName": "React",
+      "video":"https://www.youtube.com/embed/OMQ2QARHPo0",
+      "text": "",
+      "description": "React Router is a widely-used library for handling navigation in single-page applications built with React. In this resource, you'll explore React Router and learn how to set up routes, navigate between pages, handle dynamic URLs, and pass parameters. You'll also discover advanced features like nested routes, route guarding, and handling redirects. With React Router, you can create intuitive and seamless navigation experiences in your React applications.",
+      "link": ""
+    },
+    {
+      "name": "Global State",
+      "courseName": "React",
+      "video":"https://www.youtube.com/embed/tnt2y7D3V9o",
+      "text": "",
+      "description": "React Context is a feature that allows you to manage global state in your React applications without prop drilling. In this resource, you'll delve into React Context and learn how to create and consume contexts to share state across components. You'll explore provider and consumer patterns, updating context values, and using multiple contexts together. With React Context, you can simplify state management and make your code more modular and scalable.",
+      "link": ""
+    },
+    {
+      "name": "React Testing Library",
+      "courseName": "React",
+      "video":"https://www.youtube.com/embed/JBSUgDxICg8",
+      "text": "",
+      "description": "React Testing Library is a powerful tool for unit testing React components. In this resource, you'll discover how to use React Testing Library to write effective unit tests for your React applications. You'll learn how to render components, interact with the UI, and assert the expected behavior. Additionally, you'll explore querying techniques, mocking dependencies, and testing best practices. With React Testing Library, you can ensure the quality and reliability of your React components.",
+      "link": ""
+    }
+  ]
+  

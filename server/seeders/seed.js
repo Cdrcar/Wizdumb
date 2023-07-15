@@ -2,16 +2,15 @@ const db = require("../config/connection");
 const { Comment, Course, Resource, Tag, User } = require("../models");
 //const commentSeed = require('./commentSeed.json');
 const courseSeed = require("./courseSeed.json");
-//const resourceSeed = require('./resourceSeed.json');
-//const tagSeed = require('./tagSeed.json');
 // const userSeed = require("./userSeed.json");
 const github = require ('./gitmodule.json');
 const html = require ('./htmlmodule.json');
 const nodeJS = require ('./nodejsmodule.json');
 const express = require ('./expressmodule.json');
 const javascript = require('./jsmodule.json')
+const reactInfo = require('./reactSeed.json');
 
-const modules=[ github, html, nodeJS, express, javascript]
+const modules=[ github, html, nodeJS, express, reactInfo, javascript]
 
 db.once("open", async () => {
   try {

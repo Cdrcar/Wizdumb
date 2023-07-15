@@ -2,41 +2,41 @@
   {
     "name": "Intro to git",
     "courseName": "github",
-    "video": "",
-    "text": "Git bash is a Command line interface we can use to interface with files or directories within our computer. \\n Git allow us to create a repository where we build projects. The ability to create, clone and push (upload) these repositories is key to how we collaborate & deploy code.",
-    "description": "A breif intro to Git bash",
+    "video":"https://www.youtube.com/embed/pBy1zgt0XPc",
+    "text": "",
+    "description": "Git and GitHub are essential tools for version control and collaborative software development. In this resource, you'll be introduced to Git and GitHub and learn how to set up a repository, commit changes, create branches, and collaborate with others using pull requests. You'll also explore essential Git commands and best practices for effective version control. By the end, you'll have a solid foundation in Git and GitHub to manage your projects efficiently.",
     "link": ""
   },
   {
-    "name": "Resolving Merge Conflicts",
+    "name": "Branching and Merging",
     "courseName": "github",
-    "video": "https://www.youtube.com/watch?v=lz5OuKzvadQ",
+    "video":"https://www.youtube.com/embed/GZILYABgAoo",
     "text": "",
-    "description": "A short video on resolving merge conflicts using VS code",
+    "description": "Branching and merging are fundamental concepts in Git that allow for parallel development and merging of code changes. In this resource, you'll dive into branching and merging in Git. You'll learn how to create branches, switch between branches, merge changes, resolve conflicts, and manage branch workflows effectively. Understanding branching and merging will empower you to work collaboratively and manage code versions in your Git repositories.",
     "link": ""
   },
   {
-    "name": "Gitbash Cheat sheet",
+    "name": "GitHub Collaborations",
     "courseName": "github",
     "video": "",
     "text": "",
-    "description": "A cheat sheet with some of your most used commands and how to use them",
-    "link": "https://sidtechtalks.medium.com/a-quick-git-bash-commands-cheat-sheet-64a147220a60"
+    "description": "GitHub provides a range of collaboration features to streamline teamwork and enable efficient code review processes. In this resource, you'll explore the GitHub collaboration workflow. You'll learn how to create and review pull requests, provide feedback, address comments, and merge changes into the main branch. Additionally, you'll discover techniques for managing project boards, issues, and milestones to enhance project management on GitHub.",
+    "link": "https://medium.com/@jonathanmines/the-ultimate-github-collaboration-guide-df816e98fb67"
   },
   {
-    "name": "Official documentation",
+    "name": "GitHub Actions",
     "courseName": "github",
-    "video": "",
+    "video": "https://www.youtube.com/embed/URmeTqglS58",
     "text": "",
-    "description": "THe official Gitbash documentation, covering all the commands, features & syntax required for the Git package",
-    "link": "https://git-scm.com/doc"
-  },
-  {
-    "name": "Github tutorial",
-    "courseName": "github",
-    "video": "https://www.youtube.com/watch?v=iGutIN5t9Mo",
-    "text": "",
-    "description": "A tutorial into the basics of Git commands and how to use Github to act as a remote repository ",
+    "description": "GitHub Actions is a powerful tool for automating software development workflows and tasks. In this resource, you'll dive into GitHub Actions and learn how to create workflows, define triggers, and configure actions to automate various tasks such as building, testing, and deploying your projects. You'll also explore advanced concepts like environment variables, secrets management, and workflow customization. With GitHub Actions, you can boost productivity and streamline your development processes.",
     "link": ""
+  },
+  {
+    "name": "GitHub Pages",
+    "courseName": "github",
+    "video": "",
+    "text": "",
+    "description": "GitHub Pages is a feature that allows you to host your static websites directly from your GitHub repositories. In this resource, you'll discover how to leverage GitHub Pages to publish your website easily. You'll learn how to set up a GitHub Pages repository, choose a theme, customize your site, and deploy your website with a few simple steps. With GitHub Pages, you can showcase your projects and share your work with others effortlessly.",
+    "link": "https://pages.github.com/"
   }
 ]

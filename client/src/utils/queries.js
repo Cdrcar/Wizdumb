@@ -26,7 +26,6 @@ export const QUERY_ME = gql`
         _id
         name
       }
-
     }
   }
 `;
@@ -36,6 +35,8 @@ export const QUERY_USER = gql`
     getUser(id: $id) {
       _id
       username
+      firstName
+      lastName
       email
       aboutMe
       location
@@ -195,21 +196,21 @@ export const QUERY_ALL_COMMENTS = gql`
   }
 `;
 
-
-  export const QUERY_SINGLE_RESOURCE = gql `
+export const QUERY_SINGLE_RESOURCE = gql`
   query getSingleResource($name: String!) {
     getResource(name: $name) {
-        name
-        courseName
-        video
-        text
-        description
-        link  
-        comment
-        user
+      name
+      courseName
+      video
+      text
+      description
+      link
+      comment
+      user
     }
   }
 `;
+
 
 export const QUERY_RESOURCE = gql`
   query getResources {
@@ -219,6 +220,7 @@ export const QUERY_RESOURCE = gql`
       text
       description
       link
+
 
     }
   }

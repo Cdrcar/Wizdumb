@@ -6,7 +6,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './reducers/store';
 
@@ -55,10 +55,14 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   // Set up our client to execute the `authLink` middleware prior to making the request to our GraphQL API
-
   link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
+
+// Check if the user is authenticated
+const isAuthenticated = () => {
+  return !!localStorage.getItem("id_token");
+};
 
 function App() {
   return (
@@ -67,26 +71,37 @@ function App() {
       <Router>
         <div className="flex flex-col z-0 bg-cover bg-no-repeat bg-center">
           <Navbar />
-          <main className="grow">
+        
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/profileSettings" element={<ProfileSettings />} />
-            <Route path="/my-courses" element={<MyCourses />} />
+
+            {/* Protected Routes */}
+            <Route
+              path="/home"
+              element={isAuthenticated() ? <Profile /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/profileSettings"
+              element={isAuthenticated() ? <ProfileSettings /> : <Navigate to="/" replace />}
+            />
+            <Route
+              path="/my-courses"
+              element={isAuthenticated() ? <MyCourses /> : <Navigate to="/" replace />}
+            />
+
+
             <Route path="/forum" element={<Forum />} />
             <Route path="/forumlikes" element={<ForumLikes />} />
             <Route path="/discussion" element={<DiscussionPage />} />
             <Route path="/search" element={<SearchPage />} />
             <Route path="/account" element={<AccountSettings />} />
             <Route path="/course" element={<Course />} />
-            <Route path="/home" element={<LoggedinHomepage />} />
 
-            {/* <Route path ="/course" element={<Course />} /> */}
             <Route path="/course/:courseName" element={<CoursePage />} />
           </Routes>
-          </main>
+        
           <Footer/>
         </div>
       </Router>

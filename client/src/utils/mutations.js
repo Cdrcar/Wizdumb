@@ -20,7 +20,6 @@ export const ADD_USER = gql`
         email
         firstName
         lastName
-        password
         username
       }
     }
@@ -42,24 +41,18 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const UPDATE_USER = gql`
-  mutation updateUser(
-    $id: ID!
-    $firstName: String
-    $lastName: String
-    $email: String
-  ) {
-    updateUser(
-      id: $id
-      firstName: $firstName
-      lastName: $lastName
-      email: $email
-    ) {
-      _id
-      firstName
-      lastName
-      username
-      email
+export const UPDATE_USER_PROFILE = gql`
+  mutation updateUserProfile($input: UpdateUserInput!) {
+    updateUserProfile(input: $input) {
+      token
+      user {
+        aboutMe
+        firstName
+        lastName
+        aboutMe
+        topSkills
+        location
+      }
     }
   }
 `;
@@ -68,10 +61,6 @@ export const DELETE_USER = gql`
   mutation deleteUser($id: ID!) {
     deleteUser(id: $id) {
       _id
-      firstName
-      lastName
-      username
-      email
     }
   }
 `;
@@ -214,7 +203,6 @@ export const CREATE_RESOURCE = gql`
     $description: String!
     $link: String
     $user: ID!
-    $course: ID!
   ) {
     createResource(
       name: $name
@@ -223,7 +211,6 @@ export const CREATE_RESOURCE = gql`
       description: $description
       link: $link
       user: $user
-      course: $course
     ) {
       _id
       name
@@ -248,10 +235,6 @@ export const CREATE_RESOURCE = gql`
         lastName
         username
         email
-      }
-      course {
-        _id
-        name
       }
       tags {
         _id
@@ -272,7 +255,6 @@ export const UPDATE_RESOURCE = gql`
     $description: String
     $link: String
     $user: ID
-    $course: ID
   ) {
     updateResource(
       id: $id
@@ -282,7 +264,6 @@ export const UPDATE_RESOURCE = gql`
       description: $description
       link: $link
       user: $user
-      course: $course
     ) {
       _id
       name
@@ -309,10 +290,6 @@ export const UPDATE_RESOURCE = gql`
         email
       }
       tags {
-        _id
-        name
-      }
-      course {
         _id
         name
       }
@@ -350,10 +327,6 @@ export const DELETE_RESOURCE = gql`
         email
       }
       tags {
-        _id
-        name
-      }
-      course {
         _id
         name
       }

@@ -12,49 +12,46 @@ const ProfileSettings = () => {
   const [topSkills, setTopSkills] = useState("");
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [userId, setUserId] = useState(null);
-
-  const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE);
-
   useEffect(() => {
     const fetchProfileId = async () => {
       const profileData = await AuthService.getProfile().data;
-
+     
       setUserId(profileData._id);
     };
     fetchProfileId();
   }, []);
-
   const { loading, error, data } = useQuery(QUERY_USER, {
     variables: { id: userId },
     skip: !userId,
   });
-
   useEffect(() => {
     const setProfile = async () => {
       const details = data?.getUser;
       setAboutMe(data?.getUser.aboutMe);
-      console.log(data?.getUser.aboutMe);
       setLocation(data?.getUser.location);
+      setFirstName(data?.getUser.firstName);
+      setLastName(data?.getUser.lastName);
+      setTopSkills(data?.getUser.topSkills);
     };
     setProfile();
   }, []);
-
+  const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE, {
+    onError: (error) => {
+      console.error("Failed to save:", error);
+    },
+  });
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
   };
-
   const handleLastNameChange = (e) => {
     setLastName(e.target.value);
   };
-
   const handleAboutMeChange = (e) => {
     setAboutMe(e.target.value);
   };
-
   const handleLocationChange = (e) => {
     setLocation(e.target.value);
   };
-
   const handleTopSkillsChange = (e) => {
     setTopSkills(e.target.value);
   };
@@ -62,40 +59,34 @@ const ProfileSettings = () => {
     const file = e.target.files[0];
     setProfilePhoto(file);
   };
-  // const handleSaveChanges = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await updateUserProfile({
-  //       variables: {
-  //         input: {
-  //           id: userId,
-  //           firstName,
-  //           lastName,
-  //           aboutMe,
-  //           location,
-  //           topSkills,
-  //           profilePhoto: profilePhoto || undefined,
-  //         },
-  //       },
-  //     });
-  //     console.log("Changes saved", response);
-  //   } catch (error) {
-  //     console.error("Failed to save:", error);
-  //   }
-  // };
-
-  const handleSaveChanges = () => {
-    // Handle saving changes
-    // TODO: send the updates to the server
-    console.log("Saving changes...");
-    console.log("Full Name:", firstName);
-    console.log("Full Name:", lastName);
-    console.log("About Me:", aboutMe);
-    console.log("Location:", location);
-    console.log("Top Skills:", topSkills);
+  const handleSaveChanges = async () => {
+    try {
+      const response = await updateUserProfile({
+        variables: {
+          input: {
+            firstName,
+            lastName,
+            aboutMe,
+            location,
+            topSkills,
+          },
+        },
+      });
+      console.log("Changes saved", response);
+    } catch (error) {
+      console.error("Failed to save:", error);
+    }
   };
-
+  // const handleSaveChanges = () => {
+  //   // Handle saving changes
+  //   // TODO: send the updates to the server
+  //   console.log("Saving changes...");
+  //   console.log("First Name:", firstName);
+  //   console.log("Last Name:", lastName);
+  //   console.log("About Me:", aboutMe);
+  //   console.log("Location:", location);
+  //   console.log("Top Skills:", topSkills);
+  // };
   return (
     <div className="max-w-xl mx-auto">
       <div>
@@ -120,7 +111,6 @@ const ProfileSettings = () => {
             className="border border-gray-300 rounded px-3 py-2 w-full"
           />
         </div>
-
         {/* Profile Photo */}
         <div className="mb-8">
           <label htmlFor="profilePhoto" className="block mb-4 font-bold">
@@ -145,11 +135,9 @@ const ProfileSettings = () => {
             </label>
           </div>
         </div>
-
         {/* About you */}
         <div className="mb-10">
           <h3 className="text-xl font-light mb-4">Details About You</h3>
-
           <div className="mb-4">
             <label htmlFor="aboutMe" className="block mb-1 font-bold">
               About Me
@@ -165,7 +153,6 @@ const ProfileSettings = () => {
               are, and what you hope to get out of your courses.
             </p>
           </div>
-
           <div className="mb-4">
             <label htmlFor="location" className="block mb-1 font-bold">
               Location
@@ -181,7 +168,6 @@ const ProfileSettings = () => {
               Tell us the city, state, or country you currently live in.
             </p>
           </div>
-
           <div className="mb-4">
             <label htmlFor="topSkills" className="block mb-1 font-bold">
               Top Skills
@@ -198,7 +184,6 @@ const ProfileSettings = () => {
             </p>
           </div>
         </div>
-
         {/* Save Changes Button */}
         <button
           onClick={handleSaveChanges}
@@ -210,5 +195,4 @@ const ProfileSettings = () => {
     </div>
   );
 };
-
 export default ProfileSettings;

@@ -53,22 +53,22 @@ const userSchema = new Schema(
     },
     aboutMe: {
       type: String,
-      default: "hey"
+     
       
     },
     location: {
       type: String,
-      default: "hey"
+     
       
     },
     topSkills: {
-      type: [String],
-      default: "hey"
+      type: String,
+     
       
     },
     profilePhoto: {
       type: String,
-      default: "hey"
+     
       
     },
     courses: [

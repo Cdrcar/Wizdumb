@@ -1,211 +1,179 @@
-import React, { useState, useEffect } from "react";
-import { useMutation } from "@apollo/client";
-import { UPDATE_USER_PROFILE } from "../utils/mutations";
+import { React, Fragment } from "react";
+import Login from "./login";
+import Signup from "./Signup";
+import { useSelector } from "react-redux";
 import AuthService from "../utils/auth";
 
-const ProfileSettings = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [aboutMe, setAboutMe] = useState("");
-  const [location, setLocation] = useState("");
-  const [topSkills, setTopSkills] = useState("");
-  const [profilePhoto, setProfilePhoto] = useState(null);
-  const [userId, setUserId] = useState(null);
+import { Link } from "react-router-dom";
 
-  const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE);
+import Logo from "./Logo";
+import Course from "./Course";
+import icons from "../constants/index.js";
+import { useQuery } from "@apollo/client";
+import { QUERY_COURSES } from "../utils/queries";
 
-  const fetchUserProfile = async () => {
-    try {
-      const loggedIn = AuthService.loggedIn();
-      if (!loggedIn) {
-        //todo
-        return;
-      }
+import { useState } from "react";
+import { FcSearch } from "react-icons/fc";
+import { AiOutlineSchedule } from "react-icons/ai";
+import { AiOutlineLaptop } from "react-icons/ai";
+import { AiOutlineQuestion } from "react-icons/ai";
 
-      const profile = await AuthService.getProfile();
-      if (profile && profile.user) {
-        const { _id, firstName, lastName, aboutMe, location, topSkills } = profile.user;
-        setUserId(_id);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setAboutMe(aboutMe);
-        setLocation(location);
-        setTopSkills(topSkills);
-      }
-    } catch (error) {
-      console.error("Failed to fetch user profile:", error);
-    }
-  };
+// let iconName;
 
-  useEffect(() => {
-    fetchUserProfile();
-  }, []);
+const Homepage = () => {
+  const auth = useSelector((state) => state.AuthService);
 
-  const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
-  };
+  const loggedIn = AuthService.loggedIn();
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-  const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
-  };
+  const { loading, error, data } = useQuery(QUERY_COURSES);
+  const courses = data?.getCourses || [];
+  console.log(data);
 
-  const handleAboutMeChange = (e) => {
-    setAboutMe(e.target.value);
-  };
+  // fetchIcons(courses);
+  // // console.log(fetchIcons(courses));
+  // // console.log(iconName);
+  // console.log(iconName);
 
-  const handleLocationChange = (e) => {
-    setLocation(e.target.value);
-  };
+  const [currentSearch, setCurrentSearch] = useState([]);
 
-  const handleTopSkillsChange = (e) => {
-    setTopSkills(e.target.value);
-  };
+  const handleSearch = (e) => {
+    const searchQuery = e.target.value.toLowerCase();
 
-  const handleSaveChanges = async (e) => {
     e.preventDefault();
-
-    if (!userId) {
-      console.error("User ID is undefined");
-      return;
+    if (searchQuery === "") {
+      setCurrentSearch([]);
+      return false;
     }
-
-    try {
-      const response = await updateUserProfile({
-        variables: {
-          id: userId,
-          firstName,
-          lastName,
-          aboutMe,
-          location,
-          topSkills,
-          profilePhoto: profilePhoto || undefined,
-        },
-      });
-
-      console.log("Changes saved", response);
-    } catch (error) {
-      console.error("Failed to save:", error);
-    }
+    setCurrentSearch(
+      courses
+        .filter((course) => course.name.toLowerCase().includes(searchQuery))
+        .slice(0, 8)
+        .map((course) => course.name)
+    );
   };
-
-  const handleProfilePhotoUpload = (e) => {
-    const file = e.target.files[0];
-    setProfilePhoto(file);
-  };
-
+  const message = "Unlock Your Potential";
+  const message2 = "with our courses";
   return (
-    <div className="max-w-xl mx-auto">
-      <div>
-        <h2 className="text-3xl font-medium mt-8 mb-8">Edit my profile</h2>
-        <div className="mb-4">
-          {/* Full Name */}
-          <h3 className="text-xl font-light mb-4">Introduction</h3>
-          <label className="block mb-3 font-bold">First Name</label>
-          <input
-            type="text"
-            id="firstName"
-            value={firstName}
-            onChange={handleFirstNameChange}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
-          />
-          <label className="block mb-3 font-bold">Last Name</label>
-          <input
-            type="text"
-            id="lastName"
-            value={lastName}
-            onChange={handleLastNameChange}
-            className="border border-gray-300 rounded px-3 py-2 w-full"
-          />
-        </div>
+    <>
+      <div className="fixed bg-hero-pattern bg-cover bg-no-repeat bg-center h-screen w-screen z-0"></div>
+      <section className="relative w-full h-4/6">
+        <div className="flex flex-col sm:flex-row items-center mt-20 sm:mt-40 inset-0 top-[80px] max-w-7xl mx-auto sm:px-16 px-6 items-start gap-5 justify-end">
+          <Logo className="" />
+          <div className="text-center">
+            <h1 className="font-black self-center lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-sky-500 mt-10 text-center sm:text-right">
+              Wiz<span className="text-rose-600">Dumb</span>
+              <p className="font-medium lg:text-[30px] sm:text-[26px] xs:text-[20px] text-[16px] lg:leading-[30px] ml-2 mt-5 mb-2 text-white text-center sm:text-left">
+                {message}
+                <br className="sm:block" />
+                {message2}
+              </p>
+            </h1>
+          </div>
+          <div className="w-[90%] sm:w-[25%] align-center flex">
+            <ul className=" w-full text-center flex align-center flex-col ml-10">
+              {!loggedIn && (
+                <div>
+                  <li
+                    id="authButton"
+                    className="min-w-[80%] sm:min-w-max p-1.5 pl-3 pr-3 bg-sky-400 border border-sky-400 rounded-full text-white mb-2 hover:bg-white hover:text-sky-400 hover:cursor-pointer hover:border-sky-400"
+                    onClick={() => setShowLoginModal(true)}
+                  >
+                    Login
+                  </li>
 
-        {/* Profile Photo */}
-        <div className="mb-8">
-          <label htmlFor="profilePhoto" className="block mb-4 font-bold">
-            Profile Photo
-          </label>
-          <div className="flex items-center">
-            <div className="w-32 h-32 bg-gray-200  flex items-center justify-center mr-2">
-              Photo
+                  <li
+                    id="authButton"
+                    className="min-w-max p-1.5 pl-3 pr-3 bg-rose-600 border border-rose-600 rounded-full text-white mb-2 hover:bg-white hover:text-rose-600 hover:cursor-pointer hover:border-rose-600 "
+                  >
+                    <Link to="/signup">Sign Up</Link>
+                  </li>
+                </div>
+              )}
+            </ul>
+          </div>
+        </div>
+        <section>
+          {/*Render the cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 ml-10 mr-10 pb-20 mt-20">
+            <div className="border rounded-md pt-5 pb-5 bg-white border-gray-300 text-center pl-2 pr-2">
+              <AiOutlineLaptop className="mx-auto mb-5 text-2xl" />
+              Explore your technical interests and advance your skillset
             </div>
-            <input
-              type="file"
-              id="profilePhoto"
-              accept="image/*"
-              onChange={handleProfilePhotoUpload}
-              className="hidden"
-            />
-            <label
-              htmlFor="profilePhoto"
-              className="px-4 py-2 bg-cyan-700 hover:bg-cyan-800 text-white rounded cursor-pointer"
-            >
-              Upload Photo
-            </label>
+            <div className="text-center border border-gray-300 rounded-md pt-5 pb-5 bg-white pl-2 pr-2">
+              <AiOutlineSchedule className="mx-auto mb-5 text-2xl" />
+              Flexible Learning. Learn around your schedule
+            </div>
+            <div className="text-center border rounded-md border-gray-300 pt-5 pb-5 bg-white pl-2 pr-2">
+              <AiOutlineQuestion className="mx-auto mb-5 text-2xl" />
+              Use knowledge quizzes to practice while you learn
+            </div>
           </div>
+          <h3 className="text-center  p-2 text-xl font-bold text-white">
+            Search for a course
+          </h3>
+        </section>
+      </section>
+
+      {/* Render the search Bar*/}
+      <div className=" mb-20">
+        <div className="flex justify-center items-center">
+          <form className="w-[500px] relative ">
+            <div className="relative">
+              <div className="bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 p-1 rounded-full border-xl">
+                <input
+                  type="search"
+                  placeholder="Search Here"
+                  className="w-full rounded-full p-4 bg-slate-200 text-black"
+                  onChange={(e) => handleSearch(e)}
+                />
+                <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-cyan-300 bg-opacity-25 rounded-full mx-2">
+                  <FcSearch />
+                </button>
+              </div>
+            </div>
+            {currentSearch.length > 0 && (
+              <div className="absolute top-20 p-4 bg-blue-100 text-black font-bold w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2 hover:pointer-cursor">
+                {currentSearch.map((search) => (
+                  <Link
+                    key={search}
+                    to={`course/${search}`}
+                    className="hover:cursor-pointer"
+                  >
+                    <span key={search}>{search}</span>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </form>
         </div>
-
-        {/* About you */}
-        <div className="mb-10">
-          <h3 className="text-xl font-light mb-4">Details About You</h3>
-
-          <div className="mb-4">
-            <label htmlFor="aboutMe" className="block mb-1 font-bold">
-              About Me
-            </label>
-            <textarea
-              id="aboutMe"
-              value={aboutMe}
-              onChange={handleAboutMeChange}
-              className="border border-gray-300 rounded px-3 py-2 w-full"
-            ></textarea>
-            <p className="text-sm text-gray-500 mt-1">
-              Tell us about yourself, such as what you do, what your interests
-              are, and what you hope to get out of your courses.
-            </p>
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="location" className="block mb-1 font-bold">
-              Location
-            </label>
-            <input
-              type="text"
-              id="location"
-              value={location}
-              onChange={handleLocationChange}
-              className="border border-gray-300 rounded px-3 py-2 w-full"
-            />
-            <p className="text-sm text-gray-500 mt-1">
-              Tell us the city, state, or country you currently live in.
-            </p>
-          </div>
-
-          <div className="mb-4">
-            <label htmlFor="topSkills" className="block mb-1 font-bold">
-              Top Skills
-            </label>
-            <input
-              type="text"
-              id="topSkills"
-              value={topSkills}
-              onChange={handleTopSkillsChange}
-              className="border border-gray-300 rounded px-3 py-2 w-full"
-            />
-            <p className="text-sm text-gray-500 mt-1">
-              Tell us about your top skills (e.g., Machine Learning).
-            </p>
-          </div>
-        </div>
-
-        {/* Save Changes Button */}
-        <button
-          onClick={handleSaveChanges}
-          className="px-4 py-2 bg-cyan-700 hover:bg-cyan-800 text-white rounded mt-4 mb-20"
-        >
-          Save Changes
-        </button>
       </div>
-    </div>
+      {/* Render the Courses */}
+      <div className="relative z-10 mt-10">
+        <h3
+          id="courses"
+          className="text-center sm:text-left font-black text-white text-4xl mb-6 mt-10 mx-11"
+        >
+          Browse Our Courses
+        </h3>
+        <div className="block sm:flex sm:flex-wrap sm:justify-evenly">
+          {courses.map((course) => (
+            <Course
+              key={course.name}
+              name={course.name}
+              description={course.description}
+              icon={course.icon}
+              modules={course.modules}
+            />
+          ))}
+        </div>
+        <Login
+          isVisible={showLoginModal}
+          onClose={() => setShowLoginModal(false)}
+        />
+      </div>
+    </>
   );
 };
 
-export default ProfileSettings;
+export default Homepage;

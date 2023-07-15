@@ -42,23 +42,20 @@ export const LOGIN_USER = gql`
 `;
 
 export const UPDATE_USER_PROFILE = gql`
-mutation updateUserProfile($input: UpdateUserInput!) {
-  updateUserProfile(input: $input) {
-    token
-    user {
-      aboutMe
-      _id
-      email
-      firstName
-      lastName
-      aboutMe
-      topSkills
-      location
-      profilePhoto
-      password
+  mutation updateUserProfile($input: UpdateUserInput!) {
+    updateUserProfile(input: $input) {
+      token
+      user {
+        aboutMe
+        firstName
+        lastName
+        aboutMe
+        topSkills
+        location
+      }
     }
   }
-}`;
+`;
 
 export const DELETE_USER = gql`
   mutation deleteUser($id: ID!) {

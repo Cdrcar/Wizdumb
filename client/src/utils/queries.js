@@ -147,7 +147,6 @@ export const QUERY_COURSES = gql`
         name
         text
         video
-        courseName
         comments {
           comment
         }
@@ -200,7 +199,6 @@ export const QUERY_SINGLE_RESOURCE = gql`
   query getSingleResource($name: String!) {
     getResource(name: $name) {
       name
-      courseName
       video
       text
       description
@@ -212,7 +210,7 @@ export const QUERY_SINGLE_RESOURCE = gql`
 `;
 
 
-export const QUERY_RESOURCE = gql`
+export const QUERY_RESOURCES = gql`
   query getResources {
     getResources {
       name
@@ -220,7 +218,6 @@ export const QUERY_RESOURCE = gql`
       text
       description
       link
-
 
     }
   }

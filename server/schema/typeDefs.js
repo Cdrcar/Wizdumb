@@ -24,6 +24,7 @@ const typeDefs = gql`
   }
 
   type Resource {
+    _id: ID!
     name: String!
     courseName: String!
     video: String
@@ -36,8 +37,6 @@ const typeDefs = gql`
     tags: [Tag!]!
     createdAt: String!
     updatedAt: String!
-    
-   
   }
 
   type Tag {

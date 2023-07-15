@@ -60,7 +60,7 @@ const typeDefs = gql`
     password: String!
     aboutMe: String
     location: String
-    topSkills: [String]
+    topSkills: String
     profilePhoto: String
     courses: [Course!]!
     resources: [Resource!]!
@@ -75,7 +75,7 @@ const typeDefs = gql`
     lastName: String
     aboutMe: String
     location: String
-    topSkills: [String]
+    topSkills: String
     profilePhoto: String
   }
 

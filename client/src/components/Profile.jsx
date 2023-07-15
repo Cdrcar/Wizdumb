@@ -52,6 +52,20 @@ const Profile = () => {
         .map((course) => course.title)
     );
   };
+  const getLoggedInUserId = () => {
+    const token = localStorage.getItem("id_token");
+    // Extract and decode the token payload
+    const tokenPayload = token ? JSON.parse(atob(token.split(".")[1])) : null;
+  
+    // Get the _id value from the token payload
+    const userId = tokenPayload && tokenPayload.data._id;
+  
+    // Store the _id value in a const
+    const loggedInUserId = userId;
+  
+    // Return the _id value
+    return loggedInUserId;
+  };
 
   const { loading, data } = useQuery(QUERY_USER, {
     variables: { id: "" }, 
@@ -88,7 +102,7 @@ const Profile = () => {
           />
           <div className="text-center ml-2">
             <div className="mb-1 mt-5">Hey, { username } &#x1F44B;</div>
-            <div>Heres a breakdown of your progress</div>
+            <div>Here's a breakdown of your progress...</div>
           </div>
         </div>
         <div>

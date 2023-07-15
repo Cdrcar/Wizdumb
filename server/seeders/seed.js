@@ -6,6 +6,7 @@ const courseSeed = require("./courseSeed.json");
 //const tagSeed = require('./tagSeed.json');
 // const userSeed = require("./userSeed.json");
 
+
 db.once("open", async () => {
   try {
     await Course.deleteMany({});
@@ -15,6 +16,7 @@ db.once("open", async () => {
     // await Resource.collection.dropIndex("name");
     // await Resource.insertMany(modules.flat());
     // await User.insertMany(userSeed);
+
 
     const allCourses = await Course.find({});
     // console.log("All courses:", allCourses);
@@ -58,6 +60,7 @@ db.once("open", async () => {
     }
 
     console.log("All courses:", allCourses);
+
     // const allUsers = await User.find({});
     // console.log("All users:", allUsers);
   } catch (err) {

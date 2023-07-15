@@ -1,12 +1,48 @@
 import { gql } from "@apollo/client";
 
+export const QUERY_ME = gql`
+  {
+    me {
+      username
+      email
+      aboutMe
+      location
+      topSkills
+      profilePhoto
+      courses {
+        _id
+        name
+      }
+      resources {
+        _id
+        name
+        description
+      }
+      comments {
+        _id
+        comment
+      }
+      tags {
+        _id
+        name
+      }
+
+    }
+  }
+`;
+
 export const QUERY_USER = gql`
   query getUser($id: ID!) {
     getUser(id: $id) {
       _id
       username
       email
+      aboutMe
+      location
+      topSkills
+      profilePhoto
       courses {
+        _id
         name
       }
       resources {
@@ -32,7 +68,12 @@ export const QUERY_ALL_USERS = gql`
       _id
       username
       email
+      aboutMe
+      location
+      topSkills
+      profilePhoto
       courses {
+        _id
         name
       }
       resources {
@@ -43,10 +84,6 @@ export const QUERY_ALL_USERS = gql`
       comments {
         _id
         comment
-      }
-      course {
-        _id
-        name
       }
       tags {
         _id
@@ -64,20 +101,32 @@ export const QUERY_SINGLE_COURSE = gql`
       description
       icon
       modules
-
       users {
         _id
         username
       }
       comments {
         _id
-        user
+        user {
+          _id
+          firstName
+          lastName
+          username
+          email
+        }
         comment
-        resource
+        resource {
+          _id
+          name
+        }
       }
       resources {
         name
         description
+      }
+      tags {
+        _id
+        name
       }
     }
   }
@@ -92,11 +141,12 @@ export const QUERY_COURSES = gql`
       modules
       name
       resources {
-        text
+        description
+        link
         name
-        user {
-          username
-        }
+        text
+        video
+        courseName
         comments {
           comment
         }
@@ -145,16 +195,18 @@ export const QUERY_ALL_COMMENTS = gql`
   }
 `;
 
-export const QUERY_SINGLE_RESOURCE = gql`
-  query getSingleResource($id: ID!) {
-    getResource(id: $id) {
-      name
-      video
-      text
-      description
-      link
-      comment
-      user
+
+  export const QUERY_SINGLE_RESOURCE = gql `
+  query getSingleResource($name: String!) {
+    getResource(name: $name) {
+        name
+        courseName
+        video
+        text
+        description
+        link  
+        comment
+        user
     }
   }
 `;
@@ -167,6 +219,7 @@ export const QUERY_RESOURCE = gql`
       text
       description
       link
+
     }
   }
 `;
@@ -184,7 +237,7 @@ export const QUERY_SINGLE_TAG = gql`
         description
       }
       createdAt
-      UpdatedAt
+      updatedAt
     }
   }
 `;
@@ -202,7 +255,7 @@ export const QUERY_TAGS = gql`
         description
       }
       createdAt
-      UpdatedAt
+      updatedAt
     }
   }
 `;

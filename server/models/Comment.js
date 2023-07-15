@@ -14,10 +14,18 @@ const commentSchema = new Schema(
             type: String,
             required: true
         },
-        like: {
-            type: Number,
-            required: false
-        },
+        commentn: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ],
+        like: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ],
         resource: [
             {
                 type: Schema.Types.ObjectId,

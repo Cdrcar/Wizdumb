@@ -74,12 +74,12 @@ const resolvers = {
 
       return { token, user };
     },
-    updateUser: async (parent, { id, firstName, lastName, email }, context) => {
+    updateUser: async (parent, { id, firstName, lastName, email, comments, commentReply, likedComment }, context) => {
       if (!context.user) {
         throw new AuthenticationError('You need to be logged in!');
       }
 
-      return await User.findByIdAndUpdate(id, { firstName, lastName, email }, { new: true });
+      return await User.findByIdAndUpdate(id, { firstName, lastName, email, comments, commentReply, likedComment }, { new: true });
     },
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
@@ -97,8 +97,8 @@ const resolvers = {
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
     },
-    createComment: async (parent, { user, comment, title, resource, course }) => {
-      return await Comment.create({ user, comment, title, resource, course });
+    createComment: async (parent, { user, comment, title}) => {
+      return await Comment.create({ user, comment, title});
     },
     updateComment: async (parent, { id, user, comment, title, like, resource, course }) => {
       return await Comment.findByIdAndUpdate(id, { user, comment, title, like, resource, course }, { new: true });

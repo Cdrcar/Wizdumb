@@ -18,6 +18,12 @@ export const QUERY_USER = gql`
         _id
         comment
       }
+      commentReply {
+        _id
+      }
+      likedComment {
+        _id
+      }
     tags {
         _id
         name
@@ -44,6 +50,12 @@ query getAllUsers {
           _id
           comment
         }
+      commentReply {
+        _id
+      }
+      likedComment {
+        _id
+      }
       course {
             _id
             name
@@ -57,7 +69,7 @@ query getAllUsers {
 
   `;
 
-  export const QUERY_SINGLE_COURSE = gql `
+export const QUERY_SINGLE_COURSE = gql`
   query getSingleCourse($id: ID!) {
     getCourse(id: $id) {
         _id
@@ -84,7 +96,7 @@ query getAllUsers {
     }
   }`;
 
-  export const QUERY_COURSES = gql `
+export const QUERY_COURSES = gql`
   query getCourses {
     getCourses {
       _id
@@ -105,50 +117,37 @@ query getAllUsers {
     }
   }`;
 
-  export const QUERY_SINGLE_COMMENT = gql `
-  query getSingleComment($id: ID!) {
-    getComment(id:$id) {
-        _id
-        user {
-            username
-        }
-        title
-        comment
-        like
-        resource {
-            name
-        }
-        course {
-            name
-        }
-        createdAt
-        updatedAt
+export const QUERY_SINGLE_COMMENT = gql`
+query getComment($getCommentId: ID!) {
+  getComment(id: $getCommentId) {
+    _id
+    title
+    comment
+    like
+    commentn
+    user {
+      _id
+      username
     }
   }
+}
   `;
 
-  export const QUERY_ALL_COMMENTS = gql `
-  query getComments {
-    getComments {
-        _id
-        user {
-            username
-        }
-        title
-        comment
-        like
-        resource {
-            name
-        }
-        course {
-            name
-        }
-        createdAt
-        updatedAt
+export const QUERY_ALL_COMMENTS = gql`
+query getComments {
+  getComments {
+    _id
+    title
+    comment
+    like
+    commentn
+    user {
+      username
     }
-  }`;
+  }
+}`;
 
-  export const QUERY_SINGLE_RESOURCE = gql `
+export const QUERY_SINGLE_RESOURCE = gql`
   query getSingleResource($id: ID!) {
     getResource(id:$id) {
         _id
@@ -177,7 +176,7 @@ query getAllUsers {
     }
 }`;
 
-export const QUERY_RESOURCE = gql `
+export const QUERY_RESOURCE = gql`
   query getResources {
     getResources {
         _id
@@ -206,7 +205,7 @@ export const QUERY_RESOURCE = gql `
     }
 }`;
 
-export const QUERY_SINGLE_TAG = gql `
+export const QUERY_SINGLE_TAG = gql`
   query getSingleTag($id: ID!) {
     getTag(id:$id) {
         _id
@@ -224,7 +223,7 @@ export const QUERY_SINGLE_TAG = gql `
     }
 }`;
 
-export const QUERY_TAGS = gql `
+export const QUERY_TAGS = gql`
   query getAllTags{
     getTags {
         _id

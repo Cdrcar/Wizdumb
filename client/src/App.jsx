@@ -85,6 +85,7 @@ function App() {
             <Route path="/home" element={<LoggedinHomepage />} />
 
             {/* <Route path ="/course" element={<Course />} /> */}
+            <Route path="/forum/:currentId" element={<ForumPost />} />
             <Route path="/course/:courseName" element={<CoursePage />} />
           </Routes>
           <Footer />

@@ -48,12 +48,18 @@ export const UPDATE_USER = gql`
     $firstName: String
     $lastName: String
     $email: String
+    $comments: String
+    $commentReply: String
+    $likedComment: String
   ) {
     updateUser(
       id: $id
       firstName: $firstName
       lastName: $lastName
       email: $email
+      comments: $comments
+      commentReply: $commentReply
+      likedComment: $likedComment
     ) {
       _id
       firstName
@@ -111,6 +117,8 @@ export const CREATE_COMMENT = gql`
     $user: ID!
     $comment: String!
     $title: String!
+    $like: [ID]
+    $commentn: [ID]
     $resource: ID
     $course: ID
   ) {
@@ -120,6 +128,8 @@ export const CREATE_COMMENT = gql`
       title: $title
       resource: $resource
       course: $course
+      like: $like
+      commentn: $commentn
     ) {
       _id
       user {
@@ -130,6 +140,8 @@ export const CREATE_COMMENT = gql`
         email
       }
       comment
+      commentn
+      like
       title
       resource {
         _id
@@ -149,6 +161,8 @@ export const UPDATE_COMMENT = gql`
     $user: ID
     $comment: String
     $title: String
+    $like: String!
+    $commentn: String!
     $resource: ID
     $course: ID
   ) {
@@ -156,6 +170,8 @@ export const UPDATE_COMMENT = gql`
       id: $id
       user: $user
       comment: $comment
+      like: $like
+      commentn: $commentn
       resource: $resource
       course: $course
     ) {
@@ -169,7 +185,20 @@ export const UPDATE_COMMENT = gql`
       }
       comment
       title
-      like
+      commentn {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
+      like {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
       resource {
         _id
         name
@@ -195,7 +224,20 @@ export const DELETE_COMMENT = gql`
       }
       comment
       title
-      like
+      commentn {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
+      like {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
       resource {
         _id
         name

@@ -70,6 +70,18 @@ const userSchema = new Schema({
       ref: "Comment",
     },
   ],
+  commentReply: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ],
+  likedComment: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ],
   tags: [
     {
       type: Schema.Types.ObjectId,

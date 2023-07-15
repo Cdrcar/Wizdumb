@@ -18,12 +18,12 @@ const ForumWrite = () => {
         const { name, value } = e.target;
         const username = AuthService.getProfile()
         console.log(username.data._id);
-        setPostState({ ...postState, [name]: value, user: username.data._id, createdAt: "20", updatedAt: "Date.now()" });
+        setPostState({ ...postState, [name]: value, user: username.data._id});
     };
 
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
-        console.log('in')
+        console.log('postState:', postState);
         try {
             const { data } = await createComment({
                 variables: { ...postState },

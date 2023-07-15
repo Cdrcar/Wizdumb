@@ -17,7 +17,8 @@ const typeDefs = gql`
     _id: ID!
     user: User!
     title: String!
-    like: String!
+    like: [ID]
+    commentn: [ID]
     comment: String!
     resource: Resource
     course: Course
@@ -98,6 +99,9 @@ const typeDefs = gql`
       firstName: String
       lastName: String
       email: String
+      comments: String
+      commentReply: String
+      likedComment: String
     ): User!
     deleteUser(id: ID!): User!
     createCourse(name: String!, description: String!): Course!
@@ -107,7 +111,8 @@ const typeDefs = gql`
       user: ID!
       comment: String!
       title: String!
-      like: String
+      like: [ID]
+      commentn: [ID]
       resource: ID
       course: ID
     ): Comment!
@@ -116,7 +121,8 @@ const typeDefs = gql`
       user: ID
       comment: String
       title: String
-      like: String
+      like: [ID]
+      commentn: [ID]
       resource: ID
       course: ID
     ): Comment!

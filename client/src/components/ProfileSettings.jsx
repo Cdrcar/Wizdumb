@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
 import { UPDATE_USER_PROFILE } from "../utils/mutations";
+import { DELETE_USER } from "../utils/mutations";
 import AuthService from "../utils/auth";
+import { Navigate } from "react-router-dom";
 
 const ProfileSettings = () => {
   const [firstName, setFirstName] = useState("");
@@ -15,7 +17,7 @@ const ProfileSettings = () => {
   useEffect(() => {
     const fetchProfileId = async () => {
       const profileData = await AuthService.getProfile().data;
-     
+      console.log(profileData._id);
       setUserId(profileData._id);
     };
     fetchProfileId();
@@ -77,6 +79,28 @@ const ProfileSettings = () => {
       console.error("Failed to save:", error);
     }
   };
+  const [deleteUser] = useMutation(DELETE_USER);
+
+  const handleDelete = async () => {
+    try {
+      const response = await deleteUser({
+        variables: {
+          id: userId,
+        },
+      });
+      console.log("Profile deleted", response);
+      window.location.assign("/");
+    } catch (error) {
+      console.error("Failed to delete profile:", error);
+    }
+  };
+  const handleAlert = () => {
+    const confirmed = window.confirm("Are you sure you want to delete?");
+    if (confirmed) {
+      handleDelete();
+    }
+  };
+
   // const handleSaveChanges = () => {
   //   // Handle saving changes
   //   // TODO: send the updates to the server
@@ -190,6 +214,13 @@ const ProfileSettings = () => {
           className="px-4 py-2 bg-cyan-700 hover:bg-cyan-800 text-white rounded mt-4 mb-20"
         >
           Save Changes
+        </button>
+        {/* Delete Button */}
+        <button
+          onClick={handleAlert}
+          className="ml-40 px-4 py-2 bg-red-700 hover:bg-red-400 text-white rounded mt-4 mb-20"
+        >
+          Delete Profile
         </button>
       </div>
     </div>

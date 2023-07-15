@@ -80,7 +80,8 @@ const LoggedInNav = () => {
             } absolute right-0 bg-white border border-gray-300`}
           >
             <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer">
-              My Courses
+            <Link to="/home">Profile
+            </Link>
             </li>
             <li
               className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer"

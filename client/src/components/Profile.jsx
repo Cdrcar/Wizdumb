@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import profileImg from "../assets/profile-image.png";
 import { useQuery } from "@apollo/client";
-import { QUERY_USER } from "../utils/queries";
+import { QUERY_ME } from "../utils/queries";
 
 const Profile = () => {
   const [completedCount, setCompletedCount] = useState(0);
@@ -11,7 +11,7 @@ const Profile = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSearch, setCurrentSearch] = useState([]);
   const [showPlaceholders, setShowPlaceholders] = useState(false); // New state
-  const [username, setUsername] = useState("");
+  // const [username, setUsername] = useState("");
 
 
   const handleCompletedIncrement = () => {
@@ -52,34 +52,19 @@ const Profile = () => {
         .map((course) => course.title)
     );
   };
-  const getLoggedInUserId = () => {
-    const token = localStorage.getItem("id_token");
-    // Extract and decode the token payload
-    const tokenPayload = token ? JSON.parse(atob(token.split(".")[1])) : null;
-  
-    // Get the _id value from the token payload
-    const userId = tokenPayload && tokenPayload.data._id;
-  
-    // Store the _id value in a const
-    const loggedInUserId = userId;
-  
-    // Return the _id value
-    return loggedInUserId;
-  };
 
-  const { loading, data } = useQuery(QUERY_USER, {
-    variables: { id: "" }, 
-  });
-
-  useEffect(() => {
-    if (data && data.getUser) {
-      setUsername(data.getUser.username);
-    }
-  }, [data]);
+  const { loading, data, error } = useQuery(QUERY_ME);
 
   if (loading) {
     return <div>Loading...</div>;
   }
+
+  if (error) {
+    return <div>Error loading user data</div>;
+  }
+
+  const username = data?.me?.username;
+  
 
   const renderPlaceholderCards = () => {
     return (

@@ -234,6 +234,7 @@ const resolvers = {
     },
   },
   Resource: {
+    _id: (parent) => parent._id, 
     user: async (parent) => {
       return await User.findById(parent.user);
     },

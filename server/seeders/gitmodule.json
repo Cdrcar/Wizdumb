@@ -8,7 +8,7 @@
     "link": ""
   },
   {
-    "name": "Resolving Merge Conflicts (VS code)",
+    "name": "Resolving Merge Conflicts",
     "courseName": "github",
     "video": "https://www.youtube.com/watch?v=lz5OuKzvadQ",
     "text": "",
@@ -24,7 +24,7 @@
     "link": "https://sidtechtalks.medium.com/a-quick-git-bash-commands-cheat-sheet-64a147220a60"
   },
   {
-    "name": "Gitbash Official documentation",
+    "name": "Official documentation",
     "courseName": "github",
     "video": "",
     "text": "",
@@ -32,7 +32,7 @@
     "link": "https://git-scm.com/doc"
   },
   {
-    "name": "Git and Github tutorial",
+    "name": "Github tutorial",
     "courseName": "github",
     "video": "https://www.youtube.com/watch?v=iGutIN5t9Mo",
     "text": "",

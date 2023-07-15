@@ -17,8 +17,9 @@ db.once("open", async () => {
   try {
     await Course.deleteMany({});
     await Course.insertMany(courseSeed);
-    await User.deleteMany({});
+    // await User.deleteMany({});
     await Resource.deleteMany({});
+    // await Resource.collection.dropIndex("name");
     await Resource.insertMany(modules.flat());
     // await User.insertMany(userSeed);
 
@@ -29,8 +30,8 @@ db.once("open", async () => {
     console.log("All resources:", allResources);
 
 
-    const allUsers = await User.find({});
-    console.log("All users:", allUsers);
+    // const allUsers = await User.find({});
+    // console.log("All users:", allUsers);
   } catch (err) {
     console.error(err);
     process.exit(1);

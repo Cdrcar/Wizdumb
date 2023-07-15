@@ -1,6 +1,6 @@
 [
   {
-    "name": "Express documentation",
+    "name": "Official Documentation",
     "courseName": "express",
     "video": "",
     "text": "",
@@ -8,7 +8,7 @@
     "link": "https://expressjs.com/en/guide/routing.html"
   },
   {
-    "name": "MDN Web docs- ExpressJS",
+    "name": "MDN docs",
     "courseName": "express",
     "video": "",
     "text": "",
@@ -16,7 +16,7 @@
     "link": "https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs"
   },
   {
-    "name": "Learn Express JS in 35 Minutes",
+    "name": "Introduction to ExpressJS",
     "courseName": "express",
     "video": "https://www.youtube.com/watch?v=SccSCuHhOw0",
     "text": "",
@@ -24,7 +24,7 @@
     "link": ""
   },
   {
-    "name": "ExpressJS Video series",
+    "name": "Video series",
     "courseName": "express",
     "video": "https://www.youtube.com/watch?v=39znK--Yo1o&list=PL_cUvD4qzbkwp6pxx27pqgohrsP8v1Wj2",
     "text": "",
@@ -32,7 +32,7 @@
     "link": ""
   },
   {
-    "name": "Example of express router (With comments)",
+    "name": "Example router",
     "courseName": "express",
     "video": "",
     "text": "\\n<code>const express = require('express');\\nconst path = require('path');\\nconst api = require('./routes/index.js');\\n\\nconst PORT = 3001;\\n\\nconst app = express();\\n\\n// Middleware for parsing JSON and urlencoded form data\\napp.use(express.json());\\napp.use(express.urlencoded({ extended: true }));\\napp.use('/api', api);\\n\\napp.use(express.static('public'));\\n\\n// GET Route for homepage\\napp.get('/', (req, res) =>\\n  res.sendFile(path.join(__dirname, '/public/index.html'))\\n);\\n\\n// GET Route for feedback page\\napp.get('/feedback', (req, res) =>\\n  res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))\\n);\\n\\napp.listen(PORT, () =>\\n  console.log(`App listening at http://localhost:${PORT} 🚀`))\\n</code>\\n",

@@ -3,7 +3,7 @@
     "name": "Javascript",
     "description": "JavaScript is a dynamic programming language that's used for web development, in web applications, for game development, and lots more. It allows you to implement dynamic features on web pages that cannot be done with only HTML and CSS.",
     "icon": "javascript",
-    "modules": ["Hello World", "Conditionals", "Functions", "Arrays", "Loops"],
+    "modules": ["Learn JS", "JS Crash course", "For Loop", "Algorithms", "Documentation for JS"],
     "users": [],
     "comments": [],
     "resources": [],
@@ -14,11 +14,11 @@
     "description": "HTML and CSS are the building blocks of web development.Learn to create and style structured  webpages and develop an understanding of HTML's markup capabilities. This course covers how to create, structure and style web pages.",
     "icon": "html",
     "modules": [
-      "Elements and Structure",
-      "Forms",
-      "Semantic HTML",
-      "Syntax and Selectors",
-      "Responsive design"
+      "Intro to HTML",
+      "HTML For beginners",
+      "MDN Docs for HTML",
+      "HTML Cheat sheet",
+      "CSS Crash course"
     ],
     "users": [],
     "comments": [],
@@ -48,10 +48,10 @@
     "icon": "express",
     "modules": [
       "Introduction to ExpressJS",
-      "Routes",
-      "Middleware",
-      "Template engines",
-      "Routing challenges"
+      "Example Router",
+      "MDN Docs",
+      "official Documentation",
+      "Video Series"
     ],
     "users": [],
     "comments": [],
@@ -63,11 +63,11 @@
     "description": "Git is a distributed version control system that allows a developer to track changes made to files in their projects.It serves as a popular platform for open-source projects and offers extensive documentation and community support.",
     "icon": "github",
     "modules": [
-      "Introduction to Github",
-      "Setting up Github ",
-      "Creating and sharing repositories",
-      "Pushing code to github",
-      "Pull requests and merging"
+      "Intro to git",
+      "Github tutorial",
+      "Gitbash Cheat sheet",
+      "Resolving Merge Conflicts",
+      "Official documentation"
     ],
     "users": [],
     "comments": [],

@@ -12,8 +12,10 @@ const ProfileSettings = () => {
   const [aboutMe, setAboutMe] = useState("");
   const [location, setLocation] = useState("");
   const [topSkills, setTopSkills] = useState("");
-  const [profilePhoto, setProfilePhoto] = useState(null);
+  const [profilePhoto, setProfilePhoto] = useState("");
   const [userId, setUserId] = useState(null);
+
+  // Fetch user details
   useEffect(() => {
     const fetchProfileId = async () => {
       const profileData = await AuthService.getProfile().data;
@@ -22,26 +24,33 @@ const ProfileSettings = () => {
     };
     fetchProfileId();
   }, []);
+
   const { loading, error, data } = useQuery(QUERY_USER, {
     variables: { id: userId },
     skip: !userId,
   });
+
   useEffect(() => {
     const setProfile = async () => {
       const details = data?.getUser;
+      console.log(data?.getUser);
       setAboutMe(data?.getUser.aboutMe);
       setLocation(data?.getUser.location);
       setFirstName(data?.getUser.firstName);
       setLastName(data?.getUser.lastName);
       setTopSkills(data?.getUser.topSkills);
+      setProfilePhoto(data?.getUser.profilePhoto);
     };
     setProfile();
-  }, []);
+  }, [data]);
+
+  // Updating user details
   const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE, {
     onError: (error) => {
       console.error("Failed to save:", error);
     },
   });
+
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
   };
@@ -57,9 +66,16 @@ const ProfileSettings = () => {
   const handleTopSkillsChange = (e) => {
     setTopSkills(e.target.value);
   };
-  const handleProfilePhotoUpload = (e) => {
-    const file = e.target.files[0];
-    setProfilePhoto(file);
+  const convertToBase64 = (e) => {
+    console.log(e);
+    let reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      setProfilePhoto(reader.result);
+    };
+    reader.onerror = (error) => {
+      console.log("Error: ", error);
+    };
   };
   const handleSaveChanges = async () => {
     try {
@@ -71,6 +87,7 @@ const ProfileSettings = () => {
             aboutMe,
             location,
             topSkills,
+            profilePhoto,
           },
         },
       });
@@ -79,6 +96,8 @@ const ProfileSettings = () => {
       console.error("Failed to save:", error);
     }
   };
+
+  //Delete user
   const [deleteUser] = useMutation(DELETE_USER);
 
   const handleDelete = async () => {
@@ -101,16 +120,6 @@ const ProfileSettings = () => {
     }
   };
 
-  // const handleSaveChanges = () => {
-  //   // Handle saving changes
-  //   // TODO: send the updates to the server
-  //   console.log("Saving changes...");
-  //   console.log("First Name:", firstName);
-  //   console.log("Last Name:", lastName);
-  //   console.log("About Me:", aboutMe);
-  //   console.log("Location:", location);
-  //   console.log("Top Skills:", topSkills);
-  // };
   return (
     <div className="max-w-xl mx-auto">
       <div>
@@ -124,6 +133,7 @@ const ProfileSettings = () => {
             id="firstName"
             value={firstName}
             onChange={handleFirstNameChange}
+            // placeholder={}
             className="border border-gray-300 rounded px-3 py-2 w-full"
           />
           <label className="block mb-3 font-bold">Last Name</label>
@@ -141,16 +151,15 @@ const ProfileSettings = () => {
             Profile Photo
           </label>
           <div className="flex items-center">
-            <div className="w-32 h-32 bg-gray-200  flex items-center justify-center mr-2">
-              Photo
+            <div className="w-32 h-32 mt-5 mb-5 bg-gray-200  flex items-center justify-center mr-2">
+              {profilePhoto == "" || profilePhoto == null ? (
+                ""
+              ) : (
+                <img className="" src={profilePhoto} alt="profile" />
+              )}
             </div>
-            <input
-              type="file"
-              id="profilePhoto"
-              accept="image/*"
-              onChange={handleProfilePhotoUpload}
-              className="hidden"
-            />
+            <input accept="image/" type="file" onChange={convertToBase64} />
+
             <label
               htmlFor="profilePhoto"
               className="px-4 py-2 bg-cyan-700 hover:bg-cyan-800 text-white rounded cursor-pointer"

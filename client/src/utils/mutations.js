@@ -52,6 +52,7 @@ export const UPDATE_USER_PROFILE = gql`
         aboutMe
         topSkills
         location
+        profilePhoto
       }
     }
   }

@@ -51,10 +51,11 @@ mutation updateUserProfile($input: UpdateUserInput!) {
       email
       firstName
       lastName
+      aboutMe
+      topSkills
       location
       profilePhoto
       password
-      topSkills
     }
   }
 }`;

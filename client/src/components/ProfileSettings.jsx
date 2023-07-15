@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { UPDATE_USER_PROFILE } from "../utils/mutations";
-import { QUERY_ME } from "../utils/queries";
+import { QUERY_USER } from "../utils/queries";
+import { UPDATE_USER_PROFILE } from "../utils/mutations"
 import AuthService from "../utils/auth";
 
 const ProfileSettings = () => {
@@ -15,72 +15,85 @@ const ProfileSettings = () => {
 
   const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE);
 
-  const { loading, data } = useQuery(QUERY_ME, {
-    variables: { id: userId },
-  });
-
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const loggedIn = AuthService.loggedIn();
-        if (!loggedIn) {
-          // 
-          return;
-        }
-
-        const userProfile = await AuthService.getProfile();
-        const { id, firstName, lastName, aboutMe, location, topSkills } = userProfile;
-        setUserId(id);
-        setFirstName(firstName);
-        setLastName(lastName);
-        setAboutMe(aboutMe);
-        setLocation(location);
-        setTopSkills(topSkills);
-      } catch (error) {
-        console.error("Failed to fetch user profile:", error);
-      }
+    const fetchProfile = async () => {
+      const profileData = await AuthService.getProfile().data;
+      console.log("THIS PART", profileData)
+      setUserId(profileData._id);
     };
-
-    fetchUserProfile();
+    fetchProfile();
   }, []);
 
-  useEffect(() => {
-    if (data && data.getUser) {
-      const { firstName, lastName, aboutMe, location, topSkills } = data.getUser;
-      setFirstName(firstName);
-      setLastName(lastName);
-      setAboutMe(aboutMe);
-      setLocation(location);
-      setTopSkills(topSkills);
-    }
-  }, [data]);
+  const { loading, error, data } = useQuery(QUERY_USER, {
+    variables: { id: userId },
+    skip: !userId,
+  });
 
-  const handleSaveChanges = async (e) => {
-    e.preventDefault();
-console.log("Handle Changes")
-    try {
-      const response = await updateUserProfile({
-        variables: {
-          id: userId,
-          firstName,
-          lastName,
-          aboutMe,
-          location,
-          topSkills,
-          profilePhoto: profilePhoto || undefined,
-        },
-      });
+  const details = data?.getUser;
+  console.log("THIS", data);
+ 
+ 
 
-      console.log("Changes saved", response);
-    } catch (error) {
-      console.error("Failed to save:", error);
-    }
+
+  const handleFirstNameChange = (e) => {
+    setFirstName(e.target.value);
   };
 
+  const handleLastNameChange = (e) => {
+    setLastName(e.target.value);
+  };
+
+  const handleAboutMeChange = (e) => {
+    setAboutMe(e.target.value);
+  };
+
+  const handleLocationChange = (e) => {
+    setLocation(e.target.value);
+  };
+
+  const handleTopSkillsChange = (e) => {
+    setTopSkills(e.target.value);
+  };
   const handleProfilePhotoUpload = (e) => {
     const file = e.target.files[0];
     setProfilePhoto(file);
   };
+  // const handleSaveChanges = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await updateUserProfile({
+  //       variables: {
+  //         input: {
+  //           id: userId,
+  //           firstName,
+  //           lastName,
+  //           aboutMe,
+  //           location,
+  //           topSkills,
+  //           profilePhoto: profilePhoto || undefined,
+  //         },
+  //       },
+  //     });
+  //     console.log("Changes saved", response);
+  //   } catch (error) {
+  //     console.error("Failed to save:", error);
+  //   }
+  // };
+
+  const handleSaveChanges = () => {
+    
+    // Handle saving changes
+    // TODO: send the updates to the server
+    console.log("Saving changes...");
+    console.log("Full Name:", firstName);
+    console.log("Full Name:", lastName);
+    console.log("About Me:", aboutMe);
+    console.log("Location:", location);
+    console.log("Top Skills:", topSkills);
+  };
+
+
 
   return (
     <div className="max-w-xl mx-auto">
@@ -94,7 +107,7 @@ console.log("Handle Changes")
             type="text"
             id="firstName"
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={handleFirstNameChange}
             className="border border-gray-300 rounded px-3 py-2 w-full"
           />
           <label className="block mb-3 font-bold">Last Name</label>
@@ -102,7 +115,7 @@ console.log("Handle Changes")
             type="text"
             id="lastName"
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={handleLastNameChange}
             className="border border-gray-300 rounded px-3 py-2 w-full"
           />
         </div>
@@ -143,7 +156,7 @@ console.log("Handle Changes")
             <textarea
               id="aboutMe"
               value={aboutMe}
-              onChange={(e) => setAboutMe(e.target.value)}
+              onChange={handleAboutMeChange}
               className="border border-gray-300 rounded px-3 py-2 w-full"
             ></textarea>
             <p className="text-sm text-gray-500 mt-1">
@@ -160,7 +173,7 @@ console.log("Handle Changes")
               type="text"
               id="location"
               value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={handleLocationChange}
               className="border border-gray-300 rounded px-3 py-2 w-full"
             />
             <p className="text-sm text-gray-500 mt-1">
@@ -176,7 +189,7 @@ console.log("Handle Changes")
               type="text"
               id="topSkills"
               value={topSkills}
-              onChange={(e) => setTopSkills(e.target.value)}
+              onChange={handleTopSkillsChange}
               className="border border-gray-300 rounded px-3 py-2 w-full"
             />
             <p className="text-sm text-gray-500 mt-1">

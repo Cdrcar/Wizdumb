@@ -59,7 +59,10 @@ const Homepage = () => {
       <div className="fixed bg-hero-pattern bg-cover bg-no-repeat bg-center h-screen w-screen z-0"></div>
       <section className="relative w-full h-4/6">
         <div className="flex flex-col sm:flex-row items-center mt-20 sm:mt-40 inset-0 top-[80px] max-w-7xl mx-auto sm:px-16 px-6 items-start gap-5 justify-end">
-          <Logo className="" />
+          <div className="max-w-[300px] w-auto min-w-[150px]">
+            <Logo />
+          </div>
+
           <div className="text-center">
             <h1 className="font-black self-center lg:text-[80px] sm:text-[60px] xs:text-[50px] text-[40px] lg:leading-[98px] mt-2 text-sky-500 mt-10 text-center sm:text-right">
               Wiz<span className="text-rose-600">Dumb</span>

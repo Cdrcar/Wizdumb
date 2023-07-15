@@ -16,9 +16,7 @@ const Signup = () => {
   });
 
   const [addUser, { error: addUserError, data: addUserResponse }] = useMutation(ADD_USER);
-
   const [loginUser, { error: loginError }] = useMutation(LOGIN_USER);
-
   const handleChange = (event) => {
    
     const { name, value } = event.target;

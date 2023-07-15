@@ -93,11 +93,12 @@ query getAllUsers {
       modules
       name
       resources {
-        text
+        description
+        link
         name
-        user {
-          username
-        }
+        text
+        video
+        courseName
         comments {
           comment
         }
@@ -159,7 +160,7 @@ query getAllUsers {
     }
 }`;
 
-export const QUERY_RESOURCE = gql `
+export const QUERY_RESOURCES = gql `
   query getResources {
     getResources {
         name

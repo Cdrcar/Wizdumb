@@ -18,6 +18,14 @@ const resolvers = {
       return await Course.findById(id);
     },
     getCourses: async () => {
+      resources: async (parent) => {
+        try {
+          const resources = await Resource.find({ courseName: parent._id });
+          return resources;
+        } catch (error) {
+          throw new Error("Error occurred while fetching resources for the course.");
+        }
+      },
       console.log("testing courses");
       return await Course.find();
     },
@@ -147,7 +155,12 @@ const resolvers = {
       return await Comment.find({ course: parent._id });
     },
     resources: async (parent) => {
-      return await Resource.find({ course: parent._id });
+      try {
+        const resources = await Resource.find({ course: parent._id });
+        return resources;
+      } catch (error) {
+        throw new Error("Error occurred while fetching resources for the course.");
+      }
     },
     tags: async () => {
       return await Tag.find();

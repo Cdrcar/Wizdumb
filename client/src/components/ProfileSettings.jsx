@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { QUERY_USER } from "../utils/queries";
-import { UPDATE_USER_PROFILE } from "../utils/mutations"
+import { UPDATE_USER_PROFILE } from "../utils/mutations";
 import AuthService from "../utils/auth";
 
 const ProfileSettings = () => {
@@ -16,12 +16,12 @@ const ProfileSettings = () => {
   const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE);
 
   useEffect(() => {
-    const fetchProfile = async () => {
+    const fetchProfileId = async () => {
       const profileData = await AuthService.getProfile().data;
-      console.log("THIS PART", profileData)
+
       setUserId(profileData._id);
     };
-    fetchProfile();
+    fetchProfileId();
   }, []);
 
   const { loading, error, data } = useQuery(QUERY_USER, {
@@ -29,11 +29,15 @@ const ProfileSettings = () => {
     skip: !userId,
   });
 
-  const details = data?.getUser;
-  console.log("THIS", data);
- 
- 
-
+  useEffect(() => {
+    const setProfile = async () => {
+      const details = data?.getUser;
+      setAboutMe(data?.getUser.aboutMe);
+      console.log(data?.getUser.aboutMe);
+      setLocation(data?.getUser.location);
+    };
+    setProfile();
+  }, []);
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -82,7 +86,6 @@ const ProfileSettings = () => {
   // };
 
   const handleSaveChanges = () => {
-    
     // Handle saving changes
     // TODO: send the updates to the server
     console.log("Saving changes...");
@@ -92,8 +95,6 @@ const ProfileSettings = () => {
     console.log("Location:", location);
     console.log("Top Skills:", topSkills);
   };
-
-
 
   return (
     <div className="max-w-xl mx-auto">

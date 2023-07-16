@@ -18,12 +18,9 @@ const typeDefs = gql`
   type Comment {
     _id: ID!
     user: User!
-    title: String!
-    like: [ID]
-    commentn: [ID]
     comment: String!
-    resource: Resource
-    course: Course
+    resource: Resource!
+    course: Course!
     createdAt: String!
     updatedAt: String!
   }
@@ -108,17 +105,6 @@ const typeDefs = gql`
     ): Auth
     updateUserProfile(input: UpdateUserInput!): Auth
     loginUser(email: String!, password: String!): Auth
-
-    updateUser(
-      id: ID!
-      firstName: String
-      lastName: String
-      email: String
-      comments: String
-      commentReply: String
-      likedComment: String
-    ): User!
-
     deleteUser(id: ID!): User!
     createCourse(name: String!, description: String!): Course!
     updateCourse(id: ID!, name: String, description: String): Course!
@@ -129,19 +115,13 @@ const typeDefs = gql`
     createComment(
       user: ID!
       comment: String!
-      title: String!
-      like: [ID]
-      commentn: [ID]
-      resource: ID
-      course: ID
+      resource: ID!
+      course: ID!
     ): Comment!
     updateComment(
       id: ID!
       user: ID
       comment: String
-      title: String
-      like: [ID]
-      commentn: [ID]
       resource: ID
       course: ID
     ): Comment!

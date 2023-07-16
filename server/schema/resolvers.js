@@ -88,7 +88,6 @@ const resolvers = {
 
       return { token, user };
     },
-    
     updateUserProfile: async (parent, { input }, context) => {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
@@ -114,9 +113,6 @@ const resolvers = {
       return { token, user: updatedUser };
     },
     
-
-      return await User.findByIdAndUpdate(id, { firstName, lastName, email, comments, commentReply, likedComment }, { new: true });
-    },
 
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
@@ -153,13 +149,15 @@ const resolvers = {
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
     },
-    createComment: async (parent, { user, comment, title}) => {
-      return await Comment.create({ user, comment, title});
+    createComment: async (parent, { user, comment, resource, course }) => {
+      return await Comment.create({ user, comment, resource, course });
     },
-
-    updateComment: async (parent, { id, user, comment, title, commentn, like, resource, course }) => {
-      return await Comment.findByIdAndUpdate(id, { user, comment, title, commentn, like, resource, course }, { new: true });
-      
+    updateComment: async (parent, { id, user, comment, resource, course }) => {
+      return await Comment.findByIdAndUpdate(
+        id,
+        { user, comment, resource, course },
+        { new: true }
+      );
     },
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);

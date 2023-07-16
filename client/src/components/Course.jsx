@@ -26,12 +26,18 @@ const Course = ({ name, description, icon, _id }) => {
     try {
       console.log("Course Information:", name, description, icon, _id); // Log the course information
       await saveCourse({ variables: { courseId: _id } });
-      // Optionally, you can display a success message or update the component's state to reflect the change
+  
+      // Display notification
+      window.alert("Course successfully added to your profile!");
+  
+      // Optionally, you can also update the component's state to reflect the change
+  
     } catch (error) {
       console.log(error);
       // Handle any error that occurred during the mutation
     }
   };
+  
   
 
   let iconName;

@@ -1,5 +1,4 @@
 import React from "react";
-import Tilt from "react-parallax-tilt";
 import icons from "../constants/index";
 import Lottie from "lottie-react";
 import { useNavigate } from "react-router-dom";
@@ -17,18 +16,20 @@ const Course = ({ name, description, icon, _id }) => {
 
   const [removeSavedCourse] = useMutation(REMOVE_SAVED_COURSE);
 
-//   const handleClick = () => {
-//     history(`course/${name}`);
-//   };
-
   const handleRemoveCourse = async (event) => {
     event.stopPropagation();
+    event.preventDefault(); // Prevent following the link
+  
     try {
       if (loggedIn) {
-        const { data } = await removeSavedCourse({ variables: { courseId: _id } });
-        if (data) {
-          // Course removed successfully
-          console.log("Course removed:", data.removeSavedCourse);
+        const confirmDelete = window.confirm("Are you sure you want to delete this course?");
+        if (confirmDelete) {
+          const { data } = await removeSavedCourse({ variables: { courseId: _id } });
+          if (data) {
+            // Course removed successfully
+            console.log("Course removed:", data.removeSavedCourse);
+            window.location.reload(); // Reload the page
+          }
         }
       } else {
         console.log("User not logged in");
@@ -39,6 +40,9 @@ const Course = ({ name, description, icon, _id }) => {
       // Handle error
     }
   };
+  
+  
+  
 
   let iconName;
   const keyExists = icons.find((obj) => obj.hasOwnProperty(icon));
@@ -49,42 +53,31 @@ const Course = ({ name, description, icon, _id }) => {
   }
 
   return (
-    <div>
-      <Tilt tiltMaxAngleY={10} tiltMaxAngleX={10} perspective={1000}>
-        <div
-          className="relative bg-white bg-opacity-85 hover:cursor-pointer mx-6 rounded-2xl border-slate-700 border-2 p-2 sm:w-[360px] xs:w-[250px] m-5"
-        //   onClick={handleClick}
-        >
-          <div className="relative w-full h-[230px] rounded-xl bg-transparent">
-            <Lottie
-              animationData={iconName}
-              className="w-full h-full object-cover rounded-xl"
-            />
-          </div>
-          <div className="m-2 p-2">
-            <div>
-              <h3 className="text-black font-bold flex flex-wrap md:text-[22px] sm:text-[14px] xs:text-[10px] ">
-                {name}
-              </h3>
-              <p className="mt-2 text-black text-[18px] flex flex-wrap lg:text-[20px] md:text-[16px] sm:text-[10px] xs:text-[8px]">
-                {description}
-              </p>
-            </div>
-          </div>
-          <div>
-            {loggedIn ? (
-              <div
-                className="absolute top-2 right-2 bg-black rounded-full w-12 h-12 flex items-center justify-center text-white text-4xl cursor-pointer"
-                onClick={handleRemoveCourse}
-              >
-                -
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
+    <div className="w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
+<div className="relative bg-white bg-opacity-85 rounded-lg border-slate-700 border-2 p-4 h-30 w-40 flex flex-col justify-between">
+        <div className="relative h-32 mb-4">
+          <Lottie
+            animationData={iconName}
+            className="w-full h-full object-cover"
+          />
         </div>
-      </Tilt>
+        <div>
+          <h3 className="text-black font-bold text-lg mb-2">{name}</h3>
+          <p className="text-black text-sm">{description}</p>
+        </div>
+        <div>
+          {loggedIn ? (
+            <div
+              className="bg-black rounded-full w-8 h-8 flex items-center justify-center text-white text-xl cursor-pointer"
+              onClick={handleRemoveCourse}
+            >
+              <FaMinus />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
+      </div>
     </div>
   );
 };

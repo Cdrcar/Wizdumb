@@ -134,21 +134,21 @@ const Profile = () => {
           </div>
         </div>
         <div className="mt-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {courses.map((course) => (
-              <div key={course._id} className="max-w-xs mx-auto">
-                {/* <Link to={`/course/${encodeURIComponent(course.name)}`}> */}
-                  <Course
-                    name={course.name}
-                    icon={course.icon}
-                    modules={course.modules}
-                    _id={course._id}
-                  />
-                {/* </Link> */}
-              </div>
-            ))}
-          </div>
-        </div>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    {courses.map((course) => (
+      <div key={course._id} className="max-w-xs mx-auto">
+        <Link to={`/course/${encodeURIComponent(course.name)}`}>
+        <Course
+          name={course.name}
+          icon={course.icon}
+          modules={course.modules}
+          _id={course._id}
+        />
+        </Link>
+      </div>
+    ))}
+  </div>
+</div>
       </div>
     </div>
   );

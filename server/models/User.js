@@ -63,13 +63,28 @@ const userSchema = new Schema(
     },
     topSkills: {
       type: String,
-     
-      
     },
+  ],
+  commentReply: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ],
+  likedComment: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment"
+    }
+  ],
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tag",
+      }
+    ],
     profilePhoto: {
       type: String,
-     
-      
     },
     courses: [
       {

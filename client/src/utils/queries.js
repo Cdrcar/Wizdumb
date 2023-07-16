@@ -55,7 +55,15 @@ export const QUERY_USER = gql`
         _id
         comment
       }
-      tags {
+
+      commentReply {
+        _id
+      }
+      likedComment {
+        _id
+      }
+    tags {
+
         _id
         name
       }
@@ -75,17 +83,31 @@ export const QUERY_ALL_USERS = gql`
       profilePhoto
       courses {
         _id
-        name
-      }
-      resources {
+
+        username
+        email
+        courses {
+          name
+        }
+        resources {
+          _id
+          name
+          description
+        }
+        comments {
+          _id
+          comment
+        }
+      commentReply {
         _id
-        name
-        description
       }
-      comments {
+      likedComment {
         _id
-        comment
       }
+      course {
+            _id
+            name
+          }
       tags {
         _id
         name
@@ -156,44 +178,36 @@ export const QUERY_COURSES = gql`
 `;
 
 export const QUERY_SINGLE_COMMENT = gql`
-  query getSingleComment($id: ID!) {
-    getComment(id: $id) {
+query getComment($getCommentId: ID!) {
+  getComment(id: $getCommentId) {
+    _id
+    title
+    comment
+    like
+    commentn
+    user {
       _id
-      user {
-        username
-      }
-      comment
-      resource {
-        name
-      }
-      course {
-        name
-      }
-      createdAt
-      updatedAt
+      username
     }
   }
-`;
+}
+  `;
 
 export const QUERY_ALL_COMMENTS = gql`
-  query getComments {
-    getComments {
-      _id
-      user {
-        username
-      }
-      comment
-      resource {
-        name
-      }
-      course {
-        name
-      }
-      createdAt
-      updatedAt
+query getComments {
+  getComments {
+    _id
+    title
+    comment
+    like
+    commentn
+    user {
+      username
     }
   }
-`;
+}`;
+
+
 
 export const QUERY_SINGLE_RESOURCE = gql`
   query getSingleResource($name: String!) {

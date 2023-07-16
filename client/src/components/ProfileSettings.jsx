@@ -19,7 +19,6 @@ const ProfileSettings = () => {
   useEffect(() => {
     const fetchProfileId = async () => {
       const profileData = await AuthService.getProfile().data;
-      console.log(profileData._id);
       setUserId(profileData._id);
     };
     fetchProfileId();
@@ -33,7 +32,6 @@ const ProfileSettings = () => {
   useEffect(() => {
     const setProfile = async () => {
       const details = data?.getUser;
-      console.log(data?.getUser);
       setAboutMe(data?.getUser.aboutMe);
       setLocation(data?.getUser.location);
       setFirstName(data?.getUser.firstName);
@@ -67,7 +65,6 @@ const ProfileSettings = () => {
     setTopSkills(e.target.value);
   };
   const convertToBase64 = (e) => {
-    console.log(e);
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {
@@ -92,13 +89,19 @@ const ProfileSettings = () => {
         },
       });
       console.log("Changes saved", response);
+      window.location.assign("/profilesettings");
     } catch (error) {
       console.error("Failed to save:", error);
     }
   };
 
   //Delete user
+
   const [deleteUser] = useMutation(DELETE_USER);
+
+  const handleLogout = () => {
+    AuthService.logout();
+  };
 
   const handleDelete = async () => {
     try {
@@ -108,6 +111,7 @@ const ProfileSettings = () => {
         },
       });
       console.log("Profile deleted", response);
+      handleLogout();
       window.location.assign("/");
     } catch (error) {
       console.error("Failed to delete profile:", error);
@@ -159,13 +163,6 @@ const ProfileSettings = () => {
               )}
             </div>
             <input accept="image/" type="file" onChange={convertToBase64} />
-
-            <label
-              htmlFor="profilePhoto"
-              className="px-4 py-2 bg-cyan-700 hover:bg-cyan-800 text-white rounded cursor-pointer"
-            >
-              Upload Photo
-            </label>
           </div>
         </div>
         {/* About you */}

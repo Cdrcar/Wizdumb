@@ -30,7 +30,6 @@ const handleSearch = (e) => {
 
     return (
         <div className='mx-6'>
-        <h3 className='text-center p-2 text-lg font-bold'>Search for a post</h3>
         <div className="flex justify-center items-center">
         <form className='w-full relative  '>
             <div className='relative '>

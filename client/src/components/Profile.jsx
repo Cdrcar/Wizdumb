@@ -27,6 +27,8 @@ const Profile = () => {
   const aboutMe = data?.me?.aboutMe;
   const courses = data?.me?.courses || [];
   const profileImg = data?.me?.profilePhoto;
+  const topSkills = data?.me?.topSkills;
+  const location = data?.me?.location;
 
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
@@ -56,7 +58,7 @@ const Profile = () => {
             <img
               src={profileImg}
               alt="profile_img"
-              className="inline-block h-20 rounded-full mt-2 mr-2"
+              className="inline-block h-40 rounded-full mt-2 mr-2"
             />
           ) : (
             <img
@@ -65,15 +67,20 @@ const Profile = () => {
               className="inline-block h-20 rounded-full mt-2 mr-2"
             />
           )}
-          <div className="text-center ml-2">
-            <div className="mb-1 mt-5">Hey, {username} &#x1F44B;</div>
-            <div>{aboutMe}</div>
+                   <div className="text-center ml-2">
+            <div className="mb-1 mt-5 text-lg font-bold">Hey, {username} &#x1F44B;</div>
+            <div className="mb-2 text-sm">{aboutMe}</div>
+            <div className="mb-2 text-sm">Top Skills: {topSkills}</div>
+            <div className="mb-2 text-sm">Location: {location}</div>
+
             <Link
               to="/profilesettings"
               className="text-blue-500 hover:text-blue-700 text-sm"
             >
               Edit Profile
             </Link>
+
+            
           </div>
         </div>
         <div>

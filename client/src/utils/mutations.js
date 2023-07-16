@@ -151,7 +151,7 @@ export const CREATE_COMMENT = gql`
 
       title
       resource {
-        _idgit
+        _id
         name
       }
       course {

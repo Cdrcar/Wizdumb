@@ -166,13 +166,13 @@ const resolvers = {
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
     },
-    createComment: async (parent, { user, comment, resource, course }) => {
-      return await Comment.create({ user, comment, resource, course });
+    createComment: async (parent, { user, comment, title, resource, course }) => {
+      return await Comment.create({ user, comment, title, resource, course });
     },
-    updateComment: async (parent, { id, user, comment, resource, course }) => {
+    updateComment: async (parent, { id, user, comment, title, commentn, resource, course }) => {
       return await Comment.findByIdAndUpdate(
         id,
-        { user, comment, resource, course },
+        { user, comment, title, commentn, resource, course },
         { new: true }
       );
     },

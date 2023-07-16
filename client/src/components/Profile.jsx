@@ -23,7 +23,7 @@ const Profile = () => {
     return <div>Error loading user data</div>;
   }
 
-  const username = data?.me?.username;
+  const firstName = data?.me?.firstName;
   const aboutMe = data?.me?.aboutMe;
   const courses = data?.me?.courses || [];
   const profileImg = data?.me?.profilePhoto;
@@ -68,7 +68,7 @@ const Profile = () => {
             />
           )}
                    <div className="text-center ml-2">
-            <div className="mb-1 mt-5 text-lg font-bold">Hey, {username} &#x1F44B;</div>
+            <div className="mb-1 mt-5 text-lg font-bold">Hey, {firstName} &#x1F44B;</div>
             <div className="mb-2 text-sm">{aboutMe}</div>
             <div className="mb-2 text-sm">Top Skills: {topSkills}</div>
             <div className="mb-2 text-sm">Location: {location}</div>

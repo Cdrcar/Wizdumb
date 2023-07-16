@@ -19,6 +19,7 @@ const Course = ({ name, description, icon, _id }) => {
   const handleRemoveCourse = async (event) => {
     event.stopPropagation();
     event.preventDefault(); // Prevent following the link
+    window.location.reload();
   
     try {
       if (loggedIn) {

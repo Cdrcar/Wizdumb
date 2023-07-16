@@ -7,12 +7,12 @@ const ForumBar = (props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    console.log(props.postId);
+    // console.log(props.postId);
     const postId = props.postId;
     navigate(`${postId}`);
   };
 
-  console.log(props);
+  // console.log(props);
   return (
     <div
       className={`bg-white ${props.className} rounded-lg h-16 mb-8 shadow-md shadow-slate-400 hover:shadow-none hover:border-2 hover:border-slate-100`}

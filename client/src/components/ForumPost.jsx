@@ -16,7 +16,7 @@ const ForumPost = () => {
     });
     // console.log('Data:', data)
     const comments = data?.getComment || [];
-    // console.log('Comments:', comments);
+    console.log('Comments:', comments);
 
     // const likePost = (e) => {
 
@@ -33,7 +33,7 @@ const ForumPost = () => {
                             Picture
                         </div>
                         <div className='self-top font-bold'>
-                            sdefinubefwhuiewuhi
+                            {comments.user.username}
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@ const ForumPost = () => {
                             <div className='flex flex-wrap ml-3 mb-1'>
                                 <div className='flex flex-wrap items-center mr-3'>
                                     <BiLike className='fill-green-600' />
-                                    <p className='text-green-600'>200</p>
+                                    <p className='text-green-600'></p>
                                 </div>
                                 <div className='flex flex-wrap items-center '>
                                     <BiComment className='fill-yellow-500' />

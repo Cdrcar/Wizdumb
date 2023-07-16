@@ -82,7 +82,7 @@ This project is licensed under the:
 
 Built by:
 
-<a href="https://github.com/Leesal">
+<a href="https://github.com/Leesaal">
   <img src="./client/src/assets/gitHub.png" alt="git" width="14" height="14">
   Leesa Ali
 </a>
@@ -102,7 +102,7 @@ Built by:
   Carmela Rey
 </a>
 
-<a href="https://github.com/Leesal">
+<a href="https://github.com/MichaelW1996">
   <img src="./client/src/assets/gitHub.png" alt="git" width="14" height="14">
   Michael Walters
 </a>

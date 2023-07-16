@@ -2,6 +2,7 @@ import React from 'react';
 import { FcSearch } from 'react-icons/fc';
 import { BsFillStarFill } from 'react-icons/bs';
 import ForumBar from './ForumBar';
+import SearchForum from './searchForum';
 
 const Forum = () => {
     return (
@@ -10,19 +11,7 @@ const Forum = () => {
             <div className='grid grid-rows-2 sm:grid-rows-none sm:grid-cols-3 mb-20'>
                 <div className='col-span-2 px-6 sm:pl-6 sm:pr-3'>
                     <div>
-                        <h3 className='text-center  p-2 text-2xl font-bold text-cyan-800'>Search for post</h3>
-                        <div className="flex justify-center items-center">
-                            <form className='w-full relative '>
-                                <div className='relative'>
-                                    <div className='bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 p-1 rounded-full border-xl'>
-                                        <input type='search' placeholder='Search Here' className='w-full rounded-full p-4 bg-slate-200 text-black' />
-                                        <button className='absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-cyan-300 rounded-full mx-2'>
-                                            <FcSearch />
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                        <SearchForum />
                     </div>
                 </div>
                 <div className='flex pr-6 sm:pr-6 pl-3 col-span-2 sm:col-span-1 sm:w-full self-center justify-self-end'>

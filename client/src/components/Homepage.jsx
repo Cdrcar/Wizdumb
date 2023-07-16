@@ -30,11 +30,6 @@ const Homepage = () => {
   const courses = data?.getCourses || [];
   console.log(data);
 
-  // fetchIcons(courses);
-  // // console.log(fetchIcons(courses));
-  // // console.log(iconName);
-  // console.log(iconName);
-
   const [currentSearch, setCurrentSearch] = useState([]);
 
   const handleSearch = (e) => {

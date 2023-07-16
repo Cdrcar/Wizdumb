@@ -3,6 +3,10 @@ import { FcSearch } from 'react-icons/fc';
 import { BsFillStarFill } from 'react-icons/bs';
 import ForumBar from './ForumBar';
 import SearchForum from './searchForum';
+import { QUERY_ALL_COMMENTS } from '../utils/queries';
+import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
+
 
 const Forum = () => {
     return (

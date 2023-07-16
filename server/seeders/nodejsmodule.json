@@ -1,10 +1,10 @@
 [
   {
-    "name": "Introduction to Node.js",
+    "name": "Intro to Node",
     "courseName": "NodeJS",
     "video": "https://www.youtube.com/embed/TlB_eWDSMt4",
     "text": "",
-    "description": "Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. It allows developers to run JavaScript code outside of a web browser and use it to build scalable network applications. In this resource, you'll get an introduction to Node.js, including its features, architecture, and use cases. You'll learn about its event-driven, non-blocking I/O model, which makes it highly efficient for handling concurrent operations. By the end, you'll have a solid understanding of why Node.js is a popular choice for server-side development.",
+    "description": "Node.js is a powerful JavaScript runtime built on Chrome's V8 JavaScript engine. It allows developers to run JavaScript code outside of a web browser and use it to build scalable network applications. In this resource, you'll get an introduction to Node.js, including its features, architecture, and use cases. You'll learn about its event-driven, non-blocking I/O model, which makes it highly efficient for handling concurrent operations.",
     "link": ""
   },
   {
@@ -32,7 +32,7 @@
     "link": ""
   },
   {
-    "name": "Error Handling",
+    "name": "Dealing with errors",
     "courseName": "NodeJS",
     "video": "",
     "text": "",

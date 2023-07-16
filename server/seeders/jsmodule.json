@@ -2,10 +2,10 @@
   {
     "name": "Introduction to JavaScript",
     "courseName": "JavaScript",
-    "video": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
+    "video": "https://www.youtube.com/embed/W6NZfCO5SIk",
     "text": "",
     "description": "JavaScript is a popular programming language used for building interactive web pages. It was created by Brendan Eich in 1995 and quickly became an essential part of web development. JavaScript enables developers to add dynamic elements, perform calculations, manipulate data, and respond to user interactions. In this resource, you'll learn the basics of JavaScript, including its role in web development, its syntax, and how to write simple scripts that can enhance the functionality of websites.",
-    "link": "https://checkmarx.com/de/blog/javascript-history-infographic/?utm_keyword=&utm_campaign=EMEA-AD-20230530-ALL_LEVEL-GOOGLE-DES-PER-SEARCH-DSA&utm_source=adwords&utm_medium=ppc&utm_term=&hsa_acc=2852355864&hsa_cam=20220516662&hsa_grp=151355714324&hsa_ad=660405370696&hsa_src=g&hsa_tgt=dsa-2080039047246&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwh8mlBhB_EiwAsztdBBO4p_MiLze6sJoSNl_6PVmNw-4utRqA7i7P2Hu-2Zw-v_TzEahiYxoCofIQAvD_BwE"
+    "link": ""
   },
   {
     "name": "Variables and Data Types",

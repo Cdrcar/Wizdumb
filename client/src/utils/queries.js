@@ -12,6 +12,8 @@ export const QUERY_ME = gql`
       courses {
         _id
         name
+        icon
+        description
       }
       resources {
         _id
@@ -209,7 +211,6 @@ export const QUERY_SINGLE_RESOURCE = gql`
   }
 `;
 
-
 export const QUERY_RESOURCES = gql`
   query getResources {
     getResources {
@@ -218,7 +219,6 @@ export const QUERY_RESOURCES = gql`
       text
       description
       link
-
     }
   }
 `;

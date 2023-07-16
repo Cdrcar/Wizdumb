@@ -167,6 +167,7 @@ const Homepage = () => {
               description={course.description}
               icon={course.icon}
               modules={course.modules}
+              _id={course._id}
             />
           ))}
         </div>

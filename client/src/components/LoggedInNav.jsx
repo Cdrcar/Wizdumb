@@ -92,7 +92,11 @@ const LoggedInNav = () => {
             } absolute right-0 bg-white border border-gray-300`}
           >
             <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer">
-              <Link to="/home">My Courses</Link>
+
+            <Link to="/home">
+              Profile
+            </Link>
+
             </li>
             <li
               className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer"

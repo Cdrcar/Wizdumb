@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import profileImg from "../assets/profile-image.png";
+import profileImgDefault from "../assets/profile-image.png"; 
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { QUERY_ME } from "../utils/queries";
@@ -26,7 +26,9 @@ const Profile = () => {
   }
 
   const username = data?.me?.username;
+  const aboutMe = data?.me?.aboutMe;
   const courses = data?.me?.courses || [];
+  const profileImg = data?.me?.profilePhoto;
 
   const handleCompletedIncrement = () => {
     setCompletedCount((prevCount) => prevCount + 1);
@@ -64,15 +66,23 @@ const Profile = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 mt-10 ml-5 mr-5 center text-xl">
       <div>
-        <div className="flex justify-center">
-          <img
-            src={profileImg}
-            alt="profile_img"
-            className="inline-block h-20 rounded-full mt-2 mr-2"
-          />
+      <div className="flex justify-center">
+          {profileImg ? (
+            <img
+              src={profileImg}
+              alt="profile_img"
+              className="inline-block h-20 rounded-full mt-2 mr-2"
+            />
+          ) : (
+            <img
+              src={profileImgDefault}
+              alt="default_profile_img"
+              className="inline-block h-20 rounded-full mt-2 mr-2"
+            />
+          )}
           <div className="text-center ml-2">
             <div className="mb-1 mt-5">Hey, {username} &#x1F44B;</div>
-            <div>Here's a breakdown of your progress...</div>
+            <div>{aboutMe}</div>
           </div>
         </div>
         <div>

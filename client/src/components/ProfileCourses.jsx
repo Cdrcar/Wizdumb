@@ -19,16 +19,21 @@ const Course = ({ name, description, icon, _id }) => {
   const handleRemoveCourse = async (event) => {
     event.stopPropagation();
     event.preventDefault(); // Prevent following the link
-  
+
     try {
       if (loggedIn) {
-        const confirmDelete = window.confirm("Are you sure you want to delete this course?");
+        const confirmDelete = window.confirm(
+          "Are you sure you want to delete this course?"
+        );
         if (confirmDelete) {
-          const { data } = await removeSavedCourse({ variables: { courseId: _id } });
+          const { data } = await removeSavedCourse({
+            variables: { courseId: _id },
+          });
+          window.location.assign("/home");
           if (data) {
             // Course removed successfully
             console.log("Course removed:", data.removeSavedCourse);
-            window.location.reload(); // Reload the page
+            // Reload the page
           }
         }
       } else {
@@ -40,9 +45,6 @@ const Course = ({ name, description, icon, _id }) => {
       // Handle error
     }
   };
-  
-  
-  
 
   let iconName;
   const keyExists = icons.find((obj) => obj.hasOwnProperty(icon));
@@ -54,7 +56,7 @@ const Course = ({ name, description, icon, _id }) => {
 
   return (
     <div className="w-1/2 md:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
-<div className="relative bg-white bg-opacity-85 rounded-lg border-slate-700 border-2 p-4 h-30 w-40 flex flex-col justify-between">
+      <div className="relative bg-white bg-opacity-85 rounded-lg border-slate-700 border-2 p-4 h-30 w-40 flex flex-col justify-between">
         <div className="relative h-32 mb-4">
           <Lottie
             animationData={iconName}

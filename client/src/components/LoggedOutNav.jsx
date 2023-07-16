@@ -5,16 +5,25 @@ import { FiMenu } from "react-icons/fi";
 
 const LoggedOutNav = () => {
   const [open, setOpen] = useState(false);
-  {
-    /*Show Login modals*/
-  }
+  const [isHovered, setIsHovered] = useState(false);
+  // Show Login modals
   const [showLoginModal, setShowLoginModal] = useState(false);
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    setOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setOpen(false);
+  };
+
   return (
-    <div>
+    <div onMouseLeave={handleMouseLeave}>
       <FiMenu
         className="sm:hidden block h-6 w-6 cursor-pointer"
-        onClick={() => setOpen(!open)}
+        onMouseEnter={handleMouseEnter}
       />
       <div
         className={`${

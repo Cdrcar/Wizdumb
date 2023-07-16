@@ -1,18 +1,32 @@
 import React, { useState, useEffect } from "react";
 import profileImg from "../assets/profile-image.png";
 import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 import { QUERY_ME } from "../utils/queries";
+import { useSubscription } from "@apollo/client";
+import { SAVED_COURSES_UPDATED } from "../utils/subscriptions";
+import { FaBook } from "react-icons/fa";
+import Course from "./ProfileCourses";
 
 const Profile = () => {
   const [completedCount, setCompletedCount] = useState(0);
   const [inProgressCount, setInProgressCount] = useState(0);
-  const [courses, setCourses] = useState([]); // Placeholder for course data
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSearch, setCurrentSearch] = useState([]);
-  const [showPlaceholders, setShowPlaceholders] = useState(false); // New state
-  // const [username, setUsername] = useState("");
+  const [showPlaceholders, setShowPlaceholders] = useState(false);
+  const { loading, data, error } = useQuery(QUERY_ME);
 
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error loading user data</div>;
+  }
+
+  const username = data?.me?.username;
+  const courses = data?.me?.courses || [];
 
   const handleCompletedIncrement = () => {
     setCompletedCount((prevCount) => prevCount + 1);
@@ -20,21 +34,6 @@ const Profile = () => {
 
   const handleInProgressIncrement = () => {
     setInProgressCount((prevCount) => prevCount + 1);
-  };
-
-  // Placeholder function to add course to the data
-  const handleAddCourse = () => {
-    const newCourse = { id: courses.length + 1, title: "New Course" }; // Example course data
-    setCourses((prevCourses) => [...prevCourses, newCourse]);
-  };
-
-  const handleCategoryClick = (category) => {
-    setSelectedCategory(category);
-    if (category === "myCourses") {
-      setShowPlaceholders(true);
-    } else {
-      setShowPlaceholders(false);
-    }
   };
 
   const handleSearch = (e) => {
@@ -53,32 +52,18 @@ const Profile = () => {
     );
   };
 
-  const { loading, data, error } = useQuery(QUERY_ME);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error loading user data</div>;
-  }
-
-  const username = data?.me?.username;
-  
-
-  const renderPlaceholderCards = () => {
-    return (
-      <div className="flex flex-col justify-end ml-5">
-        <div className="border rounded p-4 mb-2">Placeholder Card</div>
-        <div className="border rounded p-4 mb-2">Placeholder Card</div>
-        <div className="border rounded p-4 mb-2">Placeholder Card</div>
-      </div>
-    );
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+    if (category === "myCourses") {
+      setShowPlaceholders(true);
+    } else {
+      setShowPlaceholders(false);
+    }
   };
 
   return (
-    <div className="grid grid-cols-2 mt-10 ml-5 mr-5 center text-xl">
-      <div className="">
+    <div className="grid grid-cols-1 sm:grid-cols-2 mt-10 ml-5 mr-5 center text-xl">
+      <div>
         <div className="flex justify-center">
           <img
             src={profileImg}
@@ -86,7 +71,7 @@ const Profile = () => {
             className="inline-block h-20 rounded-full mt-2 mr-2"
           />
           <div className="text-center ml-2">
-            <div className="mb-1 mt-5">Hey, { username } &#x1F44B;</div>
+            <div className="mb-1 mt-5">Hey, {username} &#x1F44B;</div>
             <div>Here's a breakdown of your progress...</div>
           </div>
         </div>
@@ -148,11 +133,22 @@ const Profile = () => {
             </button>
           </div>
         </div>
-        {selectedCategory === "myCourses" && showPlaceholders && (
-          <div className="mt-5">
-            {renderPlaceholderCards()}
+        <div className="mt-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {courses.map((course) => (
+              <div key={course._id} className="max-w-xs mx-auto">
+                {/* <Link to={`/course/${encodeURIComponent(course.name)}`}> */}
+                  <Course
+                    name={course.name}
+                    icon={course.icon}
+                    modules={course.modules}
+                    _id={course._id}
+                  />
+                {/* </Link> */}
+              </div>
+            ))}
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

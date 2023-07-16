@@ -81,7 +81,7 @@ const LoggedInNav = () => {
           >
             <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer">
             <Link to="/home">
-              My Courses
+              Profile
             </Link>
             </li>
             <li

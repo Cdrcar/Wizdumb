@@ -18,7 +18,8 @@ Tech Academy using MERN to create a Stack Single-Page Application
 WizDumb is an e-learning platform that offers a wide range of short courses in JavaScript, HTML, CSS, Node.js, Express.js, GitHub, and React. The platform aims to provide a comprehensive learning experience for individuals looking to enhance their skills and knowledge in web development technologies. With user-friendly interfaces and interactive content, WizDumb makes learning fun and accessible to users of all skill levels.
 
 ## [Final result](#final-result)
-TODO
+
+![](./client/src/assets/home-pg.png)
 
 ## [Deployment](#deployment)
 

@@ -41,6 +41,34 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const UPDATE_USER = gql`
+  mutation updateUser(
+    $id: ID!
+    $firstName: String
+    $lastName: String
+    $email: String
+    $comments: String
+    $commentReply: String
+    $likedComment: String
+  ) {
+    updateUser(
+      id: $id
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      comments: $comments
+      commentReply: $commentReply
+      likedComment: $likedComment
+    ) {
+      _id
+      firstName
+      lastName
+      username
+      email
+    }
+  }
+`;
+
 export const UPDATE_USER_PROFILE = gql`
   mutation updateUserProfile($input: UpdateUserInput!) {
     updateUserProfile(input: $input) {
@@ -100,12 +128,14 @@ export const CREATE_COMMENT = gql`
   mutation createComment(
     $user: ID!
     $comment: String!
-    $resource: ID!
-    $course: ID!
+    $title: String!
+    $resource: ID
+    $course: ID
   ) {
     createComment(
       user: $user
       comment: $comment
+      title: $title
       resource: $resource
       course: $course
     ) {
@@ -118,16 +148,16 @@ export const CREATE_COMMENT = gql`
         email
       }
       comment
+
+      title
       resource {
-        _id
+        _idgit
         name
       }
       course {
         _id
         name
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -137,6 +167,9 @@ export const UPDATE_COMMENT = gql`
     $id: ID!
     $user: ID
     $comment: String
+    $title: String
+    $like: String!
+    $commentn: String!
     $resource: ID
     $course: ID
   ) {
@@ -144,6 +177,8 @@ export const UPDATE_COMMENT = gql`
       id: $id
       user: $user
       comment: $comment
+      like: $like
+      commentn: $commentn
       resource: $resource
       course: $course
     ) {
@@ -156,6 +191,21 @@ export const UPDATE_COMMENT = gql`
         email
       }
       comment
+      title
+      commentn {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
+      like {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
       resource {
         _id
         name
@@ -182,6 +232,21 @@ export const DELETE_COMMENT = gql`
         email
       }
       comment
+      title
+      commentn {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
+      like {
+        _id
+        firstName
+        lastName
+        username
+        email
+      }
       resource {
         _id
         name

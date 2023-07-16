@@ -52,19 +52,27 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
-      return await User.findById(context.user._id).populate('courses');
+      return await User.findById(context.user._id).populate("courses");
     },
   },
   Mutation: {
-    createUser: async (parent, { firstName, lastName, email, password, username }) => {
-      const user = await User.create({ firstName, lastName, email, password, username });
+    createUser: async (
+      parent,
+      { firstName, lastName, email, password, username }
+    ) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        username,
+      });
       if (!user) {
         throw new Error("Failed to create user");
       }
       const token = signToken(user);
 
       return { token, user };
-
     },
     loginUser: async (parent, { email, password }) => {
       console.log("Login email:", email);
@@ -92,9 +100,16 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
-    
-      const { firstName, lastName, aboutMe, location, topSkills, profilePhoto } = input;
-    
+
+      const {
+        firstName,
+        lastName,
+        aboutMe,
+        location,
+        topSkills,
+        profilePhoto,
+      } = input;
+
       const updatedUser = await User.findByIdAndUpdate(
         context.user._id,
         {
@@ -104,15 +119,17 @@ const resolvers = {
           location,
           topSkills,
           profilePhoto,
+          comments,
+          commentReply,
+          likedComment,
         },
         { new: true }
-      ).populate('courses');
-    
+      ).populate("courses");
+
       const token = signToken(updatedUser); // Generate a new token for the updated user
-    
+
       return { token, user: updatedUser };
     },
-    
 
     deleteUser: async (parent, { id }, context) => {
       if (!context.user) {
@@ -235,7 +252,7 @@ const resolvers = {
     },
   },
   Resource: {
-    _id: (parent) => parent._id, 
+    _id: (parent) => parent._id,
     user: async (parent) => {
       return await User.findById(parent.user);
     },

@@ -1,42 +1,42 @@
 [
   {
-    "name": "Express documentation",
+    "name": "Intro to Express.JS",
+    "courseName": "express",
+    "video":"https://www.youtube.com/embed/L72fhGm1tfE",
+    "text": "",
+    "description": "Express.js is a popular web application framework built on top of Node.js. In this resource, you'll be introduced to Express.js and learn how it simplifies the process of building web applications. You'll understand the basic architecture of an Express.js application, learn how to handle routes, middleware, and templates, and explore various features and functionalities. By the end, you'll have a solid foundation in Express.js and be ready to develop your own web applications.",
+    "link": ""
+  },
+  {
+    "name": "Routing",
     "courseName": "express",
     "video": "",
     "text": "",
-    "description": "The official documentation for Express, great place to find syntax and up to date information",
+    "description": "Routing is a core concept in Express.js that allows you to handle different HTTP requests and define the corresponding actions. In this resource, you'll dive into Express.js routing and learn how to define routes, handle parameters, and implement route handlers. You'll also explore route organization techniques and best practices for building scalable and maintainable applications using Express.js.",
     "link": "https://expressjs.com/en/guide/routing.html"
   },
   {
-    "name": "MDN Web docs- ExpressJS",
+    "name": "Middleware",
     "courseName": "express",
     "video": "",
     "text": "",
-    "description": "MDN Web docs tutorial on ExpressJS, with examples & and some troubleshooting tips",
-    "link": "https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs"
+    "description": "Middleware plays a crucial role in Express.js applications by allowing you to add custom functionality to the request-response cycle. In this resource, you'll dive into middleware in Express.js. You'll learn how to write and use middleware functions, handle common use cases like logging, authentication, and error handling, and organize your middleware stack. With middleware, you can extend the capabilities of your Express.js applications and implement advanced features.",
+    "link": "https://expressjs.com/en/guide/using-middleware.html#using-middleware"
   },
   {
-    "name": "Learn Express JS in 35 Minutes",
+    "name": "Templating Engines",
     "courseName": "express",
-    "video": "https://www.youtube.com/watch?v=SccSCuHhOw0",
+    "video": "https://www.youtube.com/embed/5uQWAxsV4_g",
     "text": "",
-    "description": "Express JS condensed into a 35 minute video, The host builds an app to showcase the feature and their implementation",
+    "description": "Templating engines in Express.js enable dynamic content generation and rendering of views. In this resource, you'll explore popular templating engines like EJS, Handlebars, and Pug (formerly Jade). You'll learn how to set up and configure a templating engine in your Express.js application, work with templates, pass data to views, and implement reusable layouts and partials. With templating engines, you can create dynamic and interactive web pages in your Express.js projects.",
     "link": ""
   },
   {
-    "name": "ExpressJS Video series",
-    "courseName": "express",
-    "video": "https://www.youtube.com/watch?v=39znK--Yo1o&list=PL_cUvD4qzbkwp6pxx27pqgohrsP8v1Wj2",
-    "text": "",
-    "description": "The first in a playlist, Anson goes through Express in great detail and splits the topic into 20 videos, even including testing using the Jest Package and using PassportJS",
-    "link": ""
-  },
-  {
-    "name": "Example of express router (With comments)",
+    "name": "Error Handling",
     "courseName": "express",
     "video": "",
-    "text": "\\n<code>const express = require('express');\\nconst path = require('path');\\nconst api = require('./routes/index.js');\\n\\nconst PORT = 3001;\\n\\nconst app = express();\\n\\n// Middleware for parsing JSON and urlencoded form data\\napp.use(express.json());\\napp.use(express.urlencoded({ extended: true }));\\napp.use('/api', api);\\n\\napp.use(express.static('public'));\\n\\n// GET Route for homepage\\napp.get('/', (req, res) =>\\n  res.sendFile(path.join(__dirname, '/public/index.html'))\\n);\\n\\n// GET Route for feedback page\\napp.get('/feedback', (req, res) =>\\n  res.sendFile(path.join(__dirname, '/public/pages/feedback.html'))\\n);\\n\\napp.listen(PORT, () =>\\n  console.log(`App listening at http://localhost:${PORT} 🚀`))\\n</code>\\n",
-    "description": "An example of a router written in Express",
-    "link": ""
+    "text": "",
+    "description": "Error handling is an essential aspect of building robust web applications. In this resource, you'll learn how to handle errors in Express.js applications effectively. You'll explore techniques for handling synchronous and asynchronous errors, implementing error middleware, and responding with appropriate error codes and messages. With proper error handling, you can improve the reliability and user experience of your Express.js applications.",
+    "link": "https://scoutapm.com/blog/express-error-handling"
   }
 ]

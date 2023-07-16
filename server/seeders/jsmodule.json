@@ -1,42 +1,42 @@
 [
   {
-    "name": "Documenation for JS",
-    "courseName": "javascript",
-    "video": "",
+    "name": "Introduction to JavaScript",
+    "courseName": "JavaScript",
+    "video": "https://www.youtube.com/watch?v=W6NZfCO5SIk",
     "text": "",
-    "description": "Official documentaion for JS, has all the most up to date syntax and features",
-    "link": "https://devdocs.io/javascript/"
+    "description": "JavaScript is a popular programming language used for building interactive web pages. It was created by Brendan Eich in 1995 and quickly became an essential part of web development. JavaScript enables developers to add dynamic elements, perform calculations, manipulate data, and respond to user interactions. In this resource, you'll learn the basics of JavaScript, including its role in web development, its syntax, and how to write simple scripts that can enhance the functionality of websites.",
+    "link": "https://checkmarx.com/de/blog/javascript-history-infographic/?utm_keyword=&utm_campaign=EMEA-AD-20230530-ALL_LEVEL-GOOGLE-DES-PER-SEARCH-DSA&utm_source=adwords&utm_medium=ppc&utm_term=&hsa_acc=2852355864&hsa_cam=20220516662&hsa_grp=151355714324&hsa_ad=660405370696&hsa_src=g&hsa_tgt=dsa-2080039047246&hsa_kw=&hsa_mt=&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwh8mlBhB_EiwAsztdBBO4p_MiLze6sJoSNl_6PVmNw-4utRqA7i7P2Hu-2Zw-v_TzEahiYxoCofIQAvD_BwE"
   },
   {
-    "name": "Code Snippet - for loop",
-    "courseName": "javascript",
-    "video": "",
-    "text": "\\n\\n<code>\\n for (let i = 0; i < array.length; i++) {\\n  let element = array[i];\\n}\\n</code> \\n The expressions within the brackets tell us how the for loop will run, \\nthe first (let i =0) tells us what index we start, in this case 0, which would refer to the 1st element in an array \\n the second expression is the stop position, stop the loop if the index is greater than the length of the array \\n the last is the itteration, each time the code runs add 1 to i",
-    "description": "A code snipppet to displat usage of a for loop",
+    "name": "Variables and Data Types",
+    "courseName": "JavaScript",
+    "video": "https://www.youtube.com/embed/edlFjlzxkSI",
+    "text": "",
+    "description": "Variables are used to store and manipulate data in JavaScript. They act as containers that hold values. In this resource, you'll learn about variables and data types in JavaScript. Variables can store different types of data, such as strings (text), numbers (numeric values), booleans (true or false), arrays (ordered lists), and objects (key-value pairs). You'll explore how to declare variables, assign values, and perform basic operations with them, such as concatenation and arithmetic calculations.",
     "link": ""
   },
   {
-    "name": "Learn JS",
-    "courseName": "javascript",
+    "name": "Conditional Statements",
+    "courseName": "JavaScript",
     "video": "",
     "text": "",
-    "description": "An interactive JS tutorial, helping guide you to competence in javascript in a fun and engaging way, perfect for beginners or as a refresher",
-    "link": "https://www.learn-js.org/"
+    "description": "Control flow and conditional statements allow you to make decisions in your JavaScript code. They help you control the execution flow based on different conditions. In this resource, you'll learn about control flow and conditional statements in JavaScript. You'll explore if-else statements and switch statements to create different branches of code based on specific conditions. You'll also learn about comparison operators and logical operators to build complex conditions. These concepts are essential for creating dynamic and interactive programs.",
+    "link": "https://www.w3schools.blog/if-else-javascript-js"
   },
   {
-    "name": "Leetcode - Practice Algorithms in Javascript ",
-    "courseName": "javascript",
-    "video": "",
+    "name": "Arrays and Looping",
+    "courseName": "JavaScript",
+    "video":"https://www.youtube.com/embed/oigfaZ5ApsM",
     "text": "",
-    "description": "A place to practice alogorithms and improve your skills in JS & problem solving (Its also super fun)",
-    "link": "https://leetcode.com/"
+    "description": "Arrays are used to store multiple values in JavaScript. They allow you to group related data together. In this resource, you'll learn about arrays and looping in JavaScript. You'll discover how to create arrays, add elements to them, access specific elements, and perform common operations like sorting and filtering. Additionally, you'll explore different types of loops, such as for loops and while loops, to iterate over array elements and perform actions on each item. Arrays and looping are fundamental concepts in JavaScript programming.",
+    "link": ""
   },
   {
-    "name": "JS crashcourse of Beginners",
-    "courseName": "javascript",
-    "video": "https://www.youtube.com/watch?v=hdI2bqOjy3c",
+    "name": "Functions and Scope",
+    "courseName": "JavaScript",
+    "video": "https://www.youtube.com/embed/bD-62OMzni0",
     "text": "",
-    "description": "A Video intro into JS, focused on the fundementals",
+    "description": "Functions are reusable blocks of code in JavaScript. They allow you to encapsulate logic and execute it whenever needed. In this resource, you'll dive into functions and scope in JavaScript. You'll learn how to define functions, pass arguments, and return values. Additionally, you'll explore the concept of scope and understand how it affects the accessibility of variables within functions. Functions are essential for organizing code and promoting code reusability in JavaScript applications.",
     "link": ""
   }
 ]

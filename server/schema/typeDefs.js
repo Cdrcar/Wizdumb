@@ -11,6 +11,8 @@ const typeDefs = gql`
     comments: [Comment!]!
     resources: [Resource!]!
     tags: [Tag!]!
+    createdAt: String!
+    updatedAt: String!
   }
 
   type Comment {
@@ -29,14 +31,12 @@ const typeDefs = gql`
   type Resource {
     _id: ID!
     name: String!
-    courseName: String!
     video: String
     text: String
     description: String!
     link: String
-    comments: [Comment!]!
     user: User!
-    course: Course!
+    comments: [Comment!]!
     tags: [Tag!]!
     createdAt: String!
     updatedAt: String!
@@ -58,12 +58,25 @@ const typeDefs = gql`
     username: String
     email: String!
     password: String!
+    aboutMe: String
+    location: String
+    topSkills: String
+    profilePhoto: String
     courses: [Course!]!
     resources: [Resource!]!
     comments: [Comment!]!
     tags: [Tag!]!
     createdAt: String!
     updatedAt: String!
+  }
+
+  input UpdateUserInput {
+    firstName: String
+    lastName: String
+    aboutMe: String
+    location: String
+    topSkills: String
+    profilePhoto: String
   }
 
   type Auth {
@@ -93,7 +106,9 @@ const typeDefs = gql`
       password: String!
       username: String
     ): Auth
+    updateUserProfile(input: UpdateUserInput!): Auth
     loginUser(email: String!, password: String!): Auth
+
     updateUser(
       id: ID!
       firstName: String
@@ -103,10 +118,14 @@ const typeDefs = gql`
       commentReply: String
       likedComment: String
     ): User!
+
     deleteUser(id: ID!): User!
     createCourse(name: String!, description: String!): Course!
     updateCourse(id: ID!, name: String, description: String): Course!
     deleteCourse(id: ID!): Course!
+    saveCourse(
+      courseId: ID!
+    ): User!
     createComment(
       user: ID!
       comment: String!
@@ -134,7 +153,7 @@ const typeDefs = gql`
       description: String!
       link: String
       user: ID!
-      course: ID!
+      course: ID
     ): Resource!
     updateResource(
       id: ID!

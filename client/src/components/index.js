@@ -7,7 +7,6 @@ import ForumLikes from './FormLikes';
 import ForumPost from "./ForumPost";
 import ForumWrite from "./ForumWrite";
 import Homepage from "./Homepage";
-import LoggedinHomepage from "./LoggedinHomepage";
 import Login from "./login";
 import Signup from "./Signup";
 import Profile from "./Profile";
@@ -32,7 +31,6 @@ export {
   ForumPost,
   ForumWrite,
   Homepage,
-  LoggedinHomepage,
   Login,
   Signup,
   Profile,

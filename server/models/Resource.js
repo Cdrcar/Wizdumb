@@ -5,10 +5,6 @@ const resourceSchema = new Schema({
     type: String,
     required: true,
   },
-  courseName: {
-    type: String,
-    required: true,
-  },
   video: {
     type: String,
   },

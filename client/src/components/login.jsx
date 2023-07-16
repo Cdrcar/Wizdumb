@@ -20,18 +20,28 @@ const Login = ({ isVisible, onClose }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
-
+    console.log('Form state:', formState);
+    
     try {
       const { data } = await loginUser({
         variables: { ...formState },
       });
-
-      Auth.login(data.loginUser.token);
+  
+      console.log('Login data:', data);
+  
+      if (data.loginUser.token) {
+        console.log('User authenticated!');
+        console.log('User information:', data.loginUser.user);
+        Auth.login(data.loginUser.token);
+      } else {
+        console.log('Authentication failed!');
+      }
     } catch (e) {
-      console.error(e);
+      console.error('Login error:', e);
     }
   };
+  
+  
   if (!isVisible) return null;
   const message = "Welcome back!";
   const handleClose = (e) => {

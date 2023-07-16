@@ -1,77 +1,142 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// import courses from '../constants/index.js';
-import Lottie from "lottie-react";
 import { useQuery } from "@apollo/client";
-import { QUERY_COURSES } from "../utils/queries";
-import { FaFire, FaPoo } from 'react-icons/fa';
+import { QUERY_COURSES, QUERY_RESOURCES } from "../utils/queries";
+import learning from '../assets/learning.png';
 
 const CoursePage = () => {
+
   const { courseName } = useParams();
-    console.log('courseName:', courseName);
-    const { loading, error, data } = useQuery(QUERY_COURSES);
-    const courses = data?.getCourses || [];
-    console.log(data);
-   
 
-  const course = courses.find(
-    (course) => course.name.toLowerCase() === courseName.toLowerCase()
-  );
-  console.log("course:", course);
+  const { loading: coursesLoading, error: coursesError, data: coursesData } = useQuery(QUERY_COURSES);
+  const { loading: resourcesLoading, error: resourcesError, data: resourcesData } = useQuery(QUERY_RESOURCES);
 
-  if (courseName === course) {
-    console.log("success!");
+
+
+  const [selectedModule, setSelectedModule] = useState(null);
+  const [isModuleSelected, setIsModuleSelected] = useState(false);
+
+  useEffect(() => {
+    if (coursesData) {
+      const course = coursesData.getCourses.find(course => course.name.toLowerCase() === courseName.toLowerCase());
+      setSelectedModule(null);
+      setIsModuleSelected(false);
+    }
+  }, []);
+
+  if (coursesLoading || resourcesLoading) {
+    return <div>Loading...</div>;
   }
 
-    return (
-      <>
+  if (coursesError || resourcesError) {
+    return <div>Error occurred while fetching data</div>;
+  }
 
-        <div className="fixed top-18 left-0.25 h-screen w-56 rounded bg-sky-800 bg-opacity-80 from-sky-400 to-indigo-900 text-white shadow-lg z-40 ">
+  const course = coursesData.getCourses.find(course => course.name.toLowerCase() === courseName.toLowerCase());
+
+
+
+  const selectedModuleResources = [];
+  for (const resource of resourcesData.getResources) {
+    // console.log(resource.name)
+
+    if (resource.name === selectedModule) {
+
+      selectedModuleResources.push(resource);
+
+
+
+    }
+  }
+
+
+
+  if (!course) {
+    return <div>Course Not Found</div>;
+  }
+
+
+  return (
+    <>
+      <div className='flex h-full'>
+        <div className="flex top-18 left-0.25 h-full py-5 w-80 rounded bg-sky-800 bg-opacity-80 from-sky-400 to-indigo-900 text-white shadow-lg z-40 shrink-0 mb-[-25px]">
           <div className='mr-1 flex flex-col items-center'>
             <div className='w-5/6 h-20 items-center justify-center text-[22px] font-bold flex'>
               <h1 className='text-black'>MODULES</h1>
-              </div>
+            </div>
             {course.modules.map((module) => (
-            
-              <div className='hover:cursor-pointer shadow-lg bg-cyan-200 bg-opacity-75 rounded-xl w-5/6 h-24 mt-4 flex items-center' key={module}>
-                <h3 className='flex indent-2 text-black whitespace-normal font-bold items-center justify-center'>
-                  <p>
-                {module}
-                </p>
+              <div
+                className='hover:cursor-pointer shadow-lg bg-cyan-200 bg-opacity-75 ml-3 rounded-xl w-72 h-24 mt-4 flex items-center '
+                key={module}
+                onClick={() => {
+                  setSelectedModule(module);
+                  setIsModuleSelected(true);
+                }}
+              >
+                <h3 className='flex indent-2 text-black whitespace-normal font-bold items-center justify-center hover:opacity-75 hover:cursor-pointer '>
+                  <p>{module}</p>
                 </h3>
               </div>
             ))}
-            <div className='hover:cursor-pointer bg-cyan-200 rounded-xl w-5/6 h-24 mt-4 flex '>
-              <h3 className='flex indent-2 items-center justify-center text-black font-bold'>video</h3></div>
           </div>
         </div>
-      <div>
-        <h1 className='text-6xl font-bold text-center text-cyan-800 my-6'>{course.name}</h1>
-        <div className='flex flex-row'>
-          <div className='flex-auto w-[50%] '>
-            {/* <Lottie animationData={course.icon} className="w-full h-full object-cover rounded-xl" /> */}
-          </div>
-          <div className='flex-auto'>
-            <div>
-            <p className='font-bold mt-14 flex basis-4 text-2xl'>{course.description}</p>
-            </div>
-            <div className='flex-auto'>
-            <br></br>
-            <h3 className='font-bold text-2xl' >Modules</h3>
-            {course.modules.map((module) => (
-              <ol key={module[0]} className='text-black marker:text-emerald-800 list-disc'>
-                <li className='cursor-pointer py-2 list-none hover:font-bold duration-500'><a href={`#${module}`} key={module}> {module}</a></li>
-                
-              </ol>
-            ))}
-            </div>
-          </div>
-          </div>
-          
+        <div>
+          {!isModuleSelected && (
+            <>
+              <h1 className='text-6xl font-bold text-center text-cyan-800 my-6'>{course.name}</h1>
+              <div className='flex flex-row mx-5'>
+                <div className='flex-auto'>
+                  <div>
+                    <p className='font-bold flex text-2xl'>{course.description}</p>
+                  </div>
+                  <div className='flex-auto'>
+                    <br></br>
+                    <p className='font-bold flex text-2xl'>Click on the modules to explore more!</p>
+                  </div>
+                  <div>
+                    <img src={learning} alt="learning" />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+          {selectedModule && (
+            selectedModuleResources.map((resource) => (
+              <div key={resource.name} className='flex flex-col'>
+                <div>
+                  <h2 className='text-6xl font-bold text-center text-cyan-800 my-6'>{resource.name}</h2>
+                  <div className='flex flex-col mx-5'>
+                    <p className='font-bold flex text-2xl'>{resource.description}</p>
+                    {resource.video && (
+                      <div>
+                        <div className='rounded-xl flex-col space-y-4 .'>
+                          <iframe className='rounded-xl mt-5' width="560" height="315" src={resource.video} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+                        </div>
+                      </div>
+                    )}
+                    {resource.link && (
+                      <div>
+                        <p className='font-bold flex text-2xl my-2'>Click on the button below to be taken to more resources!</p>
+
+                        <div>
+                          <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 hover:cursor-pointer">
+                            <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-100 rounded-md group-hover:bg-opacity-0 hover:cursor-pointer">
+                              <a href={resource.link} target="_blank" rel="noopener noreferrer" className="text-black font-bold hover:cursor-pointer">Click Here</a>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
-        </>
-    
-    );
-  };
-    
+      </div>
+    </>
+  );
+
+};
+
 export default CoursePage;

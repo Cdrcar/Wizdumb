@@ -6,6 +6,7 @@ import javascript from './javascript.json';
 import node from './node.json';
 import reactImage from './reactImage.json';
 import heroImage from './heroImage.jpg';
+import learning from './learning.png';
 
 export  { 
 student,
@@ -16,4 +17,5 @@ javascript,
 node,
 reactImage,
 heroImage,
+learning
  };

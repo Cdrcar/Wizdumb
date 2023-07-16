@@ -28,7 +28,7 @@ const LoggedOutNav = () => {
       <div
         className={`${
           open
-            ? "block absolute right-0 mr-2 mt-3 bg-white border border-gray-300 "
+            ? "block absolute right-0 mr-2 bg-white border border-gray-300 "
             : "hidden"
         } sm:flex sm:flex-row sm:mr-10`}
       >

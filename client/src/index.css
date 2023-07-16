@@ -16,8 +16,13 @@
   text-align: center;
   font-size: 12px;
   padding: 4px;
-  bottom: -25px;
-  right: 0;
-  position: relative;
-  
+  bottom: 0;
+  position: fixed;
+  width: 100%;
 }
+
+iframe {
+  width: 95%;
+  height: 33%;
+  max-width: 560px;
+  position: absolute;

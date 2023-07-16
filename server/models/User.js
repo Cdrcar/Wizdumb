@@ -6,12 +6,12 @@ const userSchema = new Schema(
     firstName: {
       type: String,
       required: false,
-      trim: true
+      trim: true,
     },
     lastName: {
       type: String,
       required: false,
-      trim: true
+      trim: true,
     },
     username: {
       type: String,
@@ -53,23 +53,15 @@ const userSchema = new Schema(
     },
     aboutMe: {
       type: String,
-     
-      
     },
     location: {
       type: String,
-     
-      
     },
     topSkills: {
       type: String,
-     
-      
     },
     profilePhoto: {
       type: String,
-     
-      
     },
     courses: [
       {
@@ -84,6 +76,18 @@ const userSchema = new Schema(
       },
     ],
     comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
+    commentReply: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
+    likedComment: [
       {
         type: Schema.Types.ObjectId,
         ref: "Comment",

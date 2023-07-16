@@ -65,7 +65,6 @@ const ProfileSettings = () => {
     setTopSkills(e.target.value);
   };
   const convertToBase64 = (e) => {
-    console.log(e);
     let reader = new FileReader();
     reader.readAsDataURL(e.target.files[0]);
     reader.onload = () => {

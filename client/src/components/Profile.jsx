@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { QUERY_ME } from "../utils/queries";
 import { FaBook } from "react-icons/fa";
 import { FcSearch } from "react-icons/fc";
+import { RiSettings4Line } from "react-icons/ri";
 
 import Course from "./ProfileCourses";
 
@@ -12,7 +13,6 @@ const Profile = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSearch, setCurrentSearch] = useState([]);
-  const [showPlaceholders, setShowPlaceholders] = useState(false);
   const { loading, data, error } = useQuery(QUERY_ME);
 
   if (loading) {
@@ -46,11 +46,6 @@ const Profile = () => {
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    if (category === "myCourses") {
-      setShowPlaceholders(true);
-    } else {
-      setShowPlaceholders(false);
-    }
   };
 
   return (
@@ -73,6 +68,12 @@ const Profile = () => {
           <div className="text-center ml-2">
             <div className="mb-1 mt-5">Hey, {username} &#x1F44B;</div>
             <div>{aboutMe}</div>
+            <Link
+              to="/profilesettings"
+              className="text-blue-500 hover:text-blue-700 text-sm"
+            >
+              Edit Profile
+            </Link>
           </div>
         </div>
         <div>
@@ -80,38 +81,38 @@ const Profile = () => {
         </div>
 
         <div className="flex justify-center items-center mb-20">
-        <div className=" mb-20">
-        <div className="flex justify-center items-center">
-          <form className="w-[500px] relative ">
-            <div className="relative">
-              <div className="bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 p-1 rounded-full border-xl">
-                <input
-                  type="search"
-                  placeholder="Search Here"
-                  className="w-full rounded-full p-4 bg-slate-200 text-black"
-                  onChange={(e) => handleSearch(e)}
-                />
-                <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-cyan-300 bg-opacity-25 rounded-full mx-2">
-                  <FcSearch />
-                </button>
-              </div>
+          <div className=" mb-20">
+            <div className="flex justify-center items-center">
+              <form className="w-[500px] relative ">
+                <div className="relative">
+                  <div className="bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 p-1 rounded-full border-xl">
+                    <input
+                      type="search"
+                      placeholder="Search Here"
+                      className="w-full rounded-full p-4 bg-slate-200 text-black"
+                      onChange={(e) => handleSearch(e)}
+                    />
+                    <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-cyan-300 bg-opacity-25 rounded-full mx-2">
+                      <FcSearch />
+                    </button>
+                  </div>
+                </div>
+                {currentSearch.length > 0 && (
+                  <div className="absolute top-20 p-4 bg-blue-100 text-black font-bold w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2 hover:pointer-cursor">
+                    {currentSearch.map((search) => (
+                      <Link
+                        key={search}
+                        to={`/course/${encodeURIComponent(search)}`}
+                        className="hover:cursor-pointer"
+                      >
+                        <span key={search}>{search}</span>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </form>
             </div>
-            {currentSearch.length > 0 && (
-              <div className="absolute top-20 p-4 bg-blue-100 text-black font-bold w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2 hover:pointer-cursor">
-                {currentSearch.map((search) => (
-                  <Link
-                    key={search}
-                    to={`course/${search}`}
-                    className="hover:cursor-pointer"
-                  >
-                    <span key={search}>{search}</span>
-                  </Link>
-                ))}
-              </div>
-            )}
-          </form>
-        </div>
-      </div>
+          </div>
         </div>
       </div>
 

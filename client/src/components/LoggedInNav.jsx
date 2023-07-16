@@ -9,19 +9,31 @@ import { FiMenu } from "react-icons/fi";
 const LoggedInNav = () => {
   const [open, setOpen] = useState(false);
   const [mainOpen, setMainOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    setMainOpen(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setMainOpen(false);
+  };
+
   const handleLogout = () => {
     AuthService.logout();
   };
   return (
-    <div>
+    <div onMouseLeave={handleMouseLeave}>
       <FiMenu
         className="sm:hidden block h-6 w-6 cursor-pointer mr-5"
-        onClick={() => setMainOpen(!mainOpen)}
+        onMouseEnter={handleMouseEnter}
       />
       <div
         className={`${
           mainOpen
-            ? "block absolute right-0 mr-2 mt-3 bg-white border border-gray-300 "
+            ? "block absolute right-0 mr-2 bg-white border border-gray-300 "
             : "hidden"
         } sm:flex sm:flex-row sm:mr-1`}
       >
@@ -80,9 +92,7 @@ const LoggedInNav = () => {
             } absolute right-0 bg-white border border-gray-300`}
           >
             <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer">
-            <Link to="/home">
-              My Courses
-            </Link>
+              <Link to="/home">My Courses</Link>
             </li>
             <li
               className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer"

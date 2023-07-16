@@ -5,21 +5,40 @@ import Lottie from "lottie-react";
 import { useNavigate } from "react-router-dom";
 import AuthService from "../utils/auth";
 import { useSelector } from "react-redux";
+import { useMutation } from "@apollo/client";
+import { SAVE_COURSE } from "../utils/mutations";
 
-const Course = ({ name, description, icon }) => {
+
+const Course = ({ name, description, icon, _id }) => {
   const auth = useSelector((state) => state.AuthService);
 
   const loggedIn = AuthService.loggedIn();
   const history = useNavigate();
 
+  const [saveCourse] = useMutation(SAVE_COURSE);
+
   const handleClick = () => {
     history(`course/${name}`);
   };
 
-  const handlePlusClick = (event) => {
+  const handlePlusClick = async (event) => {
     event.stopPropagation();
-    history(`/home`);
+    try {
+      console.log("Course Information:", name, description, icon, _id); // Log the course information
+      await saveCourse({ variables: { courseId: _id } });
+  
+      // Display notification
+      window.alert("Course successfully added to your profile!");
+  
+      // Optionally, you can also update the component's state to reflect the change
+  
+    } catch (error) {
+      console.log(error);
+      // Handle any error that occurred during the mutation
+    }
   };
+  
+  
 
   let iconName;
   const keyExists = icons.find((obj) => obj.hasOwnProperty(icon));

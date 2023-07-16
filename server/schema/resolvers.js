@@ -52,26 +52,32 @@ const resolvers = {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
-      return await User.findById(context.user._id).populate('courses');
+      return await User.findById(context.user._id).populate("courses");
     },
   },
   Mutation: {
-    createUser: async (parent, { firstName, lastName, email, password, username }) => {
-      const user = await User.create({ firstName, lastName, email, password, username });
+    createUser: async (
+      parent,
+      { firstName, lastName, email, password, username }
+    ) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        username,
+      });
       if (!user) {
         throw new Error("Failed to create user");
       }
       const token = signToken(user);
 
       return { token, user };
-
     },
     loginUser: async (parent, { email, password }) => {
-      console.log("Login email:", email);
+      console.log("Attempted login for email:", email);
 
       const user = await User.findOne({ email });
-      console.log("User found:", user);
-
       if (!user) {
         throw new AuthenticationError("Invalid email or password");
       }
@@ -84,18 +90,23 @@ const resolvers = {
       }
 
       const token = signToken(user);
-      console.log("Generated token:", token);
+      console.log("Successful authentication, token generated:", token);
 
       return { token, user };
     },
-    
     updateUserProfile: async (parent, { input }, context) => {
       if (!context.user) {
         throw new AuthenticationError("You need to be logged in!");
       }
-    
-      const { firstName, lastName, aboutMe, location, topSkills, profilePhoto } = input;
-    
+      const {
+        firstName,
+        lastName,
+        aboutMe,
+        location,
+        topSkills,
+        profilePhoto,
+      } = input;
+
       const updatedUser = await User.findByIdAndUpdate(
         context.user._id,
         {
@@ -107,15 +118,11 @@ const resolvers = {
           profilePhoto,
         },
         { new: true }
-      ).populate('courses');
-    
-      const token = signToken(updatedUser); // Generate a new token for the updated user
-    
-      return { token, user: updatedUser };
-    },
-    
+      ).populate("courses");
 
-      return await User.findByIdAndUpdate(id, { firstName, lastName, email, comments, commentReply, likedComment }, { new: true });
+      const token = signToken(updatedUser); // Generate a new token for the updated user
+
+      return { token, user: updatedUser };
     },
 
     deleteUser: async (parent, { id }, context) => {
@@ -140,6 +147,24 @@ const resolvers = {
       throw new Error("User not authenticated");
     },
 
+    removeSavedCourse: async (parent, { courseId }, { user, pubsub }) => {
+      try {
+        // Remove the course from the user's saved courses
+        const updatedUser = await User.findByIdAndUpdate(
+          user._id,
+          { $pull: { courses: courseId } },
+          { new: true }
+        );
+        pubsub.publish("SAVED_COURSES_UPDATED", {
+          savedCoursesUpdated: updatedUser.courses,
+        });
+
+        return updatedUser;
+      } catch (error) {
+        throw new Error("Failed to remove course");
+      }
+    },
+
     createCourse: async (parent, { name, description }) => {
       return await Course.create({ name, description });
     },
@@ -153,13 +178,15 @@ const resolvers = {
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
     },
-    createComment: async (parent, { user, comment, title}) => {
-      return await Comment.create({ user, comment, title});
+    createComment: async (parent, { user, comment, resource, course }) => {
+      return await Comment.create({ user, comment, resource, course });
     },
-
-    updateComment: async (parent, { id, user, comment, title, commentn, like, resource, course }) => {
-      return await Comment.findByIdAndUpdate(id, { user, comment, title, commentn, like, resource, course }, { new: true });
-      
+    updateComment: async (parent, { id, user, comment, resource, course }) => {
+      return await Comment.findByIdAndUpdate(
+        id,
+        { user, comment, resource, course },
+        { new: true }
+      );
     },
     deleteComment: async (parent, { id }) => {
       return await Comment.findByIdAndDelete(id);
@@ -237,7 +264,7 @@ const resolvers = {
     },
   },
   Resource: {
-    _id: (parent) => parent._id, 
+    _id: (parent) => parent._id,
     user: async (parent) => {
       return await User.findById(parent.user);
     },

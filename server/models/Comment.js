@@ -6,26 +6,10 @@ const commentSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
-        title: {
-            type: String,
-            required: true
-        },
         comment: {
             type: String,
             required: true
         },
-        commentn: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'User'
-            }
-        ],
-        like: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'User'
-            }
-        ],
         resource: [
             {
                 type: Schema.Types.ObjectId,

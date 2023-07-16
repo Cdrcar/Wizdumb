@@ -4,7 +4,7 @@ const Footer = () => {
 
   const year = new Date().getFullYear(); 
     return (
-         <div className='contact bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500 z-50'>
+         <div className='contact bg-gradient-to-r from-blue-100 via-blue-300 to-blue-500 z-0 '>
                  
                 <a href="https://github.com/Cdrcar/Wizdumb">
                     <button

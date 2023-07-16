@@ -3,9 +3,9 @@ import profileImgDefault from "../assets/profile-image.png";
 import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { QUERY_ME } from "../utils/queries";
-import { useSubscription } from "@apollo/client";
-import { SAVED_COURSES_UPDATED } from "../utils/subscriptions";
 import { FaBook } from "react-icons/fa";
+import { FcSearch } from "react-icons/fc";
+
 import Course from "./ProfileCourses";
 
 const Profile = () => {
@@ -38,9 +38,9 @@ const Profile = () => {
     }
     setCurrentSearch(
       courses
-        .filter((course) => course.title.toLowerCase().includes(searchQuery))
+        .filter((course) => course.name.toLowerCase().includes(searchQuery))
         .slice(0, 8)
-        .map((course) => course.title)
+        .map((course) => course.name)
     );
   };
 
@@ -80,28 +80,38 @@ const Profile = () => {
         </div>
 
         <div className="flex justify-center items-center mb-20">
-          <form className="w-[500px] relative">
+        <div className=" mb-20">
+        <div className="flex justify-center items-center">
+          <form className="w-[500px] relative ">
             <div className="relative">
               <div className="bg-gradient-to-r from-gray-400 via-gray-600 to-blue-800 p-1 rounded-full border-xl">
                 <input
                   type="search"
                   placeholder="Search Here"
                   className="w-full rounded-full p-4 bg-slate-200 text-black"
-                  onChange={handleSearch}
+                  onChange={(e) => handleSearch(e)}
                 />
                 <button className="absolute right-1 top-1/2 -translate-y-1/2 p-4 bg-cyan-300 bg-opacity-25 rounded-full mx-2">
-                  Search
+                  <FcSearch />
                 </button>
               </div>
             </div>
             {currentSearch.length > 0 && (
               <div className="absolute top-20 p-4 bg-blue-100 text-black font-bold w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2 hover:pointer-cursor">
                 {currentSearch.map((search) => (
-                  <span key={search}>{search}</span>
+                  <Link
+                    key={search}
+                    to={`course/${search}`}
+                    className="hover:cursor-pointer"
+                  >
+                    <span key={search}>{search}</span>
+                  </Link>
                 ))}
               </div>
             )}
           </form>
+        </div>
+      </div>
         </div>
       </div>
 

@@ -4,6 +4,7 @@ import ForumComment from './ForumComment';
 import { useQuery } from "@apollo/client";
 import { QUERY_SINGLE_COMMENT } from '../utils/queries';
 import { useParams } from 'react-router-dom';
+import store from '../store'
 
 const ForumPost = () => {
 
@@ -13,10 +14,13 @@ const ForumPost = () => {
     const { loading, error, data } = useQuery(QUERY_SINGLE_COMMENT, {
         variables: { getCommentId: currentId }
     });
-    console.log('Data:', data)
+    // console.log('Data:', data)
     const comments = data?.getComment || [];
-    console.log('Comments:', comments);
+    // console.log('Comments:', comments);
 
+    // const likePost = (e) => {
+
+    // }
 
 
     return (
@@ -29,7 +33,7 @@ const ForumPost = () => {
                             Picture
                         </div>
                         <div className='self-top font-bold'>
-                            Username
+                            sdefinubefwhuiewuhi
                         </div>
                     </div>
 

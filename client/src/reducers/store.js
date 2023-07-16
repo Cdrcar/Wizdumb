@@ -3,7 +3,20 @@ import { createSlice, configureStore } from '@reduxjs/toolkit';
 const initialState = {
   courses: [],
   resources: [],
+  comments: []
 };
+
+const commentSlice = createSlice({
+  name: 'comments',
+  initialState: [],
+  reducers: {
+    setComments: (state, action) => {
+      
+    console.log(commentSlice)
+      return action.payload;
+    },
+  },
+});
 
 const coursesSlice = createSlice({
   name: 'courses',

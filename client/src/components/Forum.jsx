@@ -8,18 +8,21 @@ import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
 const Forum = () => {
+
   const navigate = useNavigate();
     const changePage = (e) => {
         e.preventDefault();
         navigate("/forumwrite")
     }
+
     const { loading, error, data } = useQuery(QUERY_ALL_COMMENTS);
     console.log('Data:', data)
     const comments = data?.getComments || [];
     console.log('Comments:', comments);
+    
   return (
     <>
- <div className='grid'>
+             <div className='grid'>
                 <h1 className='text-6xl font-bold text-center text-cyan-800 pt-24 pb-16'>Forum</h1>
                 <div className='flex pr-6 pl-3 self-center justify-self-end relative z-10'>
                     <div className='grid w-full'>
@@ -71,7 +74,7 @@ const Forum = () => {
       </div>
       <div className="grid grid-cols-3 mb-16">
         <div className="col-span-3 sm:col-span-2 mx-6 sm:ml-16 sm:mr-16">
-          {/* {comments.map((comment) => (
+          {comments.map((comment) => (
             <ForumBar
               title={comment.title}
               like={comment.like}
@@ -80,7 +83,7 @@ const Forum = () => {
               postId={comment._id}
               key={comment._id}
             />
-          ))} */}
+          ))}
         </div>
         <div className=" hidden sm:block pr-6 pl-3"></div>
       </div>

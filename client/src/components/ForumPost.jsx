@@ -18,9 +18,13 @@ const ForumPost = () => {
     const comments = data?.getComment || [];
     console.log('Comments:', comments);
 
-    // const likePost = (e) => {
-
-    // }
+    if (loading) {
+        return <div>Loading...</div>;
+      }
+    
+      if (error) {
+        return <div>Error occurred while fetching data</div>;
+      }
 
 
     return (

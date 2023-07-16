@@ -3,6 +3,7 @@ import { gql } from "@apollo/client";
 export const QUERY_ME = gql`
   {
     me {
+      firstName
       username
       email
       aboutMe

@@ -4,7 +4,8 @@ import { QUERY_USER } from "../utils/queries";
 import { UPDATE_USER_PROFILE } from "../utils/mutations";
 import { DELETE_USER } from "../utils/mutations";
 import AuthService from "../utils/auth";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const ProfileSettings = () => {
   const [firstName, setFirstName] = useState("");
@@ -128,6 +129,9 @@ const ProfileSettings = () => {
   return (
     <div className="max-w-xl mx-auto">
       <div>
+      <Link to="/home" className="text-blue-500 hover:text-blue-700 mb-4">
+          <FaArrowLeft className="text-xl" />
+        </Link>
         <h2 className="text-3xl font-medium mt-8 mb-8">Edit my profile</h2>
         <div className="mb-4">
           {/* Full Name */}

@@ -122,6 +122,9 @@ const typeDefs = gql`
     updateCourse(id: ID!, name: String, description: String): Course!
     deleteCourse(id: ID!): Course!
     saveCourse(courseId: ID!): User!
+
+    removeSavedCourse(courseId: ID!): User!
+
     createComment(
       user: ID!
       comment: String!

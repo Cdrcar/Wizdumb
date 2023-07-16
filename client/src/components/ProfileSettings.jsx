@@ -24,7 +24,7 @@ const ProfileSettings = () => {
     fetchProfileId();
   }, []);
 
-  const { loading, error, data } = useQuery(QUERY_USER, {
+  const { loading, error, data, refetch } = useQuery(QUERY_USER, {
     variables: { id: userId },
     skip: !userId,
   });
@@ -89,7 +89,8 @@ const ProfileSettings = () => {
         },
       });
       console.log("Changes saved", response);
-      window.location.assign("/profilesettings");
+      window.alert("Profile changed");
+      refetch();
     } catch (error) {
       console.error("Failed to save:", error);
     }

@@ -124,6 +124,40 @@ export const DELETE_COURSE = gql`
   }
 `;
 
+export const SAVE_COURSE = gql`
+  mutation saveCourse($courseId: ID!) {
+    saveCourse(courseId: $courseId) {
+      _id
+      firstName
+      lastName
+      username
+      email
+      courses {
+        _id
+        name
+        description
+      }
+    }
+  }
+`;
+
+export const REMOVE_SAVED_COURSE = gql`
+  mutation removeSavedCourse($courseId: ID!) {
+    removeSavedCourse(courseId: $courseId) {
+      _id
+      firstName
+      lastName
+      username
+      email
+      courses {
+        _id
+        name
+        description
+      }
+    }
+  }
+`;
+
 export const CREATE_COMMENT = gql`
   mutation createComment(
     $user: ID!

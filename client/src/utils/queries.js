@@ -12,6 +12,8 @@ export const QUERY_ME = gql`
       courses {
         _id
         name
+        icon
+        description
       }
       resources {
         _id

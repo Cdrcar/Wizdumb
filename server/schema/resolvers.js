@@ -75,11 +75,9 @@ const resolvers = {
       return { token, user };
     },
     loginUser: async (parent, { email, password }) => {
-      console.log("Login email:", email);
+      console.log("Attempted login for email:", email);
 
       const user = await User.findOne({ email });
-      console.log("User found:", user);
-
       if (!user) {
         throw new AuthenticationError("Invalid email or password");
       }
@@ -92,7 +90,7 @@ const resolvers = {
       }
 
       const token = signToken(user);
-      console.log("Generated token:", token);
+      console.log("Successful authentication, token generated:", token);
 
       return { token, user };
     },
@@ -151,6 +149,24 @@ const resolvers = {
       }
 
       throw new Error("User not authenticated");
+    },
+
+    removeSavedCourse: async (parent, { courseId }, { user, pubsub }) => {
+      try {
+        // Remove the course from the user's saved courses
+        const updatedUser = await User.findByIdAndUpdate(
+          user._id,
+          { $pull: { courses: courseId } },
+          { new: true }
+        );
+        pubsub.publish("SAVED_COURSES_UPDATED", {
+          savedCoursesUpdated: updatedUser.courses,
+        });
+
+        return updatedUser;
+      } catch (error) {
+        throw new Error("Failed to remove course");
+      }
     },
 
     createCourse: async (parent, { name, description }) => {

@@ -35,11 +35,11 @@
     "description": "Node.js is a powerful JavaScript runtime environment that allows you to build efficient server-side applications. This course covers the fundamentals of Node.js and teaches you how to develop web applications using Node.js.",
     "icon": "node",
     "modules": [
-      "Introduction to NodeJS",
+      "Intro to NodeJS",
       "Modules and NPM",
       "Asynchronous Programming",
       "Databases in Node.js",
-      "Error Handling"
+      "Dealing with errors"
     ],
     "users": [],
     "comments": [],

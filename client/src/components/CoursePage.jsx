@@ -58,15 +58,15 @@ const CoursePage = () => {
 
   return (
     <>
-      <div className="flex h-full flex-col sm:flex-row">
-        <div className="flex top-18 left-0.25 h-full py-5 w-full sm:w-80 rounded bg-sky-800 bg-opacity-80 from-sky-400 to-indigo-900 text-white shadow-lg z-40 shrink-0 mb-[-25px]">
+      <div className="flex h-full flex-col md:flex-row">
+        <div className="flex top-18 left-0.25 h-full py-5 w-full md:w-80 rounded bg-sky-800 bg-opacity-80 from-sky-400 to-indigo-900 text-white shadow-lg z-40 shrink-0 mb-[-25px]">
           <div className="mr-1 flex flex-col items-center w-full">
-            <div className="w-full sm:w-5/6 sm:h-20 items-center justify-center text-[22px] font-bold flex">
+            <div className="w-full md:w-5/6 md:h-20 items-center justify-center text-[22px] font-bold flex">
               <h1 className="text-black">MODULES</h1>
             </div>
             {course.modules.map((module) => (
               <div
-                className="hover:cursor-pointer justify-center sm:justify-left shadow-lg bg-cyan-200 bg-opacity-75 ml-3 rounded-xl w-full sm:w-72 h-8 sm:h-24 mt-1 sm:mt-4 flex items-center "
+                className="hover:cursor-pointer justify-center md:justify-left shadow-lg bg-cyan-200 bg-opacity-75 ml-3 rounded-xl w-full md:w-72 h-8 md:h-24 mt-1 md:mt-4 flex items-center "
                 key={module}
                 onClick={() => {
                   setSelectedModule(module);
@@ -83,13 +83,13 @@ const CoursePage = () => {
         <div>
           {!isModuleSelected && (
             <>
-              <h1 className="text-2xl sm:text-6xl font-bold text-center text-cyan-800 my-6">
+              <h1 className="text-2xl md:text-6xl font-bold text-center text-cyan-800 my-6">
                 {course.name}
               </h1>
               <div className="flex flex-row mx-5">
                 <div className="flex-auto">
                   <div>
-                    <p className="font-bold flex text-l sm:text-2xl">
+                    <p className="font-bold flex text-l md:text-2xl">
                       {course.description}
                     </p>
                   </div>
@@ -110,16 +110,16 @@ const CoursePage = () => {
             selectedModuleResources.map((resource) => (
               <div key={resource.name} className="flex flex-col">
                 <div>
-                  <h2 className="text-2xl sm:text-6xl font-bold text-center text-cyan-800 my-6">
+                  <h2 className="text-2xl md:text-6xl font-bold text-center text-cyan-800 my-6">
                     {resource.name}
                   </h2>
                   <div className="flex flex-col mx-5">
-                    <p className="font-bold flex text-l sm:text-2xl">
+                    <p className="font-bold flex text-l md:text-2xl">
                       {resource.description}
                     </p>
                     {resource.video && (
                       <div>
-                        <div className="rounded-xl flex-col space-y-4 .">
+                        <div className="rounded-xl flex-col space-y-4 relative w-full pb-[56%] h-0 ">
                           <iframe
                             className="rounded-xl mt-5"
                             src={resource.video}

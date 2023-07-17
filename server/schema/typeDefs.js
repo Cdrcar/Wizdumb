@@ -62,12 +62,12 @@ const typeDefs = gql`
     location: String
     topSkills: String
     profilePhoto: String
-    courses: [Course!]!
-    resources: [Resource!]!
-    comments: [Comment!]!
-    tags: [Tag!]!
-    createdAt: String!
-    updatedAt: String!
+    courses: [Course!]
+    resources: [Resource!]
+    comments: [Comment!]
+    tags: [Tag!]
+    createdAt: String
+    updatedAt: String
   }
 
   input UpdateUserInput {

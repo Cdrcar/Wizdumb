@@ -20,6 +20,7 @@ const ProfileSettings = () => {
   useEffect(() => {
     const fetchProfileId = async () => {
       const profileData = await AuthService.getProfile().data;
+      console.log(profileData._id);
       setUserId(profileData._id);
     };
     fetchProfileId();
@@ -129,7 +130,7 @@ const ProfileSettings = () => {
   return (
     <div className="max-w-xl mx-auto">
       <div>
-      <Link to="/home" className="text-blue-500 hover:text-blue-700 mb-4">
+        <Link to="/home" className="text-blue-500 hover:text-blue-700 mb-4">
           <FaArrowLeft className="text-xl" />
         </Link>
         <h2 className="text-3xl font-medium mt-8 mb-8">Edit my profile</h2>

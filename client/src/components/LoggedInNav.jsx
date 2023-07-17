@@ -41,7 +41,7 @@ const LoggedInNav = () => {
           className={`${
             mainOpen
               ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
-              : "mr-5  mt-1"
+              : "mr-5 "
           } cursor-pointer`}
         >
           <Link to="/my-courses">Courses</Link>
@@ -50,7 +50,7 @@ const LoggedInNav = () => {
           className={`${
             mainOpen
               ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
-              : "mr-5  mt-1"
+              : "mr-5 "
           } cursor-pointer`}
         >
           <Link to="/forum">Forum</Link>
@@ -59,7 +59,7 @@ const LoggedInNav = () => {
           className={`${
             mainOpen
               ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
-              : "mr-5  mt-1"
+              : "mr-5"
           } cursor-pointer`}
         >
           <Link to="/profilesettings">
@@ -72,7 +72,7 @@ const LoggedInNav = () => {
               className={`${
                 mainOpen
                   ? "p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5"
-                  : "mt-1"
+                  : ""
               } cursor-pointer`}
             >
               <Link to="/home">
@@ -87,16 +87,12 @@ const LoggedInNav = () => {
             </li>
           </div>
           <ul
-            className={`mt-2 overflow-y-auto ${
+            className={`overflow-y-auto ${
               open ? "visible max-h-60" : "invisible max-h-0"
             } absolute right-0 bg-white border border-gray-300`}
           >
             <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer">
-
-            <Link to="/home">
-              Profile
-            </Link>
-
+              <Link to="/home">Profile</Link>
             </li>
             <li
               className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer"

@@ -117,6 +117,37 @@ const resolvers = {
           location,
           topSkills,
           profilePhoto,
+        },
+        { new: true }
+      ).populate("courses");
+
+      const token = signToken(updatedUser); // Generate a new token for the updated user
+
+      return { token, user: updatedUser };
+    },
+    updateUser: async (parent, { input }, context) => {
+      if (!context.user) {
+        throw new AuthenticationError("You need to be logged in!");
+      }
+
+      const {
+        firstName,
+        lastName,
+        aboutMe,
+        location,
+        topSkills,
+        profilePhoto,
+      } = input;
+
+      const updatedUser = await User.findByIdAndUpdate(
+        context.user._id,
+        {
+          firstName,
+          lastName,
+          aboutMe,
+          location,
+          topSkills,
+          profilePhoto,
           comments,
           commentReply,
           likedComment,
@@ -182,10 +213,16 @@ const resolvers = {
     deleteCourse: async (parent, { id }) => {
       return await Course.findByIdAndDelete(id);
     },
-    createComment: async (parent, { user, comment, title, resource, course }) => {
+    createComment: async (
+      parent,
+      { user, comment, title, resource, course }
+    ) => {
       return await Comment.create({ user, comment, title, resource, course });
     },
-    updateComment: async (parent, { id, user, comment, title, commentn, resource, course }) => {
+    updateComment: async (
+      parent,
+      { id, user, comment, title, commentn, resource, course }
+    ) => {
       return await Comment.findByIdAndUpdate(
         id,
         { user, comment, title, commentn, resource, course },

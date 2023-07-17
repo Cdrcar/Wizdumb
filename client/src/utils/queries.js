@@ -58,12 +58,6 @@ export const QUERY_USER = gql`
         _id
         comment
       }
-      commentReply {
-        _id
-      }
-      likedComment {
-        _id
-      }
       tags {
         _id
         name

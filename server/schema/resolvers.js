@@ -90,7 +90,7 @@ const resolvers = {
       }
 
       const token = signToken(user);
-      console.log("Successful authentication, token generated:", token);
+      console.log("Successful authentication, token generated");
 
       return { token, user };
     },

@@ -1,14 +1,13 @@
-import {useState, React } from "react";
+import { useState, React } from "react";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import Logo from "./Logo";
 import Auth from "../utils/auth";
 
 const Login = ({ isVisible, onClose }) => {
-
   const [formState, setFormState] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const [loginUser, { error }] = useMutation(LOGIN_USER);
@@ -20,28 +19,24 @@ const Login = ({ isVisible, onClose }) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log('Form state:', formState);
-    
+    console.log("Form state:", formState);
+
     try {
       const { data } = await loginUser({
         variables: { ...formState },
       });
-  
-      console.log('Login data:', data);
-  
+
       if (data.loginUser.token) {
-        console.log('User authenticated!');
-        console.log('User information:', data.loginUser.user);
+        console.log("User authenticated!");
         Auth.login(data.loginUser.token);
       } else {
-        console.log('Authentication failed!');
+        console.log("Authentication failed!");
       }
     } catch (e) {
-      console.error('Login error:', e);
+      console.error("Login error:", e);
     }
   };
-  
-  
+
   if (!isVisible) return null;
   const message = "Welcome back!";
   const handleClose = (e) => {
@@ -71,10 +66,10 @@ const Login = ({ isVisible, onClose }) => {
             </label>
             <br></br>
             <input
-              className='mb-4 p-2 border'
-              type='text'
-              id='email'
-              name='email'
+              className="mb-4 p-2 border"
+              type="text"
+              id="email"
+              name="email"
               placeholder="example@email.com"
               required
               onChange={handleChange}
@@ -85,13 +80,13 @@ const Login = ({ isVisible, onClose }) => {
             </label>
             <br></br>
             <input
-               className='mb-4 p-2 border'
-               type='password'
-               id='password'
-               name='password'
-               placeholder='Password'
-               required
-               onChange={handleChange}
+              className="mb-4 p-2 border"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+              onChange={handleChange}
             ></input>
             <br></br>
             <button

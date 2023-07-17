@@ -146,7 +146,7 @@ const CoursePage = () => {
                                 rel="noopener noreferrer"
                                 className="text-black font-bold hover:cursor-pointer"
                               >
-                                Click Here
+                                Click Here!
                               </a>
                             </span>
                           </button>

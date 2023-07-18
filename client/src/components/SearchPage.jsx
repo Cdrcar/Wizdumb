@@ -3,9 +3,10 @@ import {FcSearch} from 'react-icons/fc';
 import courses from '../constants';
 
 const SearchPage = () => {
-
+// create a useStae for the search
 const [currentSearch, setCurrentSearch] = useState([])
 
+//this function will compare the name of the search to the name of the courses and will give the top 8 results that match
 const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase()
     e.preventDefault();

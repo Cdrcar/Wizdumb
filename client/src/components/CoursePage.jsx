@@ -6,7 +6,7 @@ import learning from "../assets/learning.png";
 
 const CoursePage = () => {
   const { courseName } = useParams();
-
+//creating the queries for the courses and resources
   const {
     loading: coursesLoading,
     error: coursesError,
@@ -18,6 +18,7 @@ const CoursePage = () => {
     data: resourcesData,
   } = useQuery(QUERY_RESOURCES);
 
+  //creating the useState for the selected modules and displaying the modules if they are selected
   const [selectedModule, setSelectedModule] = useState(null);
   const [isModuleSelected, setIsModuleSelected] = useState(false);
 
@@ -31,6 +32,7 @@ const CoursePage = () => {
     }
   }, []);
 
+  //handling errors if data is laoding or cannot be retrieved
   if (coursesLoading || resourcesLoading) {
     return <div>Loading...</div>;
   }
@@ -39,10 +41,12 @@ const CoursePage = () => {
     return <div>Error occurred while fetching data</div>;
   }
 
+  //comparing the name of the course to the name of the course in the useParams to ensure the correct modules from the correct modules are displayed
   const course = coursesData.getCourses.find(
     (course) => course.name.toLowerCase() === courseName.toLowerCase()
   );
 
+  //creating an empty array for the selected modules so when a resource.name matches to the name of the clicked module it is saved in this array.
   const selectedModuleResources = [];
   for (const resource of resourcesData.getResources) {
     // console.log(resource.name)
@@ -56,6 +60,7 @@ const CoursePage = () => {
     return <div>Course Not Found</div>;
   }
 
+  
   return (
     <>
       <div className="flex h-full flex-col md:flex-row">
@@ -64,6 +69,7 @@ const CoursePage = () => {
             <div className="w-full md:w-5/6 md:h-20 items-center justify-center text-[22px] font-bold flex">
               <h1 className="text-black">MODULES</h1>
             </div>
+            {/*I will map though the courses modules to display them in a side navbar and set the selected module when it is clicked*/} 
             {course.modules.map((module) => (
               <div
                 className="hover:cursor-pointer justify-center md:justify-left shadow-lg bg-cyan-200 bg-opacity-75 ml-3 rounded-xl w-full md:w-72 h-8 md:h-24 mt-1 md:mt-4 flex items-center "
@@ -81,6 +87,7 @@ const CoursePage = () => {
           </div>
         </div>
         <div>
+            {/*when no module is clicked the homepage will display*/} 
           {!isModuleSelected && (
             <>
               <h1 className="text-2xl md:text-6xl font-bold text-center text-cyan-800 my-6">
@@ -106,6 +113,7 @@ const CoursePage = () => {
               </div>
             </>
           )}
+            {/*when a module is clicked the seletced resources for that module wil be shown, including the name, description and if there are videos or links, they will be displayed*/} 
           {selectedModule &&
             selectedModuleResources.map((resource) => (
               <div key={resource.name} className="flex flex-col">

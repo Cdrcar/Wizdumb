@@ -10,19 +10,23 @@ import { RiSettings4Line } from "react-icons/ri";
 import Course from "./ProfileCourses";
 
 const Profile = () => {
+  //Declare state variables
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSearch, setCurrentSearch] = useState([]);
   const { loading, data, error } = useQuery(QUERY_ME);
 
+  //Loading state
   if (loading) {
     return <div>Loading...</div>;
   }
 
+  //Error state
   if (error) {
     return <div>Error loading user data</div>;
   }
 
+  //User data from query
   const firstName = data?.me?.firstName;
   const aboutMe = data?.me?.aboutMe;
   const courses = data?.me?.courses || [];
@@ -30,6 +34,7 @@ const Profile = () => {
   const topSkills = data?.me?.topSkills;
   const location = data?.me?.location;
 
+  //handle search
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
 
@@ -46,6 +51,7 @@ const Profile = () => {
     );
   };
 
+  // handle when my courses clicked
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
   };
@@ -67,8 +73,10 @@ const Profile = () => {
               className="inline-block h-20 rounded-full mt-2 mr-2"
             />
           )}
-                   <div className="text-center ml-2">
-            <div className="mb-1 mt-5 text-lg font-bold">Hey, {firstName} &#x1F44B;</div>
+          <div className="text-center ml-2">
+            <div className="mb-1 mt-5 text-lg font-bold">
+              Hey, {firstName} &#x1F44B;
+            </div>
             <div className="mb-2 text-sm">{aboutMe}</div>
             <div className="mb-2 text-sm">Top Skills: {topSkills}</div>
             <div className="mb-2 text-sm">Location: {location}</div>
@@ -79,8 +87,6 @@ const Profile = () => {
             >
               Edit Profile
             </Link>
-
-            
           </div>
         </div>
         <div>

@@ -10,13 +10,16 @@ const Login = ({ isVisible, onClose }) => {
     password: "",
   });
 
+  //Mutation for login
   const [loginUser, { error }] = useMutation(LOGIN_USER);
 
+  // Handle form field changes
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
   };
 
+  //handle form submission
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log("Form state:", formState);
@@ -37,8 +40,11 @@ const Login = ({ isVisible, onClose }) => {
     }
   };
 
+  //hide component if not logged in
   if (!isVisible) return null;
   const message = "Welcome back!";
+
+  // handle closing modal
   const handleClose = (e) => {
     if (e.target.id === "wrapper") onClose();
   };

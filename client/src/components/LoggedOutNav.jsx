@@ -4,6 +4,7 @@ import Login from "./login";
 import { FiMenu } from "react-icons/fi";
 
 const LoggedOutNav = () => {
+  // Declare state variables
   const [open, setOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   // Show Login modals
@@ -32,6 +33,7 @@ const LoggedOutNav = () => {
             : "hidden"
         } sm:flex sm:flex-row sm:mr-10`}
       >
+        {/* Courses */}
         <li
           className={`${
             open
@@ -41,6 +43,7 @@ const LoggedOutNav = () => {
         >
           <Link to="/my-courses">Courses</Link>
         </li>
+        {/* Login */}
         <li
           className={`${
             open
@@ -51,6 +54,7 @@ const LoggedOutNav = () => {
         >
           Login
         </li>
+        {/* Signup */}
         <li
           className={`${
             open
@@ -60,6 +64,7 @@ const LoggedOutNav = () => {
         >
           <Link to="/signup">Sign Up</Link>
         </li>
+        {/* Login modal */}
         <Login
           isVisible={showLoginModal}
           onClose={() => setShowLoginModal(false)}

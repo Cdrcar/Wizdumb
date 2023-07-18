@@ -15,17 +15,20 @@ const Forum = () => {
     navigate("/forumwrite");
   };
 
+  // Fetching comments data using Apollo useQuery hook
   const { loading, error, data } = useQuery(QUERY_ALL_COMMENTS);
   const comments = data?.getComments || [];
 
   return (
     <>
       <div className="grid">
+        {/* Forum Header */}
         <h1 className="text-6xl font-bold text-center text-cyan-800 pt-24 pb-16">
           Forum
         </h1>
         <div className="flex pr-6 pl-3 self-center justify-self-end relative z-10">
           <div className="grid w-full">
+            {/* Write Post Section */}
             <h3 className="hidden sm:block text-center p-2 text-2xl font-bold text-cyan-800">
               Write Post
             </h3>
@@ -47,8 +50,10 @@ const Forum = () => {
         </div>
       </div>
       <div>
+        {/* Search and Liked Posts Sections */}
         <div className="grid grid-rows-2 sm:grid-rows-none sm:grid-cols-3 mb-20">
           <div className="col-span-2 px-6 sm:pl-6 sm:pr-3">
+            {/* Search Section */}
             <h3 className="text-center pb-2 md:p-2 text-2xl font-bold text-cyan-800">
               Search for post
             </h3>
@@ -56,6 +61,7 @@ const Forum = () => {
           </div>
           <div className="flex pr-6 pl-3 col-span-2 sm:col-span-1 sm:w-full justify-self-end relative z-10">
             <div className="grid w-full pt-10 sm:pt-0">
+              {/* Liked Posts Section */}
               <h3 className="hidden sm:block text-center p-2 text-2xl font-bold text-cyan-800">
                 Liked posts
               </h3>
@@ -79,6 +85,7 @@ const Forum = () => {
       </div>
       <div className="grid grid-cols-3 mb-16">
         <div className="col-span-3 sm:col-span-2 mx-6 sm:ml-16 sm:mr-16">
+          {/* Render ForumBar components */}
           {comments.map((comment) => (
             <ForumBar
               title={comment.title}

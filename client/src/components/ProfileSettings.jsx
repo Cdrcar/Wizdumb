@@ -8,6 +8,7 @@ import { Navigate, Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 
 const ProfileSettings = () => {
+  // Declaring state variables
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [aboutMe, setAboutMe] = useState("");
@@ -16,7 +17,7 @@ const ProfileSettings = () => {
   const [profilePhoto, setProfilePhoto] = useState("");
   const [userId, setUserId] = useState(null);
 
-  // Fetch user details
+  // FETCH USER DETAILS
   useEffect(() => {
     const fetchProfileId = async () => {
       const profileData = await AuthService.getProfile().data;
@@ -31,6 +32,7 @@ const ProfileSettings = () => {
     skip: !userId,
   });
 
+  // Set user fields with data from db
   useEffect(() => {
     const setProfile = async () => {
       const details = data?.getUser;
@@ -44,13 +46,14 @@ const ProfileSettings = () => {
     setProfile();
   }, [data]);
 
-  // Updating user details
+  // UPDATING USER DETAILS
   const [updateUserProfile] = useMutation(UPDATE_USER_PROFILE, {
     onError: (error) => {
       console.error("Failed to save:", error);
     },
   });
 
+  // Event handlers to handle updates
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
   };
@@ -98,7 +101,7 @@ const ProfileSettings = () => {
     }
   };
 
-  //Delete user
+  // DELETE USER
 
   const [deleteUser] = useMutation(DELETE_USER);
 

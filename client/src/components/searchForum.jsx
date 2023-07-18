@@ -7,22 +7,26 @@ import { useNavigate } from "react-router-dom";
 import SearchResultForum from "./SearchResultForum";
 
 const SearchForum = () => {
+  //Fetch all comments from server
   const { loading, error, data } = useQuery(QUERY_ALL_COMMENTS);
 
   const posts = data?.getComments || [];
 
+  // Store search query
   const [searchQuery, setSearchquery] = useState("");
   const [searchChange, setSearchChange] = useState(null);
 
+  // Store current search
   const [currentSearch, setCurrentSearch] = useState([]);
   const navigate = useNavigate();
 
   const handleSearchChange = (e) => {
     e.preventDefault();
+    // handle search query change
   };
 
   const handleSearch = (e) => {
-    // console.log(e.target.value)
+    // update search query state
     setSearchquery(e.target.value);
 
     e.preventDefault();
@@ -32,6 +36,8 @@ const SearchForum = () => {
       setCurrentSearch([]);
       return false;
     } else {
+      // Filter the posts based on the search query
+
       setCurrentSearch(
         posts
           .filter((post) => post.title.toLowerCase().includes(searchQuery))
@@ -60,15 +66,15 @@ const SearchForum = () => {
             </div>
           </div>
           {currentSearch.length > 0 && (
-              <div>
-                {currentSearch.length > 0 && (
-                  <div className="absolute top-20 p-4 bg-blue-100 text-black w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2">
-                    {currentSearch.map((search) => (
-                      <SearchResultForum search={search} key={search._id} />
-                    ))}
-                  </div>
-                )}
-              </div>
+            <div>
+              {currentSearch.length > 0 && (
+                <div className="absolute top-20 p-4 bg-blue-100 text-black w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2">
+                  {currentSearch.map((search) => (
+                    <SearchResultForum search={search} key={search._id} />
+                  ))}
+                </div>
+              )}
+            </div>
           )}
         </form>
       </div>

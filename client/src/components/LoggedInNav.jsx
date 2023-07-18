@@ -44,7 +44,7 @@ const LoggedInNav = () => {
               : "mr-5 "
           } cursor-pointer`}
         >
-          <Link to="/my-courses">Courses</Link>
+          <Link to="/">Courses</Link>
         </li>
         <li
           className={`${

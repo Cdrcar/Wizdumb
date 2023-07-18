@@ -30,7 +30,6 @@ const ForumLikes = () => {
                 </div>
             </div>
             <div className='flex flex-wrap justify-around mx-6 sm:mx-10 mb-16'>
-                {/* classes 'w-full md:w-2/5' needed in each ForumBar in the ForumLikes page to make them fit the screen correctly */}
                 <ForumBar className='w-full md:w-2/5' />
                 <ForumBar className='w-full md:w-2/5' />
                 <ForumBar className='w-full md:w-2/5' />

@@ -4,15 +4,14 @@ import { useNavigate } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 const ForumBar = (props) => {
-  const navigate = useNavigate();
 
+  // handleClick forwards the user to the post which they click, using the _id of the post as the params for each post
+  const navigate = useNavigate();
   const handleClick = () => {
-    // console.log(props.postId);
     const postId = props.postId;
     navigate(`${postId}`);
   };
 
-  // console.log(props);
   return (
     <div
       className={`bg-white ${props.className} rounded-lg h-16 mb-8 shadow-md shadow-slate-400 hover:shadow-none hover:border-2 hover:border-slate-100`}

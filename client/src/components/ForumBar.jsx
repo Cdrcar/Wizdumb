@@ -7,7 +7,7 @@ const ForumBar = (props) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // console.log(props.postId);
+    // Redirect to a specific post page when clicked
     const postId = props.postId;
     navigate(`${postId}`);
   };
@@ -19,9 +19,11 @@ const ForumBar = (props) => {
       onClick={handleClick}
     >
       <div className="h-full flex rounded-lg border-2 border-slate-300">
+        {/* Post Title */}
         <div className="h-full shrink overflow-hidden flex items-center text-lg pl-2">
           <p className="font-bold truncate">{props.title}</p>
         </div>
+        {/* Like and Comment Count */}
         <div className="justify-self-end inline pr-1 sm:pr-2 items-center grid">
           <div className="flex flex-wrap items-center">
             <BiLike className="fill-green-600" />

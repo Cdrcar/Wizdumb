@@ -1,3 +1,5 @@
+//directs to the individual models
+
 const Course = require("./Course");
 const Comment = require("./Comment");
 const Resource = require("./Resource");

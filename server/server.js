@@ -1,11 +1,11 @@
 require("dotenv").config({ path: __dirname + ".env" });
 const express = require("express");
-const { ApolloServer } = require("apollo-server-express");
+const { ApolloServer } = require("apollo-server-express"); //using apollo for working with GQL
 const path = require("path");
-const { authMiddleware } = require("./utils/auth");
+const { authMiddleware } = require("./utils/auth"); //using our authorisation -With JWT
 
-const { typeDefs, resolvers } = require("./schema");
-const db = require("./config/connection");
+const { typeDefs, resolvers } = require("./schema"); //our GQL schema
+const db = require("./config/connection"); //mongo connection
 
 const PORT = process.env.PORT || 3020;
 const app = express();
@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));
 }
 
-// Handle all routes by serving the 'index.html' file
+// this snippet fixes bug where reload away from homepage would break deployed page
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });

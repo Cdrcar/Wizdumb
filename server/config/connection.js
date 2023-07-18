@@ -1,6 +1,7 @@
-require('dotenv').config();
+require("dotenv").config();
 const mongoose = require("mongoose");
 
+//uses the environment variable stored in config vars on heroku
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -14,7 +15,9 @@ mongoose
   .catch((error) => {
     console.error("Error connecting to the database", error);
     if (!process.env.MONGODB_URI) {
-      console.error("process.env.MONGODB_URI is undefined. Please ensure your .env file is set up correctly and is not being ignored by git (should be in .gitignore file).");
+      console.error(
+        "process.env.MONGODB_URI is undefined. Please ensure your .env file is set up correctly and is not being ignored by git (should be in .gitignore file)."
+      );
     }
   });
 

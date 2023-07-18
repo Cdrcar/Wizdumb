@@ -23,7 +23,7 @@ WizDumb is an e-learning platform that offers a wide range of short courses in J
 
 ## [Deployment](#deployment)
 
-[Link to WizDumb]()
+[Link to WizDumb](https://wizdumb-app-a832fc305640.herokuapp.com/)
 
 ## [Features](#features)
 

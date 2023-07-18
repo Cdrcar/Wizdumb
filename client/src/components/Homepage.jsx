@@ -38,7 +38,8 @@ const Homepage = () => {
   // State for search
   const [currentSearch, setCurrentSearch] = useState([]);
 
-  // Handle search input
+  //this function will compare the name of the search to the name of the courses and will give the top 8 results that match
+
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
 

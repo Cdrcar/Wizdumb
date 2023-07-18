@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { useMutation } from "@apollo/client";
 import { SAVE_COURSE } from "../utils/mutations";
 
-
+//props for the course
 const Course = ({ name, description, icon, _id }) => {
   const auth = useSelector((state) => state.AuthService);
 
@@ -37,7 +37,7 @@ const Course = ({ name, description, icon, _id }) => {
     }
   };
   
-  
+  //created a variable for iconName so that the iconName int he database can be compared to the iconName in the image folder and the display be set to that
 
   let iconName;
   const keyExists = icons.find((obj) => obj.hasOwnProperty(icon));
@@ -45,7 +45,7 @@ const Course = ({ name, description, icon, _id }) => {
   if (keyExists) {
     iconName = keyExists[icon];
   }
-
+//Used react Tilt component to make the cards tilt and rotate, looped thorugh the courses table in the database to display all the courses.
   return (
     <div>
       <Tilt tiltMaxAngleY={10} tiltMaxAngleX={10} perspective={1000}>

@@ -9,6 +9,7 @@ const SearchPage = () => {
   //handle search query changes
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
+
     e.preventDefault();
     if (searchQuery == "") {
       setCurrentSearch([]);

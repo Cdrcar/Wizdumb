@@ -7,6 +7,7 @@ import learning from "../assets/learning.png";
 const CoursePage = () => {
   const { courseName } = useParams();
 
+  // Fetch course and resource data
   const {
     loading: coursesLoading,
     error: coursesError,
@@ -18,11 +19,13 @@ const CoursePage = () => {
     data: resourcesData,
   } = useQuery(QUERY_RESOURCES);
 
+  // Declare state variables
   const [selectedModule, setSelectedModule] = useState(null);
   const [isModuleSelected, setIsModuleSelected] = useState(false);
 
   useEffect(() => {
     if (coursesData) {
+      // Find courses with given name
       const course = coursesData.getCourses.find(
         (course) => course.name.toLowerCase() === courseName.toLowerCase()
       );
@@ -39,6 +42,7 @@ const CoursePage = () => {
     return <div>Error occurred while fetching data</div>;
   }
 
+  // Fine courses with given name
   const course = coursesData.getCourses.find(
     (course) => course.name.toLowerCase() === courseName.toLowerCase()
   );
@@ -59,6 +63,7 @@ const CoursePage = () => {
   return (
     <>
       <div className="flex h-full flex-col md:flex-row">
+        {/* Modules Sidebar */}
         <div className="flex top-18 left-0.25 h-full py-5 w-full md:w-80 rounded bg-sky-800 bg-opacity-80 from-sky-400 to-indigo-900 text-white shadow-lg z-40 shrink-0 mb-[-25px]">
           <div className="mr-1 flex flex-col items-center w-full">
             <div className="w-full md:w-5/6 md:h-20 items-center justify-center text-[22px] font-bold flex">
@@ -119,6 +124,7 @@ const CoursePage = () => {
                     </p>
                     {resource.video && (
                       <div>
+                        {/* Video Player */}
                         <div className="rounded-xl flex-col space-y-4 relative w-full pb-[56%] h-0 ">
                           <iframe
                             className="rounded-xl mt-5"
@@ -132,6 +138,7 @@ const CoursePage = () => {
                     )}
                     {resource.link && (
                       <div>
+                        {/* Resource Link */}
                         <p className="font-bold flex text-2xl my-2">
                           Click on the button below to be taken to more
                           resources!

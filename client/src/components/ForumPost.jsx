@@ -7,32 +7,36 @@ import { useParams } from "react-router-dom";
 import store from "../store";
 
 const ForumPost = () => {
-  const { currentId } = useParams();
-  console.log(currentId);
 
-  const { loading, error, data } = useQuery(QUERY_SINGLE_COMMENT, {
-    variables: { getCommentId: currentId },
-  });
+    // setting currentId to the param, which is the ID of the post that will be displayed on the page
+    const { currentId } = useParams();
+    console.log(currentId);
 
-  let comments = {
-    comment: "No Post",
-    title: "No Title",
-    commentn: [],
-    like: [],
-    user: { username: "No User" },
-    _id: "No Id",
-  };
-  let comment2 = [];
-  if (!loading) {
-    comments = data?.getComment || [];
-    comment2 = comments.commentn;
-  }
-  console.log(comment2);
-  console.log(comments);
+    const { loading, error, data } = useQuery(QUERY_SINGLE_COMMENT, {
+        variables: { getCommentId: currentId }
+    });
+    
+    // Setting comments to a blank object of comments, to stop getting error undefined when a query is made
+    let comments = { comment: "No Post", title: "No Title", commentn: [], like: [], user: { username: "No User"}, _id: "No Id"};
+    let comment2 = [];
+    // Making sure that no undefined readings of the query are coming through to reduce errors
+    if (!loading) {
+        // querying the database for comments
+        comments = data?.getComment || [];
+        comment2 = comments.commentn;
+      }
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+
+      // display loading bar if loading is occuring
+    if (loading) {
+        return <div>Loading...</div>;
+      }
+    
+      // display error message for fetching data
+      if (error) {
+        return <div>Error occurred while fetching data</div>;
+      }
+
 
   if (error) {
     return <div>Error occurred while fetching data</div>;

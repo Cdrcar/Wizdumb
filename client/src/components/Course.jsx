@@ -24,7 +24,6 @@ const Course = ({ name, description, icon, _id }) => {
   const handlePlusClick = async (event) => {
     event.stopPropagation();
     try {
-      console.log("Course Information:", name, description, icon, _id); // Log the course information
       await saveCourse({ variables: { courseId: _id } });
   
       // Display notification
@@ -45,10 +44,7 @@ const Course = ({ name, description, icon, _id }) => {
 
   if (keyExists) {
     iconName = keyExists[icon];
-    console.log(iconName);
   }
-
-  console.log(iconName);
 
   return (
     <div>

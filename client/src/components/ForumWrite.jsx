@@ -5,37 +5,43 @@ import { CREATE_COMMENT } from "../utils/mutations";
 import { useMutation } from "@apollo/client";
 
 const ForumWrite = () => {
+
   const navigate = useNavigate();
-  const [postState, setPostState] = useState({
-    comment: "",
-    title: "",
-    user: "",
-  });
+ 
 
-  const [createComment, { error: commentError, data: commentResponse }] =
-    useMutation(CREATE_COMMENT);
+    // setting the postState
+    const [postState, setPostState] = useState({
+        comment: "",
+        title: "",
+        user: "",
+    });
 
-  const handleCommentChange = async (e) => {
-    const { name, value } = e.target;
-    const username = AuthService.getProfile();
-    console.log(username.data._id);
-    setPostState({ ...postState, [name]: value, user: username.data._id });
-  };
+    // bringing in the mutation createComment
+    const [createComment, { error: commentError, data: commentResponse }] = useMutation(CREATE_COMMENT);
 
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    console.log("postState:", postState);
-    try {
-      const { data } = await createComment({
-        variables: { ...postState },
-      });
-      console.log(data);
-      console.log("Submitted");
-      navigate("/forum");
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    const handleCommentChange = async (e) => {
+        const { name, value } = e.target;
+        const username = AuthService.getProfile()
+        console.log(username.data._id);
+        setPostState({ ...postState, [name]: value, user: username.data._id});
+    };
+    
+    // defining navigate
+    const navigate = useNavigate();
+    const handleCommentSubmit = async (e) => {
+        e.preventDefault();
+        // creating the comment with the input provided by the user, and console logging error if an error occurs
+        try {
+            const { data } = await createComment({
+                variables: { ...postState },
+            });
+            console.log(data)
+            navigate("/forum");
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
 
   return (
     <div className="bg-slate-100">

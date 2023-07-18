@@ -8,6 +8,7 @@ import { useQuery } from "@apollo/client";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 const Forum = () => {
+  // changePage function is used on the button on line 32, this forwards users to /forumwrite where they can make a post
   const navigate = useNavigate();
   const changePage = (e) => {
     e.preventDefault();

@@ -33,11 +33,7 @@ const Course = ({ name, description, icon, _id }) => {
             variables: { courseId: _id },
           });
           window.location.assign("/home");
-          if (data) {
-            // Course removed successfully
-            console.log("Course removed:", data.removeSavedCourse);
-            // Reload the page
-          }
+
         }
       } else {
         console.log("User not logged in");
@@ -54,7 +50,6 @@ const Course = ({ name, description, icon, _id }) => {
 
   if (keyExists) {
     iconName = keyExists[icon];
-    console.log(iconName);
   }
 
   return (

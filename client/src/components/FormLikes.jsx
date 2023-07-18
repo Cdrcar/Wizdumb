@@ -19,6 +19,7 @@ const ForumLikes = () => {
               </h3>
               <BsFillStarFill className="fill-yellow-300 h-10 w-10 self-center" />
             </div>
+
             <div className="flex justify-center items-center">
               {/* Search Form */}
               <form className="w-full relative ">

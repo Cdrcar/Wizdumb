@@ -7,6 +7,7 @@ import Logo from "./Logo";
 import Auth from "../utils/auth";
 
 const Signup = () => {
+  //declare state variables
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
@@ -15,9 +16,12 @@ const Signup = () => {
     password: "",
   });
 
+  //Define add user and login user mutations
   const [addUser, { error: addUserError, data: addUserResponse }] =
     useMutation(ADD_USER);
   const [loginUser, { error: loginError }] = useMutation(LOGIN_USER);
+
+  // handle form input change
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({ ...formState, [name]: value });
@@ -30,11 +34,14 @@ const Signup = () => {
     console.log(formState);
 
     try {
+      //register user
       const { data } = await addUser({
         variables: { ...formState },
       });
-
+      // login user after registration
       Auth.login(data.createUser.token);
+
+      //login with email and password
       const loginResponse = await loginUser({
         variables: {
           email: formState.email,
@@ -42,6 +49,7 @@ const Signup = () => {
         },
       });
 
+      //login user
       Auth.login(loginResponse.data.loginUser.token);
     } catch (e) {
       console.error(e);
@@ -68,6 +76,7 @@ const Signup = () => {
             </p>
           ) : (
             <form onSubmit={handleFormSubmit} className="text-center">
+              {/* Form fields */}
               <label className="p-3" htmlFor="username_signup">
                 Username
               </label>

@@ -11,9 +11,11 @@ import { FaMinus } from "react-icons/fa";
 const Course = ({ name, description, icon, _id }) => {
   const auth = useSelector((state) => state.AuthService);
 
+  // Check if user is logged in
   const loggedIn = AuthService.loggedIn();
   const history = useNavigate();
 
+  // handle removal of a saved course
   const [removeSavedCourse] = useMutation(REMOVE_SAVED_COURSE);
 
   const handleRemoveCourse = async (event) => {

@@ -21,17 +21,24 @@ import { AiOutlineQuestion } from "react-icons/ai";
 // let iconName;
 
 const Homepage = () => {
+  // State for authentication
   const auth = useSelector((state) => state.AuthService);
 
+  // Check is user is logged in
   const loggedIn = AuthService.loggedIn();
+
+  // Declare state variable
   const [showLoginModal, setShowLoginModal] = useState(false);
 
+  // Query to get courses
   const { loading, error, data } = useQuery(QUERY_COURSES);
   const courses = data?.getCourses || [];
   console.log(data);
 
+  // State for search
   const [currentSearch, setCurrentSearch] = useState([]);
 
+  // Handle search input
   const handleSearch = (e) => {
     const searchQuery = e.target.value.toLowerCase();
 
@@ -53,6 +60,7 @@ const Homepage = () => {
     <>
       <div className="fixed bg-hero-pattern bg-cover bg-no-repeat bg-center h-screen w-screen z-0"></div>
       <section className="relative w-full h-4/6">
+        {/* Hero section */}
         <div className="flex flex-col sm:flex-row items-center mt-20 sm:mt-40 inset-0 top-[80px] max-w-7xl mx-auto sm:px-16 px-6 items-start gap-5 justify-end">
           <div className="max-w-[300px] w-auto min-w-[150px]">
             <Logo />
@@ -70,6 +78,7 @@ const Homepage = () => {
           </div>
           <div className="w-[90%] sm:w-[25%] align-center flex">
             <ul className=" w-full text-center flex align-center flex-col ml-10">
+              {/* Render login and signup buttons if not logged in */}
               {!loggedIn && (
                 <div>
                   <li
@@ -92,7 +101,7 @@ const Homepage = () => {
           </div>
         </div>
         <section>
-          {/*Render the cards */}
+          {/* Features section */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 ml-10 mr-10 pb-20 mt-20">
             <div className="border rounded-md pt-5 pb-5 bg-white border-gray-300 text-center pl-2 pr-2">
               <AiOutlineLaptop className="mx-auto mb-5 text-2xl" />
@@ -113,7 +122,7 @@ const Homepage = () => {
         </section>
       </section>
 
-      {/* Render the search Bar*/}
+      {/* Search bar */}
       <div className=" mb-20">
         <div className="flex justify-center items-center">
           <form className="w-[500px] relative ">
@@ -130,6 +139,7 @@ const Homepage = () => {
                 </button>
               </div>
             </div>
+            {/* Render search results */}
             {currentSearch.length > 0 && (
               <div className="absolute top-20 p-4 bg-blue-100 text-black font-bold w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2 hover:pointer-cursor">
                 {currentSearch.map((search) => (
@@ -146,7 +156,7 @@ const Homepage = () => {
           </form>
         </div>
       </div>
-      {/* Render the Courses */}
+      {/* Render courses */}
       <div className="relative z-10 mt-10">
         <h3
           id="courses"

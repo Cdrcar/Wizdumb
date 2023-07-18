@@ -6,11 +6,11 @@ import LoggedOutNav from "./LoggedOutNav";
 import { useSelector } from "react-redux";
 import LoggedInNav from "./LoggedInNav";
 
-// TODO: my-courses component and route
-
 const Navbar = () => {
+  // Select authentication state
   const auth = useSelector((state) => state.AuthService);
 
+  // Check is user is logged in
   const loggedIn = AuthService.loggedIn();
   return (
     <nav className="sticky top-0 z-50 bg-white border-b-2 border-b-gray-100">

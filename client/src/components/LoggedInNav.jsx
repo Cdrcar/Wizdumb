@@ -7,6 +7,7 @@ import AuthService from "../utils/auth";
 import { FiMenu } from "react-icons/fi";
 
 const LoggedInNav = () => {
+  // Declaring state variables
   const [open, setOpen] = useState(false);
   const [mainOpen, setMainOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
@@ -21,6 +22,7 @@ const LoggedInNav = () => {
     setMainOpen(false);
   };
 
+  // Logout user
   const handleLogout = () => {
     AuthService.logout();
   };
@@ -37,6 +39,7 @@ const LoggedInNav = () => {
             : "hidden"
         } sm:flex sm:flex-row sm:mr-1`}
       >
+        {/*Courses */}
         <li
           className={`${
             mainOpen
@@ -46,6 +49,7 @@ const LoggedInNav = () => {
         >
           <Link to="/my-courses">Courses</Link>
         </li>
+        {/*Forum */}
         <li
           className={`${
             mainOpen
@@ -55,6 +59,7 @@ const LoggedInNav = () => {
         >
           <Link to="/forum">Forum</Link>
         </li>
+        {/*Profile Settings*/}
         <li
           className={`${
             mainOpen
@@ -66,6 +71,7 @@ const LoggedInNav = () => {
             <BiCog className="text-xl" />
           </Link>
         </li>
+        {/*Home */}
         <div className="relative">
           <div className="flex flex-row">
             <li
@@ -79,6 +85,7 @@ const LoggedInNav = () => {
                 <BsFillPersonFill className="text-lg" />
               </Link>
             </li>
+            {/*Dropdown arrow */}
             <li
               className="mr-5 pt-1 hover:cursor-pointer"
               onClick={() => setOpen(!open)}
@@ -86,14 +93,17 @@ const LoggedInNav = () => {
               <BiChevronDown size={20} className={`${open && "rotate-180"}`} />
             </li>
           </div>
+          {/*Dropdown menu*/}
           <ul
             className={`overflow-y-auto ${
               open ? "visible max-h-60" : "invisible max-h-0"
             } absolute right-0 bg-white border border-gray-300`}
           >
+            {/*Profile */}
             <li className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer">
               <Link to="/home">Profile</Link>
             </li>
+            {/*Logout*/}
             <li
               className="p-2 hover:bg-sky-400 hover:bg-opacity-25 relative text-sm pl-5 pr-5 cursor-pointer"
               onClick={handleLogout}

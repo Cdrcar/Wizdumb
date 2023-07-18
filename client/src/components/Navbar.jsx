@@ -24,7 +24,8 @@ const Navbar = () => {
         </Link>
         <div className="">
           {/* Courses */}
-          <ul>{loggedIn ? <LoggedInNav /> : <LoggedOutNav />}</ul>
+          <ul>{loggedIn ? <LoggedInNav /> : <LoggedOutNav />}</ul>{" "}
+          {/*Renders the navbar depending on logged in state*/}
         </div>
       </div>
     </nav>

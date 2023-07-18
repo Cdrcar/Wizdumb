@@ -1,5 +1,5 @@
 const db = require("../config/connection");
-const { Comment, Course, Resource, Tag, User } = require("../models");
+const { Comment, Course, Resource, Tag, User } = require("../models"); //tag model not yet implemented
 //const commentSeed = require('./commentSeed.json');
 const courseSeed = require("./courseSeed.json");
 // const userSeed = require("./userSeed.json");
@@ -27,16 +27,18 @@ db.once("open", async () => {
     // console.log("All courses:", allCourses);
 
     const resourceFiles = [
+      //resources split by their course name
       { courseName: "Github", filePath: "./gitmodule.json" },
       { courseName: "HTML & CSS", filePath: "./htmlmodule.json" },
       { courseName: "NodeJS", filePath: "./nodejsmodule.json" },
       { courseName: "ExpressJS", filePath: "./expressmodule.json" },
       { courseName: "Javascript", filePath: "./jsmodule.json" },
       { courseName: "React", filePath: "./reactSeed.json" },
-      // Add more resource files with their corresponding course names
+      // more resources to be added by user input
     ];
 
     for (const course of allCourses) {
+      //code to push resouces to individual course
       const resourceFile = resourceFiles.find(
         (file) => file.courseName === course.name
       );

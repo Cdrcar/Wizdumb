@@ -1,3 +1,5 @@
+//we didnt end up using the quiz, its a feature to add in future, this is the data for it
+
 const quizJavaScript = [
   {
     Q: "What symbol is used to contain an object?",
